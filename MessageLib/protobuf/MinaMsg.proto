@@ -1,0 +1,17 @@
+syntax = "proto3";
+package protobuf.msg;
+message MinaServerConnected{
+	string name=1;
+}
+message MinaServerDisConnect{
+	string name=1;
+}
+message MinaClientCreateConnect{
+	string name=1;
+}
+message MinaClientDisConnect{
+	string name=1;
+}
+message MinaServerCanUse{
+	string name=1;
+}
