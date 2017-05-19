@@ -58,7 +58,7 @@ public class HttpFilterManager {
 			try {
 				result = httpFilter.httpFilter(hSession);
 			} catch (HttpErrorException e) {
-				//LogManager.httpLog.error("拦截器抛HttpErrorException异常", e);
+				// LogManager.httpLog.error("拦截器抛HttpErrorException异常", e);
 				// 回复异常信息
 				Message errorData = e.getErrorData();
 				HttpPacket packet = new HttpPacket(e.getErrorType(), errorData);

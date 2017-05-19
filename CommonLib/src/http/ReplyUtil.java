@@ -295,7 +295,7 @@ public class ReplyUtil {
 				}
 			}
 		}
-		
+
 		else {
 			return false;
 		}

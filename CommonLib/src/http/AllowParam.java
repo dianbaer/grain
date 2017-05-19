@@ -36,8 +36,8 @@ public class AllowParam {
 	public static String RECEIVCE_TYPE_STRING = "receiveTypeString";
 	// 不接收返回数据
 	public static String RECEIVE_TYPE_NONE = "receiveTypeNone";
-	
-	//接收除图片外的其他二进制流
+
+	// 接收除图片外的其他二进制流
 	public static String RECEIVE_TYPE_OTHER_STREAM = "receiveTypeOtherStream";
 
 }

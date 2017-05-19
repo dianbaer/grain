@@ -9,7 +9,8 @@ public class UploadProgressListener implements IUploadProgress {
 
 	@Override
 	public void update(long arg0, long arg1, int arg2) {
-		//LogManager.httpLog.info("arg0:" + arg0 + ",arg1:" + arg1 + ",arg2" + arg2);
+		// LogManager.httpLog.info("arg0:" + arg0 + ",arg1:" + arg1 + ",arg2" +
+		// arg2);
 	}
 
 	@Override

@@ -18,7 +18,7 @@ public class FileData {
 		this.stream = stream;
 		this.fileName = fileName;
 	}
-	
+
 	public FileData(InputStream stream, String fileName, String contentType) {
 		this(stream, fileName);
 		this.contentType = contentType;

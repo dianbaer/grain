@@ -12,7 +12,8 @@ public class TOpCode {
 	public static int DISTRIBUTED_LOCK_C1 = 1;
 	public static int DISTRIBUTED_LOCK_S1 = 2;
 	public static int DISTRIBUTED_LOCK_C2 = 3;
-	public static void init(){
+
+	public static void init() {
 		tOpCodeMap.put(DISTRIBUTED_LOCK_C1, DistributedLockC1.class);
 		tOpCodeMap.put(DISTRIBUTED_LOCK_S1, DistributedLockS1.class);
 		tOpCodeMap.put(DISTRIBUTED_LOCK_C2, DistributedLockC2.class);

@@ -56,10 +56,10 @@ public class FileHttpFilter implements IHttpFilter {
 							String name = fileItem.getName();
 							int postfixIndex = name.lastIndexOf(".");
 							String newName;
-							if(postfixIndex != -1){
+							if (postfixIndex != -1) {
 								String postfix = name.substring(postfixIndex);
 								newName = IdUtil.getUuid() + postfix;
-							}else{
+							} else {
 								newName = IdUtil.getUuid();
 							}
 							File file = new File(tempPath, newName);

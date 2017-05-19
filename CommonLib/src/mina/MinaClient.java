@@ -68,7 +68,8 @@ public class MinaClient extends Thread {
 					connectFuture.awaitUninterruptibly();
 					if (!connectFuture.isConnected()) {
 						connectFuture.cancel();
-						//LogManager.minaLog.info("连接" + inetSocketAddress.toString() + "失败");
+						// LogManager.minaLog.info("连接" +
+						// inetSocketAddress.toString() + "失败");
 					} else {
 						ioConnectorStateMap.put(ioConnector, true);
 						LogManager.minaLog.info("连接" + inetSocketAddress.toString() + "成功");
