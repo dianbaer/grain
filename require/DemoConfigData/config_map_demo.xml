@@ -7,9 +7,5 @@
 			<path>config.json</path>
 			<class>config</class>
 		</Config>
-		<Config>
-			<path>configext.json</path>
-			<class>configext</class>
-		</Config>
 	</JsonConfigs>
 </root>
