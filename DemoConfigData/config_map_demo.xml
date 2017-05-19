@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+	<Configs>
+	</Configs>
+	<JsonConfigs>
+		<Config>
+			<path>config.json</path>
+			<class>config</class>
+		</Config>
+		<Config>
+			<path>configext.json</path>
+			<class>configext</class>
+		</Config>
+	</JsonConfigs>
+</root>
