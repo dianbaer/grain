@@ -3,8 +3,8 @@
 	<name>DemoServer</name>
 	<comment></comment>
 	<projects>
-		<project>DemoServerDBLib</project>
 		<project>DemoServerMessageLib</project>
+		<project>DemoServerDBLib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
