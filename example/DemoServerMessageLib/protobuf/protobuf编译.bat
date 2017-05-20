@@ -1,4 +1,4 @@
 C:
-cd C:\Users\xp\Desktop\dianbaer\branches\DemoServerMessageLib\protobuf
+cd C:\Users\dianbaer\Desktop\dianbaer\example\DemoServerMessageLib\protobuf
 protoc --java_out=./ DemoServerProto.proto
 pause
