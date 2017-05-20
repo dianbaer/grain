@@ -1,0 +1,10 @@
+syntax = "proto3";
+package protobuf.http;
+message DemoServerC{
+	int32 hOpCode=1;
+	string userName=2;
+	string userPassword=3;
+}
+message DemoServerS{
+	int32 hOpCode=1;
+}
