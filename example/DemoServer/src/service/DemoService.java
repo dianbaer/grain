@@ -3,6 +3,8 @@ package service;
 import java.util.HashMap;
 import java.util.Map;
 
+import action.DemoAction;
+import dao.model.base.Demo;
 import http.HOpCodeDemoServer;
 import http.HSession;
 import http.HttpPacket;
@@ -26,7 +28,10 @@ public class DemoService implements IHttpListener {
 
 	public HttpPacket demoServerHandle(HSession hSession) {
 		DemoServerC message = (DemoServerC) hSession.httpPacket.getData();
-
+		Demo demo = DemoAction.getDemoByUserName(message.getUserName());
+		if (demo == null) {
+			return null;
+		}
 		DemoServerS.Builder builder = DemoServerS.newBuilder();
 		builder.setHOpCode(hSession.headParam.hOpCode);
 		HttpPacket packet = new HttpPacket(hSession.headParam.hOpCode, builder.build());
