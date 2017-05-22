@@ -24,7 +24,7 @@
 "downloadBlockSize":[65536,"下载块大小，默认大小（64kb）65536经测试，超过这个值传输速度完全依赖线程睡眠时间，低于这个值会影响传输速度"],
 "downloadFileSleepTime":[256,"下载文件睡眠时间,0表示不睡眠"],
 "downloadImageSleepTime":[64,"下载图片睡眠时间,0表示不睡眠"],
-"isUseTomcatThreadHandle":[true,"是否使用tomcat线程处理http请求"],
+"downloadOtherStreamSleepTime":[256,"下载其他流睡眠时间,0表示不睡眠"],
 "isGateWayServer":[false,"是否承担网关服务"],
 "gateWayConfig":["http.gateway.TestGateWayConfig","网关配置接口"],
 "keyLockTypeClass":["keylock.TestKeyLockType","实现keylock类型接口的类"],
