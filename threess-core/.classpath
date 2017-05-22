@@ -29,6 +29,6 @@
 	<classpathentry kind="lib" path="lib/protobuf-java-format-1.4.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-api-1.7.22.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-log4j12-1.7.22.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/kaola-msg"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/threess-msg"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
