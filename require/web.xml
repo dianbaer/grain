@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>Demo</display-name>
+  <display-name>DemoServer</display-name>
   <servlet>
     <servlet-name>CommonServlet</servlet-name>
     <servlet-class>http.CommonServlet</servlet-class>
@@ -20,6 +20,6 @@
   </welcome-file-list>
   <context-param>
     <param-name>configFileName</param-name>
-    <param-value>Demo.properties</param-value>
+    <param-value>DemoServer.properties</param-value>
   </context-param>
 </web-app>
