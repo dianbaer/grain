@@ -31,7 +31,7 @@ public class CommonConfig extends DefaultConfig {
 	public static int DOWNLOAD_BLOCK_SIZE;
 	public static int DOWNLOAD_FILE_SLEEP_TIME;
 	public static int DOWNLOAD_IMAGE_SLEEP_TIME;
-	public static boolean IS_USE_TOMCAT_THREAD_HANDLE;
+	public static int DOWNLOAD_OTHER_STREAM_SLEEP_TIME;
 	public static boolean IS_GATE_WAY_SERVER;
 	public static String GATE_WAY_CONFIG;
 	public static String KEY_LOCK_TYPE_CLASS;
@@ -81,7 +81,7 @@ public class CommonConfig extends DefaultConfig {
 		DOWNLOAD_BLOCK_SIZE = config.getJSONArray("downloadBlockSize").getInt(0);
 		DOWNLOAD_FILE_SLEEP_TIME = config.getJSONArray("downloadFileSleepTime").getInt(0);
 		DOWNLOAD_IMAGE_SLEEP_TIME = config.getJSONArray("downloadImageSleepTime").getInt(0);
-		IS_USE_TOMCAT_THREAD_HANDLE = config.getJSONArray("isUseTomcatThreadHandle").getBoolean(0);
+		DOWNLOAD_OTHER_STREAM_SLEEP_TIME = config.getJSONArray("downloadOtherStreamSleepTime").getInt(0);
 		IS_GATE_WAY_SERVER = config.getJSONArray("isGateWayServer").getBoolean(0);
 		GATE_WAY_CONFIG = config.getJSONArray("gateWayConfig").getString(0);
 		// key锁

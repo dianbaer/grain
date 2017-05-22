@@ -19,7 +19,7 @@ import net.sf.json.JSONArray;
 public class HttpFilterManager {
 	private static ArrayList<IHttpFilter> httpFilterList = new ArrayList<IHttpFilter>();
 
-	public static void init(JSONArray jsArray, String sendCode, String encode, String uploadTempFolder, String uploadProgressClass, int downloadBlockSize, int downloadFileSleepTime, int downloadImageSleepTime, boolean useHttpMonitor, boolean isUseTomcatThreadHandle, boolean isGateWayServer) throws Exception {
+	public static void init(JSONArray jsArray, String sendCode, String encode, String uploadTempFolder, String uploadProgressClass, int downloadBlockSize, int downloadFileSleepTime, int downloadImageSleepTime, int downloadOtherStreamSleepTime, boolean useHttpMonitor, boolean isGateWayServer) throws Exception {
 		HttpConfig.SEND_CODE = sendCode;
 		HttpConfig.ENCODE = encode;
 		HttpConfig.UPLOAD_TEMP_FOLDER = uploadTempFolder;
@@ -27,8 +27,8 @@ public class HttpFilterManager {
 		HttpConfig.DOWNLOAD_BLOCK_SIZE = downloadBlockSize;
 		HttpConfig.DOWNLOAD_FILE_SLEEP_TIME = downloadFileSleepTime;
 		HttpConfig.DOWNLOAD_IMAGE_SLEEP_TIME = downloadImageSleepTime;
+		HttpConfig.DOWNLOAD_OTHER_STREAM_SLEEP_TIME = downloadOtherStreamSleepTime;
 		HttpConfig.USE_HTTP_MONITOR = useHttpMonitor;
-		HttpConfig.IS_USE_TOMCAT_THREAD_HANDLE = isUseTomcatThreadHandle;
 		HttpConfig.IS_GATE_WAY_SERVER = isGateWayServer;
 		// 跟业务无关的拦截器，按顺序
 		CrossDomainHttpFilter crossDomainHttpFilter = new CrossDomainHttpFilter();

@@ -55,7 +55,7 @@ public class Init {
 		MsgManager.init(CommonConfig.USE_MSG_MONITOR);
 		MsgOpCode.init();
 		if (CommonConfig.IS_HTTP_SERVER) {
-			HttpFilterManager.init(CommonConfig.HTTP_FILTER_ARRAY, DefaultConfig.ISO_8859_1, DefaultConfig.UTF8, CommonConfig.UPLOAD_TEMP_FOLDER, CommonConfig.UPLOAD_PROGRESS_CLASS, CommonConfig.DOWNLOAD_BLOCK_SIZE, CommonConfig.DOWNLOAD_FILE_SLEEP_TIME, CommonConfig.DOWNLOAD_IMAGE_SLEEP_TIME, CommonConfig.USE_HTTP_MONITOR, CommonConfig.IS_USE_TOMCAT_THREAD_HANDLE, CommonConfig.IS_GATE_WAY_SERVER);
+			HttpFilterManager.init(CommonConfig.HTTP_FILTER_ARRAY, DefaultConfig.ISO_8859_1, DefaultConfig.UTF8, CommonConfig.UPLOAD_TEMP_FOLDER, CommonConfig.UPLOAD_PROGRESS_CLASS, CommonConfig.DOWNLOAD_BLOCK_SIZE, CommonConfig.DOWNLOAD_FILE_SLEEP_TIME, CommonConfig.DOWNLOAD_IMAGE_SLEEP_TIME, CommonConfig.DOWNLOAD_OTHER_STREAM_SLEEP_TIME, CommonConfig.USE_HTTP_MONITOR, CommonConfig.IS_GATE_WAY_SERVER);
 			if (CommonConfig.IS_GATE_WAY_SERVER) {
 				GateWayManager.init(CommonConfig.GATE_WAY_CONFIG);
 			}
@@ -67,9 +67,7 @@ public class Init {
 
 		MainThread.init(CommonConfig.MAIN_THREAD_CYCLE_INTERVAL);
 		AsyncThreadManager.init(CommonConfig.ASYNC_THREAD_CYCLE_INTERVAL, CommonConfig.ASYNC_THREAD_NUM, CommonConfig.ASYNC_THREAD_PRIORITY_NUM);
-		if (!CommonConfig.IS_USE_TOMCAT_THREAD_HANDLE && CommonConfig.IS_HTTP_SERVER) {
 
-		}
 		if (CommonConfig.IS_MINA_CLIENT || CommonConfig.IS_MINA_SERVER) {
 
 			WaitLockManager.init(CommonConfig.WAIT_LOCK_TIME);

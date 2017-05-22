@@ -11,7 +11,7 @@ public class HttpConfig {
 	public static int DOWNLOAD_BLOCK_SIZE;
 	public static int DOWNLOAD_FILE_SLEEP_TIME;
 	public static int DOWNLOAD_IMAGE_SLEEP_TIME;
+	public static int DOWNLOAD_OTHER_STREAM_SLEEP_TIME;
 	public static boolean USE_HTTP_MONITOR;
-	public static boolean IS_USE_TOMCAT_THREAD_HANDLE;
 	public static boolean IS_GATE_WAY_SERVER;
 }
