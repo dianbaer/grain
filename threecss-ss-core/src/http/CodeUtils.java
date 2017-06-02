@@ -2,7 +2,6 @@ package http;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
-import java.net.URLDecoder;
 import java.nio.charset.Charset;
 
 import org.apache.commons.codec.binary.Base64;
@@ -76,8 +75,7 @@ public class CodeUtils {
 
 	public static HttpPacket decodeJson(String stringResult, boolean isServer) {
 		try {
-			String stringResult_decode = URLDecoder.decode(stringResult, HttpConfig.ENCODE);
-			JSONObject jsObj = JSONObject.fromObject(stringResult_decode);
+			JSONObject jsObj = JSONObject.fromObject(stringResult);
 			int hOpCode = jsObj.getInt(AllowParam.HOPCODE);
 			if (hOpCode <= 0) {
 				LogManager.httpLog.warn("数据为：" + stringResult + "，无hOpCode");
@@ -96,7 +94,7 @@ public class CodeUtils {
 			}
 			Method buildM = className.getDeclaredMethod("newBuilder");
 			AbstractMessage.Builder<?> builder = (Builder<?>) buildM.invoke(null);
-			Message data = PacketUtils.jsonToProtoBuf(stringResult_decode, builder);
+			Message data = PacketUtils.jsonToProtoBuf(stringResult, builder);
 			HttpPacket httpPacket = new HttpPacket(hOpCode, data);
 			return httpPacket;
 		} catch (Exception e) {
