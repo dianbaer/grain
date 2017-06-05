@@ -12,6 +12,7 @@ import http.filter.CrossDomainHttpFilter;
 import http.filter.FileHttpFilter;
 import http.filter.HeadDataHttpFilter;
 import http.filter.IHttpFilter;
+import http.filter.IHttpInitFilter;
 import http.filter.PacketHttpFilter;
 import log.LogManager;
 import net.sf.json.JSONArray;
@@ -47,6 +48,11 @@ public class HttpFilterManager {
 			}
 			IHttpFilter httpFilter = (IHttpFilter) Class.forName(className).newInstance();
 			httpFilterList.add(httpFilter);
+			//dingwancheng start
+			if (httpFilter instanceof IHttpInitFilter) {
+				((IHttpInitFilter)httpFilter).httpInit();
+			}
+			//dingwancheng end
 		}
 	}
 
