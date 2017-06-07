@@ -1,0 +1,7 @@
+1、安装nodejs
+2、执行npm install -g grunt-cli
+npm init
+npm install grunt --save-dev
+npm install grunt-contrib-concat --save-dev
+npm install grunt-contrib-uglify --save-dev
+3、进入threecss-c 执行grunt

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DemoClient</title>
+    <script src="js/lib/threecss-c.js?v=v1.0.0" type="text/javascript"></script>
+</head>
+<script type="text/javascript">
+	//初始化内部类
+    $T.version.init();
+    //加载内部类
+    $T.version.loadScript("js/app/NotificationExt.js");
+    $T.version.loadScript("js/app/Url.js");
+    $T.version.loadScript("js/app/data/http/DemoProxy.js");
+
+    $T.version.loadScript("js/app/IndexMediator.js");
+    $T.version.loadScript("js/app/module/TopMediator.js");
+    $T.version.loadScript("js/app/module/LeftMediator.js");
+    $T.version.loadScript("js/app/module/BodyMediator.js");
+    $T.version.loadScript("js/app/module/BottomMediator.js");
+    $T.version.loadScript("js/app/module/View1Mediator.js");
+    $T.version.loadScript("js/app/module/View2Mediator.js");
+
+    window.onload = function () {
+        //初始化过滤器
+        var testFilter = new TestFilter();
+        $T.httpResultFilter.addFilter(testFilter);
+        //初始化控制器
+        $T.indexMediator.init();
+        $T.register.register($T.indexMediator);
+
+    }
+</script>
+<body>
+<div>
+    <div id="index_top"></div>
+    <div id="index_left"></div>
+    <div id="index_body"></div>
+    <div id="index_bottom"></div>
+    <div id="tween_div" style="width: 100px; height: 100px; background: #ff6de8;"></div>
+</div>
+</body>
+</html>
