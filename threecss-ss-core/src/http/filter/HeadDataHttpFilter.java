@@ -37,12 +37,12 @@ public class HeadDataHttpFilter implements IHttpFilter {
 		String packet = null;
 		if (sendType.equals(AllowParam.SEND_TYPE_FILE_SAVE_SESSION) || sendType.equals(AllowParam.SEND_TYPE_FILE_NOT_SAVE) || sendType.equals(AllowParam.SEND_TYPE_PACKET)) {
 			packet = getHeadData(hSession.request, AllowParam.PACKET);
-			try {
-				packet = new String(packet.getBytes(HttpConfig.SEND_CODE), HttpConfig.ENCODE);
-			} catch (UnsupportedEncodingException e) {
-				LogManager.httpLog.error("packet解码错误", e);
-				return false;
-			}
+//			try {
+//				packet = new String(packet.getBytes(HttpConfig.SEND_CODE), HttpConfig.ENCODE);
+//			} catch (UnsupportedEncodingException e) {
+//				LogManager.httpLog.error("packet解码错误", e);
+//				return false;
+//			}
 		}
 		String fileUuid = null;
 		if (sendType.equals(AllowParam.SEND_TYPE_FILE_SAVE_SESSION) || sendType.equals(AllowParam.SEND_TYPE_FILE_NOT_SAVE)) {
