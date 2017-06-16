@@ -5,31 +5,44 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+import javax.net.ssl.SSLContext;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.ssl.SSLContexts;
 import org.apache.http.util.EntityUtils;
 
 import log.LogManager;
 
 public class HttpUtil {
-	public static void init(String sendCode, String encode) {
+	public static SSLConnectionSocketFactory sslSocketFactory;
+
+	public static void init(String sendCode, String encode) throws Exception {
 		HttpConfig.SEND_CODE = sendCode;
 		HttpConfig.ENCODE = encode;
+		SSLContext sslContext = SSLContexts.custom().loadTrustMaterial(new TrustStrategyAll()).build();
+		sslSocketFactory = new SSLConnectionSocketFactory(sslContext);
 	}
 
 	public static HttpPacket send(HttpPacket httpPacket, String url, String sendType, String receiveType, String token) {
 		CloseableHttpClient httpClient = null;
 		CloseableHttpResponse httpResponse = null;
 		try {
-			httpClient = HttpClients.createDefault();
+			if (url.startsWith("https")) {
+				httpClient = HttpClients.custom().setSSLSocketFactory(sslSocketFactory).build();
+			} else {
+				httpClient = HttpClients.createDefault();
+			}
+
 			HttpPost httpPost = new HttpPost(url);
 			httpPost.addHeader(AllowParam.HOPCODE, String.valueOf(httpPacket.gethOpCode()));
 			httpPost.addHeader(AllowParam.SEND_TYPE, sendType);
