@@ -96,12 +96,16 @@ public class HttpUtil {
 			return null;
 		} finally {
 			try {
-				httpClient.close();
+				if (httpClient != null) {
+					httpClient.close();
+				}
 			} catch (IOException e) {
 				LogManager.httpLog.error("关闭httpClient异常", e);
 			}
 			try {
-				httpResponse.close();
+				if (httpResponse != null) {
+					httpResponse.close();
+				}
 			} catch (IOException e) {
 				LogManager.httpLog.error("关闭httpResponse异常", e);
 			}
@@ -113,7 +117,11 @@ public class HttpUtil {
 		CloseableHttpClient httpClient = null;
 		CloseableHttpResponse httpResponse = null;
 		try {
-			httpClient = HttpClients.createDefault();
+			if (url.startsWith("https")) {
+				httpClient = HttpClients.custom().setSSLSocketFactory(sslSocketFactory).build();
+			} else {
+				httpClient = HttpClients.createDefault();
+			}
 			HttpPost httpPost = new HttpPost(url);
 			httpPost.addHeader(AllowParam.HOPCODE, String.valueOf(httpPacket.gethOpCode()));
 			httpPost.addHeader(AllowParam.SEND_TYPE, sendType);
@@ -166,12 +174,16 @@ public class HttpUtil {
 			return null;
 		} finally {
 			try {
-				httpClient.close();
+				if (httpClient != null) {
+					httpClient.close();
+				}
 			} catch (IOException e) {
 				LogManager.httpLog.error("关闭httpClient异常", e);
 			}
 			try {
-				httpResponse.close();
+				if (httpResponse != null) {
+					httpResponse.close();
+				}
 			} catch (IOException e) {
 				LogManager.httpLog.error("关闭httpResponse异常", e);
 			}
