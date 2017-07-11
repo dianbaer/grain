@@ -209,6 +209,7 @@ public class ReplyUtil {
 				if (sendStr == null) {
 					return false;
 				}
+				hSession.response.setContentType("text/plain");
 				hSession.response.setCharacterEncoding(HttpConfig.ENCODE);
 				byte[] sendByte = sendStr.getBytes(HttpConfig.ENCODE);
 				hSession.response.setContentLength(sendByte.length);
