@@ -1,0 +1,41 @@
+﻿<?xml version="1.0"?>
+<project name="ThreeCSS" basedir="." default="build">
+	<property file="build-custom.properties"/>
+	<property name="build" location="${buildpath}" />
+	<property name="dist" location="${DistPath}" />
+	<property name="ThreeCSS.dir" value="${ThreeCSSDir}" />
+	<property name="Msg.dir" value="${MsgDir}" />
+	<property name="Core.dir" value="${CoreDir}" />
+	<target name="build-Msg" depends="">
+		<ant antfile="build-msg.xml" dir="${Msg.dir}">
+		</ant>
+	</target>
+	<target name="build-Core" depends="">
+		<ant antfile="build-core.xml" dir="${Core.dir}">
+		</ant>
+	</target>
+	<target name="cleandist" description="clean up">
+		<delete file="${dist}/threecss-ss-msg.jar" />
+		<delete file="${dist}/threecss-ss-core.jar" />
+	</target>
+	<target name="build">
+		<antcall target="cleandist" />
+		<antcall target="build-Msg" />
+		<antcall target="build-Core" />
+		<mkdir dir="${dist}" />
+		<copy file="${Msg.dir}/dist/threecss-ss-msg.jar" todir="${dist}" /> 
+		<copy file="${Core.dir}/dist/threecss-ss-core.jar" todir="${dist}" /> 
+		<!--<copy file="${Server.dir}/dist/Server.war" todir="${dist}/Server" />
+		<copy file="${Server.dir}/src/custom.properties" todir="${dist}/Server" />
+		<copy file="${Server.dir}/src/ApiAllMessageLib.properties" todir="${dist}/Server" />
+		<copy file="${LoginServer.dir}/dist/LoginServer.war" todir="${dist}/LoginServer" />
+		<copy file="${LoginServer.dir}/src/login.properties" todir="${dist}/LoginServer" />
+		<copy file="${WebClient.dir}/dist/TCenter.war" todir="${dist}/TCenter" />
+		<copy file="${WebClient.dir}/src/main/resources/MessageLib.properties" todir="${dist}/TCenter" />
+		<copy file="${TCloud.dir}/csoss.sql" todir="${dist}/CenterServer" /> 
+		<copydir dest="${dist}/CenterServer" src="${CenterServer.dir}/dist/CenterServer"></copydir>
+		<copydir dest="${dist}/CacheWriteToDBServer" src="${CacheWriteToDBServer.dir}/dist/CacheWriteToDBServer"></copydir>
+		<copydir dest="${dist}/ConfigData" src="${TCloud.dir}/ConfigData"></copydir>
+		<echo file="${distpath}/NewVersion.txt" >${v}</echo>-->
+	</target>
+</project>
