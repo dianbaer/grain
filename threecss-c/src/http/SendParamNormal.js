@@ -1,5 +1,6 @@
-function SendParam() {
+function SendParamNormal() {
     this.canContinuous = false;// 该函数名是否可以持续发送
+    this.lockKey;//锁的对象
     this.loadType;// 加载消息类型
     this.successHandle;// 成功回调
     this.failHandle;// 失败回调
@@ -13,4 +14,6 @@ function SendParam() {
     this.startTime;// 请求开始时间
     this.endTime;// 请求结束时间
     this.fileArray;// 文件数组
+    this.headerKey;//头key数组
+    this.headerValue;//头value数组
 }

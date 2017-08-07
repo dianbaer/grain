@@ -1,4 +1,4 @@
-function HttpUtil() {
+function HttpUtilNormal() {
     this.lockMap = [];// 锁请求用的
     this.send = function (sendParam) {
         if (sendParam.url == null) {
@@ -18,34 +18,24 @@ function HttpUtil() {
             alert("successHandle或object不能为空");
             return;
         }
-        if (sendParam.type == $T.httpConfig.TYPE_POST) {
+        if (sendParam.type == $T.httpConfigNormal.TYPE_POST) {
             if (sendParam.data == null) {
                 alert("发送post请求，data不能为空");
                 return;
             }
         }
-        if (sendParam.returnType == $T.httpConfig.RETURN_TYPE_JSON) {
-            if (!sendParam.canContinuous && this.lockMap[sendParam.successHandle] == 1) {
-                // 发送消息，不能重复请求
-                return;
-            }
-            this.lockMap[sendParam.successHandle] = 1;
-        } else if (sendParam.returnType == $T.httpConfig.RETURN_TYPE_HTML) {
-            if (!sendParam.canContinuous && this.lockMap[sendParam.url] == 1) {
-                // 发送消息，不能重复请求
-                return;
-            }
-            this.lockMap[sendParam.url] = 1;
-        } else {
-            alert("不支持此返回类型" + sendParam.returnType);
+
+        if (!sendParam.canContinuous && this.lockMap[sendParam.lockKey] == 1) {
+            // 发送消息，不能重复请求
             return;
+        }
+        if (!sendParam.canContinuous && sendParam.lockKey != null) {
+            this.lockMap[sendParam.lockKey] = 1;
         }
         var xMLHttpRequest = new XMLHttpRequest();
         if (xMLHttpRequest == null) {
-            if (sendParam.returnType == $T.httpConfig.RETURN_TYPE_JSON) {
-                delete $T.httpUtil.lockMap[sendParam.successHandle];
-            } else if (sendParam.returnType == $T.httpConfig.RETURN_TYPE_HTML) {
-                delete $T.httpUtil.lockMap[sendParam.url];
+            if(!sendParam.canContinuous && sendParam.lockKey != null){
+                delete $T.httpUtilNormal.lockMap[sendParam.lockKey];
             }
             alert("浏览器不支持ajax请求");
             return;
@@ -67,14 +57,14 @@ function HttpUtil() {
                 var file = sendParam.fileArray[i];
                 form.append("file" + i, file);
             }
-            form.append($T.httpConfig.PACKET, encodeURI(JSON.stringify(sendParam.data)));
+            form.append($T.httpConfigNormal.PACKET, encodeURI(JSON.stringify(sendParam.data)));
         }
         this.addHttpListener(xMLHttpRequest, this.sendReturn, sendParam);
         sendParam.startTime = new Date().getTime();
         if (form != null) {
             xMLHttpRequest.send(form);
         } else {
-            if (sendParam.data != null && sendParam.type == $T.httpConfig.TYPE_POST) {
+            if (sendParam.data != null && sendParam.type == $T.httpConfigNormal.TYPE_POST) {
                 xMLHttpRequest.send(JSON.stringify(sendParam.data));
             } else {
                 xMLHttpRequest.send();
@@ -96,15 +86,8 @@ function HttpUtil() {
         if (this.readyState == 4) {
             sendParam.endTime = new Date().getTime();
             // 删除请求
-            if (sendParam.returnType == $T.httpConfig.RETURN_TYPE_JSON) {
-                // console.log("操作码为：" + sendParam.data[$T.httpConfig.HOPCODE] +
-                // "，请求时间为：" + (sendParam.endTime - sendParam.startTime) +
-                // "毫秒");
-                delete $T.httpUtil.lockMap[sendParam.successHandle];
-            } else if (sendParam.returnType == $T.httpConfig.RETURN_TYPE_HTML) {
-                // console.log("获取地址为：" + sendParam.url + "，请求时间为：" +
-                // (sendParam.endTime - sendParam.startTime) + "毫秒");
-                delete $T.httpUtil.lockMap[sendParam.url];
+            if(!sendParam.canContinuous && sendParam.lockKey != null){
+                delete $T.httpUtilNormal.lockMap[sendParam.lockKey];
             }
             if (sendParam.loadType != null) {
                 // 发送消息，关闭某种请求样式
@@ -112,7 +95,7 @@ function HttpUtil() {
             }
             if (this.status == 200) {
                 var result;
-                if (sendParam.returnType == $T.httpConfig.RETURN_TYPE_JSON) {
+                if (sendParam.returnType == $T.httpConfigNormal.RETURN_TYPE_JSON) {
                     try {
                         result = JSON.parse(this.responseText);
                     } catch (e) {
@@ -125,7 +108,7 @@ function HttpUtil() {
                         alert("json解析异常");
                         return;
                     }
-                } else if (sendParam.returnType == $T.httpConfig.RETURN_TYPE_HTML) {
+                } else if (sendParam.returnType == $T.httpConfigNormal.RETURN_TYPE_HTML) {
                     result = this.responseText;
                 }
                 var bool = $T.httpResultFilter.filter(result, sendParam);
@@ -148,14 +131,14 @@ function HttpUtil() {
             }
 
         } else if (this.readyState == 2) {
-            this;
+
         } else if (this.readyState == 3) {
-            this;
+
         } else {
-            this;
+
         }
 
     }
 
 }
-$T.httpUtil = new HttpUtil();
+$T.httpUtilNormal = new HttpUtilNormal();

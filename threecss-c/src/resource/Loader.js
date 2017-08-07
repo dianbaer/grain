@@ -17,6 +17,7 @@ function Loader() {
             sendParam.url = this.url[i];
             sendParam.returnType = $T.httpConfig.RETURN_TYPE_HTML;
             sendParam.isStatic = true;
+            sendParam.lockKey = this.url[i];
             $T.httpUtil.send(sendParam);
         }
 

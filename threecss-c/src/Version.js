@@ -24,8 +24,10 @@ function Version() {
         this.loadScript("js/threecss-c/mvc/Notification.js");
         this.loadScript("js/threecss-c/mvc/ViewManager.js");
         // http
+        this.loadScript("js/threecss-c/http/HttpConfigNormal.js");
         this.loadScript("js/threecss-c/http/HttpConfig.js");
         this.loadScript("js/threecss-c/http/HttpResultFilter.js");
+        this.loadScript("js/threecss-c/http/SendParamNormal.js");
         this.loadScript("js/threecss-c/http/SendParam.js");
         this.loadScript("js/threecss-c/http/TestFilter.js");
 
@@ -46,6 +48,7 @@ function Version() {
         this.loadScript("js/threecss-c/tween/Juggler.js");
         this.loadScript("js/threecss-c/tween/JugglerManager.js");
 
+        this.loadScript("js/threecss-c/http/HttpUtilNormal.js");
         this.loadScript("js/threecss-c/http/HttpUtil.js");
         // 资源
         this.loadScript("js/threecss-c/resource/ResourceEventType.js");
