@@ -11,8 +11,10 @@ module.exports = function (grunt) {
                     'src/Global.js',//无依赖
                     'src/mvc/Notification.js',//无依赖
                     'src/mvc/ViewManager.js',//无依赖
+					'src/http/HttpConfigNormal.js',//无依赖
                     'src/http/HttpConfig.js',//无依赖
                     'src/http/HttpResultFilter.js',//无依赖
+					'src/http/SendParamNormal.js',//$T.httpConfig
                     'src/http/SendParam.js',//$T.httpConfig
                     'src/http/TestFilter.js',//无依赖
                     'src/tools/ArrayTools.js',//无依赖
@@ -29,6 +31,7 @@ module.exports = function (grunt) {
                     'src/tween/Juggler.js',//$T.arrayTools、$T.tweenEventType、$T.delayedCallPool、$T.tweenPool、DelayedCall、Tween、EventDispatcher
                     'src/tween/JugglerManager.js',//$T.jugglerManager、Juggler
                     'src/Version.js',//$T.jugglerManager
+					'src/http/HttpUtilNormal.js',//$T.httpConfig、$T.httpUtil、$T.viewManager、$T.notification、$T.version、$T.httpResultFilter
                     'src/http/HttpUtil.js',//$T.httpConfig、$T.httpUtil、$T.viewManager、$T.notification、$T.version、$T.httpResultFilter
                     'src/resource/ResourceEventType.js',//无依赖
                     'src/resource/Loader.js',//$T.httpConfig、$T.httpUtil、$T.resourceEventType、EventDispatcher

@@ -120,18 +120,23 @@ $T.notification = new Notification();
     }
 }
 $T.viewManager = new ViewManager();
-function HttpConfig() {
+function HttpConfigNormal() {
     this.TYPE_POST = "post";// 发送类型
     this.TYPE_GET = "get";// 发送类型
     this.RETURN_TYPE_JSON = "json";// 获取类型
     this.RETURN_TYPE_HTML = "html";// 获取类型
+    this.PACKET = "packet";// 是文件类型的包
+
+}
+$T.httpConfigNormal = new HttpConfigNormal();
+function HttpConfig() {
+    HttpConfigNormal.apply(this);
     // 允许消息头
     this.HOPCODE = "hOpCode";// 操作码
     this.TOKEN = "token";
     this.SEND_TYPE = "sendType";
     this.RECEIVE_TYPE = "receiveType";
     this.FILE_UUID = "fileUuid";// uuid
-    this.PACKET = "packet";// 是文件类型的包
     // 发送类型
     this.SEND_TYPE_JSON = "sendTypeJson";
     this.SEND_TYPE_PROTOBUF = "sendTypeProtobuf";
@@ -165,8 +170,9 @@ $T.httpConfig = new HttpConfig();
     }
 }
 $T.httpResultFilter = new HttpResultFilter();
-function SendParam() {
+function SendParamNormal() {
     this.canContinuous = false;// 该函数名是否可以持续发送
+    this.lockKey;//锁的对象
     this.loadType;// 加载消息类型
     this.successHandle;// 成功回调
     this.failHandle;// 失败回调
@@ -180,6 +186,11 @@ $T.httpResultFilter = new HttpResultFilter();
     this.startTime;// 请求开始时间
     this.endTime;// 请求结束时间
     this.fileArray;// 文件数组
+    this.headerKey;//头key数组
+    this.headerValue;//头value数组
+}
+function SendParam() {
+    SendParamNormal.apply(this);
     this.fileUuid;// 获取进度的id
     this.token;// 身份标示
     this.sendType;// 发送类型
@@ -1289,8 +1300,10 @@ $T.jugglerManager = new JugglerManager();
         this.loadScript("js/threecss-c/mvc/Notification.js");
         this.loadScript("js/threecss-c/mvc/ViewManager.js");
         // http
+        this.loadScript("js/threecss-c/http/HttpConfigNormal.js");
         this.loadScript("js/threecss-c/http/HttpConfig.js");
         this.loadScript("js/threecss-c/http/HttpResultFilter.js");
+        this.loadScript("js/threecss-c/http/SendParamNormal.js");
         this.loadScript("js/threecss-c/http/SendParam.js");
         this.loadScript("js/threecss-c/http/TestFilter.js");
 
@@ -1311,6 +1324,7 @@ $T.jugglerManager = new JugglerManager();
         this.loadScript("js/threecss-c/tween/Juggler.js");
         this.loadScript("js/threecss-c/tween/JugglerManager.js");
 
+        this.loadScript("js/threecss-c/http/HttpUtilNormal.js");
         this.loadScript("js/threecss-c/http/HttpUtil.js");
         // 资源
         this.loadScript("js/threecss-c/resource/ResourceEventType.js");
@@ -1336,7 +1350,7 @@ $T.jugglerManager = new JugglerManager();
 
 }
 $T.version = new Version();
-function HttpUtil() {
+function HttpUtilNormal() {
     this.lockMap = [];// 锁请求用的
     this.send = function (sendParam) {
         if (sendParam.url == null) {
@@ -1356,38 +1370,24 @@ $T.version = new Version();
             alert("successHandle或object不能为空");
             return;
         }
-        if (sendParam.type == $T.httpConfig.TYPE_POST) {
+        if (sendParam.type == $T.httpConfigNormal.TYPE_POST) {
             if (sendParam.data == null) {
                 alert("发送post请求，data不能为空");
                 return;
             }
-            if (sendParam.data[$T.httpConfig.HOPCODE] == null) {
-                alert("发送post请求，data[$T.httpConfig.HOPCODE]不能为空");
-                return;
-            }
         }
-        if (sendParam.returnType == $T.httpConfig.RETURN_TYPE_JSON) {
-            if (!sendParam.canContinuous && this.lockMap[sendParam.data[$T.httpConfig.HOPCODE]] == 1) {
-                // 发送消息，不能重复请求
-                return;
-            }
-            this.lockMap[sendParam.data[$T.httpConfig.HOPCODE]] = 1;
-        } else if (sendParam.returnType == $T.httpConfig.RETURN_TYPE_HTML) {
-            if (!sendParam.canContinuous && this.lockMap[sendParam.url] == 1) {
-                // 发送消息，不能重复请求
-                return;
-            }
-            this.lockMap[sendParam.url] = 1;
-        } else {
-            alert("不支持此返回类型" + sendParam.returnType);
+
+        if (!sendParam.canContinuous && this.lockMap[sendParam.lockKey] == 1) {
+            // 发送消息，不能重复请求
             return;
+        }
+        if (!sendParam.canContinuous && sendParam.lockKey != null) {
+            this.lockMap[sendParam.lockKey] = 1;
         }
         var xMLHttpRequest = new XMLHttpRequest();
         if (xMLHttpRequest == null) {
-            if (sendParam.returnType == $T.httpConfig.RETURN_TYPE_JSON) {
-                delete $T.httpUtil.lockMap[sendParam.data[$T.httpConfig.HOPCODE]];
-            } else if (sendParam.returnType == $T.httpConfig.RETURN_TYPE_HTML) {
-                delete $T.httpUtil.lockMap[sendParam.url];
+            if (!sendParam.canContinuous && sendParam.lockKey != null) {
+                delete this.lockMap[sendParam.lockKey];
             }
             alert("浏览器不支持ajax请求");
             return;
@@ -1403,34 +1403,24 @@ $T.version = new Version();
             url = $T.version.addVersionAndTimeToUrl(sendParam.url);
         }
         xMLHttpRequest.open(sendParam.type, url, sendParam.async);
-        if (sendParam.returnType == $T.httpConfig.RETURN_TYPE_JSON) {
-            xMLHttpRequest.setRequestHeader($T.httpConfig.HOPCODE, sendParam.data[$T.httpConfig.HOPCODE]);
+        if (sendParam.headerKey != null && sendParam.headerKey.length > 0) {
+            for (var i = 0; i < sendParam.headerKey.length; i++) {
+                xMLHttpRequest.setRequestHeader(sendParam.headerKey[i], sendParam.headerValue[i]);
+            }
         }
         if (sendParam.fileArray != null) {
-            if (sendParam.fileUuid != null) {
-                xMLHttpRequest.setRequestHeader($T.httpConfig.FILE_UUID, sendParam.fileUuid);
-            }
-            xMLHttpRequest.setRequestHeader($T.httpConfig.PACKET, encodeURI(JSON.stringify(sendParam.data)));
-            if (sendParam.sendType != null) {
-                xMLHttpRequest.setRequestHeader($T.httpConfig.SEND_TYPE, sendParam.sendType);
-            } else {
-                xMLHttpRequest.setRequestHeader($T.httpConfig.SEND_TYPE, $T.httpConfig.SEND_TYPE_FILE_SAVE_SESSION);
-            }
             for (var i = 0; i < sendParam.fileArray.length; i++) {
                 var file = sendParam.fileArray[i];
                 form.append("file" + i, file);
             }
-            form.append($T.httpConfig.PACKET, encodeURI(JSON.stringify(sendParam.data)));
-        }
-        if (sendParam.token != null) {
-            xMLHttpRequest.setRequestHeader($T.httpConfig.TOKEN, sendParam.token);
+            form.append($T.httpConfigNormal.PACKET, encodeURI(JSON.stringify(sendParam.data)));
         }
         this.addHttpListener(xMLHttpRequest, this.sendReturn, sendParam);
         sendParam.startTime = new Date().getTime();
         if (form != null) {
             xMLHttpRequest.send(form);
         } else {
-            if (sendParam.data != null && sendParam.type == $T.httpConfig.TYPE_POST) {
+            if (sendParam.type == $T.httpConfigNormal.TYPE_POST) {
                 xMLHttpRequest.send(JSON.stringify(sendParam.data));
             } else {
                 xMLHttpRequest.send();
@@ -1452,15 +1442,8 @@ $T.version = new Version();
         if (this.readyState == 4) {
             sendParam.endTime = new Date().getTime();
             // 删除请求
-            if (sendParam.returnType == $T.httpConfig.RETURN_TYPE_JSON) {
-                // console.log("操作码为：" + sendParam.data[$T.httpConfig.HOPCODE] +
-                // "，请求时间为：" + (sendParam.endTime - sendParam.startTime) +
-                // "毫秒");
-                delete $T.httpUtil.lockMap[sendParam.data[$T.httpConfig.HOPCODE]];
-            } else if (sendParam.returnType == $T.httpConfig.RETURN_TYPE_HTML) {
-                // console.log("获取地址为：" + sendParam.url + "，请求时间为：" +
-                // (sendParam.endTime - sendParam.startTime) + "毫秒");
-                delete $T.httpUtil.lockMap[sendParam.url];
+            if (!sendParam.canContinuous && sendParam.lockKey != null) {
+                delete $T.httpUtilNormal.lockMap[sendParam.lockKey];
             }
             if (sendParam.loadType != null) {
                 // 发送消息，关闭某种请求样式
@@ -1468,7 +1451,7 @@ $T.version = new Version();
             }
             if (this.status == 200) {
                 var result;
-                if (sendParam.returnType == $T.httpConfig.RETURN_TYPE_JSON) {
+                if (sendParam.returnType == $T.httpConfigNormal.RETURN_TYPE_JSON) {
                     try {
                         result = JSON.parse(this.responseText);
                     } catch (e) {
@@ -1481,7 +1464,7 @@ $T.version = new Version();
                         alert("json解析异常");
                         return;
                     }
-                } else if (sendParam.returnType == $T.httpConfig.RETURN_TYPE_HTML) {
+                } else if (sendParam.returnType == $T.httpConfigNormal.RETURN_TYPE_HTML) {
                     result = this.responseText;
                 }
                 var bool = $T.httpResultFilter.filter(result, sendParam);
@@ -1504,14 +1487,54 @@ $T.version = new Version();
             }
 
         } else if (this.readyState == 2) {
-            this;
+
         } else if (this.readyState == 3) {
-            this;
+
         } else {
-            this;
+
         }
 
     }
+
+}
+$T.httpUtilNormal = new HttpUtilNormal();
+function HttpUtil() {
+    this.send = function (sendParam) {
+        if (sendParam.data == null) {
+            alert("发送post请求，data不能为空");
+            return;
+        }
+        if (sendParam.data[$T.httpConfig.HOPCODE] == null) {
+            alert("发送post请求，data[$T.httpConfig.HOPCODE]不能为空");
+            return;
+        }
+        sendParam.lockKey = sendParam.data[$T.httpConfig.HOPCODE];
+        sendParam.headerKey = [];
+        sendParam.headerValue = [];
+        sendParam.headerKey.push($T.httpConfig.HOPCODE);
+        sendParam.headerValue.push(sendParam.data[$T.httpConfig.HOPCODE]);
+        if (sendParam.token != null) {
+            sendParam.headerKey.push($T.httpConfig.TOKEN);
+            sendParam.headerValue.push(sendParam.token);
+        }
+        if (sendParam.fileArray != null) {
+            if (sendParam.fileUuid != null) {
+                sendParam.headerKey.push($T.httpConfig.FILE_UUID);
+                sendParam.headerValue.push(sendParam.fileUuid);
+            }
+            sendParam.headerKey.push($T.httpConfig.PACKET);
+            sendParam.headerValue.push(encodeURI(JSON.stringify(sendParam.data)));
+
+            sendParam.headerKey.push($T.httpConfig.SEND_TYPE);
+            if (sendParam.sendType != null) {
+                sendParam.headerValue.push(sendParam.sendType);
+            } else {
+                sendParam.headerValue.push($T.httpConfig.SEND_TYPE_FILE_SAVE_SESSION);
+            }
+        }
+        $T.httpUtilNormal.send(sendParam);
+    }
+
     this.getRequestUrl = function (sendParam) {
         var packet = encodeURI(JSON.stringify(sendParam.data));
         return sendParam.url + "?" + $T.httpConfig.HOPCODE + "=" + sendParam.data[$T.httpConfig.HOPCODE] + "&token=" + sendParam.token + "&sendType=" + sendParam.sendType + "&receiveType=" + sendParam.receiveType + "&packet=" + packet;
@@ -1535,7 +1558,7 @@ $T.resourceEventType = new ResourceEventType();
     }
     this.load = function () {
         for (var i = 0; i < this.url.length; i++) {
-            var sendParam = new SendParam();
+            var sendParam = new SendParamNormal();
             sendParam.successHandle = this.loadSuccess;
             sendParam.failHandle = this.loadFail;
             sendParam.object = this;
@@ -1543,7 +1566,8 @@ $T.resourceEventType = new ResourceEventType();
             sendParam.url = this.url[i];
             sendParam.returnType = $T.httpConfig.RETURN_TYPE_HTML;
             sendParam.isStatic = true;
-            $T.httpUtil.send(sendParam);
+            sendParam.lockKey = this.url[i];
+            $T.httpUtilNormal.send(sendParam);
         }
 
     }
