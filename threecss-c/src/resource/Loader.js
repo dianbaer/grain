@@ -9,7 +9,7 @@ function Loader() {
     }
     this.load = function () {
         for (var i = 0; i < this.url.length; i++) {
-            var sendParam = new SendParam();
+            var sendParam = new SendParamNormal();
             sendParam.successHandle = this.loadSuccess;
             sendParam.failHandle = this.loadFail;
             sendParam.object = this;
@@ -18,7 +18,7 @@ function Loader() {
             sendParam.returnType = $T.httpConfig.RETURN_TYPE_HTML;
             sendParam.isStatic = true;
             sendParam.lockKey = this.url[i];
-            $T.httpUtil.send(sendParam);
+            $T.httpUtilNormal.send(sendParam);
         }
 
     }

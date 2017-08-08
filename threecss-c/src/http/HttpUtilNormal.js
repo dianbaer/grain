@@ -34,8 +34,8 @@ function HttpUtilNormal() {
         }
         var xMLHttpRequest = new XMLHttpRequest();
         if (xMLHttpRequest == null) {
-            if(!sendParam.canContinuous && sendParam.lockKey != null){
-                delete $T.httpUtilNormal.lockMap[sendParam.lockKey];
+            if (!sendParam.canContinuous && sendParam.lockKey != null) {
+                delete this.lockMap[sendParam.lockKey];
             }
             alert("浏览器不支持ajax请求");
             return;
@@ -51,7 +51,11 @@ function HttpUtilNormal() {
             url = $T.version.addVersionAndTimeToUrl(sendParam.url);
         }
         xMLHttpRequest.open(sendParam.type, url, sendParam.async);
-
+        if (sendParam.headerKey != null && sendParam.headerKey.length > 0) {
+            for (var i = 0; i < sendParam.headerKey.length; i++) {
+                xMLHttpRequest.setRequestHeader(sendParam.headerKey[i], sendParam.headerValue[i]);
+            }
+        }
         if (sendParam.fileArray != null) {
             for (var i = 0; i < sendParam.fileArray.length; i++) {
                 var file = sendParam.fileArray[i];
@@ -64,7 +68,7 @@ function HttpUtilNormal() {
         if (form != null) {
             xMLHttpRequest.send(form);
         } else {
-            if (sendParam.data != null && sendParam.type == $T.httpConfigNormal.TYPE_POST) {
+            if (sendParam.type == $T.httpConfigNormal.TYPE_POST) {
                 xMLHttpRequest.send(JSON.stringify(sendParam.data));
             } else {
                 xMLHttpRequest.send();
@@ -86,7 +90,7 @@ function HttpUtilNormal() {
         if (this.readyState == 4) {
             sendParam.endTime = new Date().getTime();
             // 删除请求
-            if(!sendParam.canContinuous && sendParam.lockKey != null){
+            if (!sendParam.canContinuous && sendParam.lockKey != null) {
                 delete $T.httpUtilNormal.lockMap[sendParam.lockKey];
             }
             if (sendParam.loadType != null) {
