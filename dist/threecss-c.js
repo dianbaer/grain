@@ -1421,7 +1421,7 @@ $T.version = new Version();
             xMLHttpRequest.send(form);
         } else {
             if (sendParam.type == $T.httpConfigNormal.TYPE_POST) {
-				xMLHttpRequest.setRequestHeader('Content-type', 'application/json');
+				xMLHttpRequest.setRequestHeader('Content-Type', 'application/json');
                 xMLHttpRequest.send(JSON.stringify(sendParam.data));
             } else {
                 xMLHttpRequest.send();
