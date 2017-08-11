@@ -50,7 +50,7 @@ public class Init {
 			RedisManager.init(CommonConfig.REDIS_IP, CommonConfig.REDIS_PORT);
 		}
 		if (CommonConfig.MARIADB_USE) {
-			MybatisManager.init();
+			MybatisManager.init(properties.getProperty("config_dir"));
 		}
 		MsgManager.init(CommonConfig.USE_MSG_MONITOR);
 		MsgOpCode.init();
