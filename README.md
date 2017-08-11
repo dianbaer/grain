@@ -2,11 +2,11 @@
 
 ThreeCSS一套轻量级分布式框架。
 
-ThreeCSS规范并实现了一套客户端与服务器、服务器与服务器、客户端自身、服务器自身的通讯模式，同时也统一了服务器的线程模型。
+	ThreeCSS规范并实现了一套客户端与服务器、服务器与服务器、客户端自身、服务器自身的通讯模式，同时也统一了服务器的线程模型。
 
-CSS代表Client-Server-Server。客户端采用JavaScript，服务器采用Java。
+	CSS代表Client-Server-Server。客户端采用JavaScript，服务器采用Java。
 
-通过使用ThreeCSS开发者不必考虑任何通信问题，只需按照具体业务设计系统架构、业务架构即可。
+	通过使用ThreeCSS开发者不必考虑任何通信问题，只需按照具体业务设计系统架构、业务架构即可。
 
 
 ThreeCSS由threecss-c与threecss-ss两个项目组成。
