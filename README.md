@@ -65,6 +65,7 @@ threecss-ss核心功能包含：
 
 	redis-2.8.19（可选）
 
+	支持Html5浏览器
 
 	
 	
