@@ -53,17 +53,17 @@ threecss-ss核心功能包含：
 
 推荐环境：
 
-jdk-8u121
+	jdk-8u121
 
-apache-tomcat-8.5.12
+	apache-tomcat-8.5.12
 
-MariaDB-10.1.22
+	MariaDB-10.1.22
 
-CentOS-7-1611
+	CentOS-7-1611
 
-mongodb-3.4.3（可选）
+	mongodb-3.4.3（可选）
 
-redis-2.8.19（可选）
+	redis-2.8.19（可选）
 
 
 	
