@@ -61,6 +61,17 @@ threecss-ss核心功能包含：
 
 	支持Html5浏览器
 
+打版本：
+
+threecss-ss在项目根目录下，配置好build-custom.properties每个项目的路径及发布路径，执行
+
+	ant
+	
+threecss-c进入threecss-c目录下，执行
+
+	npm install
+	
+	grunt
 	
 	
 	
