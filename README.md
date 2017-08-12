@@ -49,6 +49,23 @@ threecss-ss核心功能包含：
 5、问答：https://github.com/dianbaer/threecss-question
 	
 体验地址：http://question.threecss.com
+
+
+推荐环境：
+
+jdk-8u121
+
+apache-tomcat-8.5.12
+
+MariaDB-10.1.22
+
+CentOS-7-1611
+
+mongodb-3.4.3（可选）
+
+redis-2.8.19（可选）
+
+
 	
 	
 	
