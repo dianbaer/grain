@@ -1,6 +1,8 @@
 # ThreeCSS
 
-ThreeCSS一套轻量级分布式框架。http://www.threecss.com
+ThreeCSS一套轻量级分布式框架。基于一套优秀的线程模型对分布式锁、等待锁、多线程锁有良好的支持，同时规范了HTTP、TCP、WebScoket的通讯格式。
+
+http://www.threecss.com
 
 	ThreeCSS规范并实现了一套客户端与服务器、服务器与服务器、客户端自身、服务器自身的通讯模式，同时也统一了服务器的线程模型。
 
