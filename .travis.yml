@@ -1,2 +1,2 @@
 language: java
-ant test
+install: ant deps
