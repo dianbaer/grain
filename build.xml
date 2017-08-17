@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0"?>
-<project name="ThreeCSS" basedir="." default="build">
+<project name="ThreeCSS" basedir="." default="test">
 	<property name="dist" location="${basedir}/dist" />
 	<property name="ThreeCSS.dir" value="${basedir}" />
 	<property name="Msg.dir" value="${basedir}/threecss-ss-msg" />
@@ -16,7 +16,7 @@
 		<delete file="${dist}/threecss-ss-msg.jar" />
 		<delete file="${dist}/threecss-ss-core.jar" />
 	</target>
-	<target name="build">
+	<target name="test">
 		<antcall target="cleandist" />
 		<antcall target="build-Msg" />
 		<antcall target="build-Core" />
