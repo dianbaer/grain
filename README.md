@@ -1,5 +1,7 @@
 # ThreeCSS
 
+https://travis-ci.org/dianbaer/threecss.svg?branch=master
+
 ThreeCSS一套轻量级分布式框架。基于一套优秀的线程模型对分布式锁、等待锁、多线程锁有良好的支持，同时规范了HTTP、TCP、WebScoket的通讯格式。
 
 https://www.threecss.com
