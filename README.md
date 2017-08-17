@@ -1,6 +1,7 @@
 # ThreeCSS
 
 [![Build Status](https://travis-ci.org/dianbaer/threecss.svg?branch=master)](https://travis-ci.org/dianbaer/threecss)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/45515be2d3bb427e9ffa6bbb62123b8d)](https://www.codacy.com/app/232365732/threecss?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dianbaer/threecss&amp;utm_campaign=Badge_Grade)
 
 ThreeCSS一套轻量级分布式框架。基于一套优秀的线程模型对分布式锁、等待锁、多线程锁有良好的支持，同时规范了HTTP、TCP、WebScoket的通讯格式。
 
