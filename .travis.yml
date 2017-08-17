@@ -4,3 +4,4 @@ install:
   - cd threecss-c
   - npm install
   - grunt
+  - cd ..
