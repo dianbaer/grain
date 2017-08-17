@@ -65,7 +65,7 @@ threecss-ss核心功能包含：
 
 打版本：
 
-threecss-ss在项目根目录下，配置好build-custom.properties每个项目的路径及发布路径，执行
+threecss-ss在项目根目录下，执行
 
 	ant
 	
