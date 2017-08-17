@@ -1,2 +1,6 @@
 language: java
-install: ant
+install: 
+  - ant
+  - cd threecss-c
+  - npm install
+  - grunt
