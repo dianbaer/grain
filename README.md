@@ -90,8 +90,10 @@ ThreeCSS分布式框架的核心功能与特点：
 体验地址：https://mmorpg.threecss.com
 
 
-在开发Http项目时，ThreeCSS更推荐C/S架构的模式。所以专门开发了Client端的JavaScript库供网页前端使用。
-只需引入<script src="js/lib/threecss-c.js" type="text/javascript"></script>即可。
+
+在开发Http项目时，ThreeCSS更推荐C/S架构的模式。所以专门开发了Client端的JavaScript库供网页前端使用。只需引入：
+
+	<script src="js/lib/threecss-c.js" type="text/javascript"></script>
 
 
 1、事件Event
