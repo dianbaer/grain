@@ -170,7 +170,7 @@ ThreeCSS分布式框架的核心功能与特点：
 	
 	简单的例子：
 	
-		1、创建链接，关注状况
+		1、创建链接，关注事件
 		
 		this.webSocketClient = new WebSocketClient();
         this.webSocketClient.WebSocketClient($T.url.chat);
