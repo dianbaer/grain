@@ -1274,6 +1274,7 @@ function JugglerManager() {
     }
 }
 $T.jugglerManager = new JugglerManager();
+$T.jugglerManager.init();
 function Version() {
     this.NAME = "v1.0.0";
     this.addVersionToUrl = function (url) {
@@ -1345,7 +1346,6 @@ $T.jugglerManager = new JugglerManager();
 		if(name != null){
 			this.NAME = name;
 		}
-        $T.jugglerManager.init();
     }
 
 }

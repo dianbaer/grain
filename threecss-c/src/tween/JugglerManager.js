@@ -35,3 +35,4 @@ function JugglerManager() {
     }
 }
 $T.jugglerManager = new JugglerManager();
+$T.jugglerManager.init();

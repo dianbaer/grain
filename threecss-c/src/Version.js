@@ -69,7 +69,6 @@ function Version() {
 		if(name != null){
 			this.NAME = name;
 		}
-        $T.jugglerManager.init();
     }
 
 }
