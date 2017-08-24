@@ -42,8 +42,6 @@ threecss-ss核心功能包含：
 体验地址：https://embedchat.threecss.com
 
 4、支付平台：https://github.com/dianbaer/threecss-pay
-	
-体验地址：https://pay.threecss.com
 
 5、问答：https://github.com/dianbaer/threecss-question
 	
