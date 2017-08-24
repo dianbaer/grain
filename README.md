@@ -86,7 +86,7 @@ https://www.threecss.com
 	
 体验地址：https://question.threecss.com
 
-6、MMORPF：https://github.com/dianbaer/threecss-mmorpg
+6、MMORPG：https://github.com/dianbaer/threecss-mmorpg
 	
 体验地址：https://mmorpg.threecss.com
 
