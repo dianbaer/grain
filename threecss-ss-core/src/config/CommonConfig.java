@@ -21,7 +21,6 @@ public class CommonConfig extends DefaultConfig {
 	public static String CONNECT_MINA_SERVER_NAME;
 	public static int MINA_CLIENT_RECONNECT_INTERVAL;
 	public static String EXPAND_CLASS;
-	public static int MAIN_THREAD_CYCLE_INTERVAL;
 	public static int ASYNC_THREAD_CYCLE_INTERVAL;
 	public static int ASYNC_THREAD_NUM;
 	public static int ASYNC_THREAD_PRIORITY_NUM;
@@ -71,7 +70,6 @@ public class CommonConfig extends DefaultConfig {
 		// 扩展启动类
 		EXPAND_CLASS = config.getJSONArray("expandClass").getString(0);
 		// 线程配置
-		MAIN_THREAD_CYCLE_INTERVAL = config.getJSONArray("mainThreadCycleInterval").getInt(0);
 		ASYNC_THREAD_CYCLE_INTERVAL = config.getJSONArray("asyncThreadCycleInterval").getInt(0);
 		ASYNC_THREAD_NUM = config.getJSONArray("asyncThreadNum").getInt(0);
 		ASYNC_THREAD_PRIORITY_NUM = config.getJSONArray("asyncThreadPriorityNum").getInt(0);

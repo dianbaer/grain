@@ -35,7 +35,6 @@ import redis.RedisManager;
 import service.IService;
 import tcp.TOpCode;
 import thread.AsyncThreadManager;
-import thread.MainThread;
 import websocket.IWSListener;
 import websocket.WSManager;
 import websocket.WebSocketServerService;
@@ -65,7 +64,6 @@ public class Init {
 		IExpand expand = (IExpand) Class.forName(CommonConfig.EXPAND_CLASS).newInstance();
 		expand.init();
 
-		MainThread.init(CommonConfig.MAIN_THREAD_CYCLE_INTERVAL);
 		AsyncThreadManager.init(CommonConfig.ASYNC_THREAD_CYCLE_INTERVAL, CommonConfig.ASYNC_THREAD_NUM, CommonConfig.ASYNC_THREAD_PRIORITY_NUM);
 
 		if (CommonConfig.IS_MINA_CLIENT || CommonConfig.IS_MINA_SERVER) {
@@ -93,7 +91,6 @@ public class Init {
 
 		expand.threadInit();
 
-		MainThread.getInstance().start();
 		AsyncThreadManager.start();
 	}
 
