@@ -12,7 +12,6 @@
 "connectMinaServerName":["mina.TestMinaClientName","实现minaclientname接口的类"],
 "minaClientReConnectInterval":[10,"客户端断线重连间隔"],
 "expandClass":["server.Expand","扩展启动类"],
-"mainThreadCycleInterval":[100,"主线程轮训间隔"],
 "asyncThreadCycleInterval":[100,"异步线程轮训间隔"],
 "asyncThreadNum":[10,"异步线程数量"],
 "asyncThreadPriorityNum":[3,"异步线程优先级数量也可以理解为场景"],
