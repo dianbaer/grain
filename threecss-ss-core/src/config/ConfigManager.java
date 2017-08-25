@@ -81,7 +81,7 @@ public class ConfigManager {
 			jsonData.put(config.getString("class"), json);
 			LogManager.initLog.info("加载json配置文件：" + configDir + config.getString("path") + "完成");
 		}
-		CommonConfig.init();
+		CommonConfig.init(configDir, configName);
 		LogManager.initLog.info("加载通用配置文件完成");
 	}
 

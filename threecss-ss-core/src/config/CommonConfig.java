@@ -6,6 +6,8 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 public class CommonConfig extends DefaultConfig {
+	public static String CONFIG_DIR;
+	public static String CONFIG_NAME;
 	public static boolean REDIS_USE;
 	public static String REDIS_IP;
 	public static int REDIS_PORT;
@@ -45,7 +47,9 @@ public class CommonConfig extends DefaultConfig {
 	public static boolean IS_DISTRIBUTED_LOCK_CLIENT;
 	public static String DISTRIBUTED_LOCK_CLIENT_CLASS;
 
-	public static void init() {
+	public static void init(String configDir, String configName) {
+		CONFIG_DIR = configDir;
+		CONFIG_NAME = configName;
 		LogManager.initLog.info("初始化CommonConfig");
 		JSONObject config = ConfigManager.getJsonData(JsonConfigType.CONFIG.getTypeValue());
 		// redis
