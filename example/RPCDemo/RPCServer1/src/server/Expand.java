@@ -2,17 +2,15 @@ package server;
 
 import init.IExpand;
 import init.Init;
-import service.RPCClientTestService;
-import tcp.TOpCodeRPCServer;
+import service.RPCServer1TestService;
 import tcp.TOpCodeRPCServer1;
 
 public class Expand implements IExpand {
 
 	@Override
 	public void init() throws Exception {
-		TOpCodeRPCServer.init();
 		TOpCodeRPCServer1.init();
-		Init.registerService(RPCClientTestService.class);
+		Init.registerService(RPCServer1TestService.class);
 	}
 
 	@Override
