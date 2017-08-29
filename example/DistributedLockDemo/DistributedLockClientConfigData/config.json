@@ -35,5 +35,5 @@
 "isDistributedLockServer":[false,"是否是分布式锁服务器"],
 "distributedLockServerClass":["mina.distributedlock.TestDistributedLockServerCenter","分布式锁服务器实现类"],
 "isDistributedLockClient":[true,"是否是分布式锁客户端"],
-"distributedLockClientClass":["mina.distributedlock.TestDistributedLockClient","分布式锁客户端实现类"]
+"distributedLockClientClass":["server.DistributedLockClient","分布式锁客户端实现类"]
 }

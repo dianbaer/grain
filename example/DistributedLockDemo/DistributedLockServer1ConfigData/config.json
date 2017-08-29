@@ -33,7 +33,7 @@
 "useTcpMonitor":[true,"是否使用tcp监控"],
 "useMsgMonitor":[true,"是否使用msg监控"],
 "isDistributedLockServer":[true,"是否是分布式锁服务器"],
-"distributedLockServerClass":["mina.distributedlock.TestDistributedLockServerCenter","分布式锁服务器实现类"],
+"distributedLockServerClass":["server.DistributedLockServer1","分布式锁服务器实现类"],
 "isDistributedLockClient":[false,"是否是分布式锁客户端"],
 "distributedLockClientClass":["mina.distributedlock.TestDistributedLockClient","分布式锁客户端实现类"]
 }
