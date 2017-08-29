@@ -9,7 +9,7 @@
 "isMinaClient":[true,"是否是mina客户端"],
 "connectMinaServerIP":["127.0.0.1","127.0.0.1"],
 "connectMinaServerPort":[7005,7006],
-"connectMinaServerName":["mina.TestMinaClientName","实现minaclientname接口的类"],
+"connectMinaServerName":["server.MinaServerName","实现minaclientname接口的类"],
 "minaClientReConnectInterval":[10,"客户端断线重连间隔"],
 "expandClass":["server.Expand","扩展启动类"],
 "asyncThreadCycleInterval":[100,"异步线程轮训间隔"],
