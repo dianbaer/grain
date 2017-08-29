@@ -1,0 +1,5 @@
+syntax = "proto3";
+package protobuf.tcp;
+message Test{
+	string name=1;
+}
