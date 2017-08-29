@@ -1,6 +1,8 @@
 package server;
 
 import init.IExpand;
+import init.Init;
+import service.RPCServerTestService;
 import tcp.TOpCodeRPCServer;
 
 public class Expand implements IExpand {
@@ -8,6 +10,7 @@ public class Expand implements IExpand {
 	@Override
 	public void init() throws Exception {
 		TOpCodeRPCServer.init();
+		Init.registerService(RPCServerTestService.class);
 	}
 
 	@Override
