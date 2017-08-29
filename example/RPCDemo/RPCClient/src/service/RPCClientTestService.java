@@ -49,7 +49,7 @@ public class RPCClientTestService implements IMsgListener {
 		} else if (message.getName().equals(MinaServerName.RPC_SERVER1)) {
 			MinaClientService minaClientService = (MinaClientService) Init.getService(MinaClientService.class);
 			IoSession ioSession = minaClientService.getServerIoSession(message.getName());
-			Test.Builder builder = Test.newBuilder();
+			Test1.Builder builder = Test1.newBuilder();
 			builder.setName("hello RPCServer1");
 			TcpPacket pt = new TcpPacket(TOpCodeRPCServer1.TEST1, builder.build());
 			LogManager.minaLog.info("发送rpc请求");
