@@ -33,17 +33,17 @@ public class RPCClientTestService implements IMsgListener {
 	}
 
 	public void serverCanUse(MsgPacket msgPacket) {
-		IoSession session = (IoSession) msgPacket.getOtherData();
 		MinaServerCanUse message = (MinaServerCanUse) msgPacket.getData();
 		if (message.getName().equals(MinaServerName.RPC_SERVER)) {
 			MinaClientService minaClientService = (MinaClientService) Init.getService(MinaClientService.class);
 			IoSession ioSession = minaClientService.getServerIoSession(message.getName());
 			Test.Builder builder = Test.newBuilder();
-			builder.setName("xxx");
+			builder.setName("hello RPCServer");
 			TcpPacket pt = new TcpPacket(TOpCodeRPCServer.TEST, builder.build());
 			LogManager.minaLog.info("发送rpc请求");
 			TcpPacket returnPt = WaitLockManager.lock(ioSession, pt);
-			LogManager.minaLog.info("成功返回rpc结果");
+			Test message1 = (Test) returnPt.getData();
+			LogManager.minaLog.info("成功返回rpc结果：" + message1.getName());
 		}
 	}
 }
