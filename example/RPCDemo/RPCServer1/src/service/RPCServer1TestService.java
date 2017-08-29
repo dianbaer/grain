@@ -27,7 +27,7 @@ public class RPCServer1TestService implements ITcpListener {
 		Test1 message = (Test1) tcpPacket.getData();
 		LogManager.minaLog.info("接到RPC请求：" + message.getName());
 		Test1.Builder builder = Test1.newBuilder();
-		builder.setName("hello RPCClient");
+		builder.setName("hello RPCClient，im RPCSERVER1");
 		TcpPacket pt = new TcpPacket(TOpCodeRPCServer1.TEST1, builder.build());
 		LogManager.minaLog.info("返回RPC结果");
 		return pt;

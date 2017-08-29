@@ -13,9 +13,11 @@ import msg.IMsgListener;
 import msg.MsgOpCode;
 import msg.MsgPacket;
 import protobuf.msg.MinaMsg.MinaServerCanUse;
+import protobuf.tcp.Test1OuterClass.Test1;
 import protobuf.tcp.TestOuterClass.Test;
 import server.MinaServerName;
 import tcp.TOpCodeRPCServer;
+import tcp.TOpCodeRPCServer1;
 import tcp.TcpPacket;
 
 public class RPCClientTestService implements IMsgListener {
@@ -43,6 +45,16 @@ public class RPCClientTestService implements IMsgListener {
 			LogManager.minaLog.info("发送rpc请求");
 			TcpPacket returnPt = WaitLockManager.lock(ioSession, pt);
 			Test message1 = (Test) returnPt.getData();
+			LogManager.minaLog.info("成功返回rpc结果：" + message1.getName());
+		} else if (message.getName().equals(MinaServerName.RPC_SERVER1)) {
+			MinaClientService minaClientService = (MinaClientService) Init.getService(MinaClientService.class);
+			IoSession ioSession = minaClientService.getServerIoSession(message.getName());
+			Test.Builder builder = Test.newBuilder();
+			builder.setName("hello RPCServer1");
+			TcpPacket pt = new TcpPacket(TOpCodeRPCServer1.TEST1, builder.build());
+			LogManager.minaLog.info("发送rpc请求");
+			TcpPacket returnPt = WaitLockManager.lock(ioSession, pt);
+			Test1 message1 = (Test1) returnPt.getData();
 			LogManager.minaLog.info("成功返回rpc结果：" + message1.getName());
 		}
 	}
