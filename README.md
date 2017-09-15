@@ -72,7 +72,7 @@ ThreeCSS分布式框架的核心功能与特点：
 
 1、身份：https://github.com/dianbaer/threecss-identity
 
-2、网盘：https://github.com/dianbaer/threecss-box	
+2、文件存储：https://github.com/dianbaer/threecss-box	
 
 3、嵌入式聊天：https://github.com/dianbaer/threecss-embed-chat	
 
