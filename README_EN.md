@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/dianbaer/threecss.svg?branch=master)](https://travis-ci.org/dianbaer/threecss)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/45515be2d3bb427e9ffa6bbb62123b8d)](https://www.codacy.com/app/232365732/threecss?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dianbaer/threecss&amp;utm_campaign=Badge_Grade)
 
-[中文](./README.md)
+>[中文](./README.md)
 
 # ThreeCSS可用于开发网站、实时通讯、MMORPG等多种大跨度、有状态或无状态的项目，基于Java的轻量级分布式框架。
 
