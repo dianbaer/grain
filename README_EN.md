@@ -25,8 +25,8 @@ ThreeCSS分布式框架的核心功能与特点：
 	支持锁客户端根据类型匹配多台锁服务器，多对多的关系，不同类型互不影响。
 	支持锁服务器按类型的键值进行随机多线程的划分，不同类型互不影响，相同类型不同键值互不影响。
 	
-![锁客户端](https://github.com/dianbaer/threecss/blob/master/example/DistributedLockDemo/%E9%94%81%E5%AE%A2%E6%88%B7%E7%AB%AF.bmp "锁客户端.bmp")
-![锁服务器](https://github.com/dianbaer/threecss/blob/master/example/DistributedLockDemo/%E9%94%81%E6%9C%8D%E5%8A%A1%E5%99%A8.bmp "锁服务器.bmp")
+![锁客户端](./example/DistributedLockDemo/%E9%94%81%E5%AE%A2%E6%88%B7%E7%AB%AF.bmp "锁客户端.bmp")
+![锁服务器](./example/DistributedLockDemo/%E9%94%81%E6%9C%8D%E5%8A%A1%E5%99%A8.bmp "锁服务器.bmp")
 
 3、通讯配置化：
 
