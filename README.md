@@ -202,7 +202,7 @@
 
 ## 推荐环境：
 
->快捷部署https://github.com/dianbaer/deployment-server
+>快捷部署 https://github.com/dianbaer/deployment-server
 
 	jdk-8u121
 
