@@ -4,8 +4,8 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/45515be2d3bb427e9ffa6bbb62123b8d)](https://www.codacy.com/app/232365732/threecss?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dianbaer/threecss&amp;utm_campaign=Badge_Grade)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-#ThreeCSS2.0版本：https://github.com/dianbaer/grain
-#不建议使用此旧版本
+### ThreeCSS2.0版本：https://github.com/dianbaer/grain
+### 不建议使用此旧版本
 
 # ThreeCSS可用于开发网站、实时通讯、MMORPG等多种大跨度、有状态或无状态的项目，基于Java的轻量级分布式框架。
 
