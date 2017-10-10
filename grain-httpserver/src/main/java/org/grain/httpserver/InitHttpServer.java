@@ -55,7 +55,7 @@ public class InitHttpServer extends HttpServlet {
 			String ExpandClass = servletContext.getInitParameter("Expand");
 			if (ExpandClass != null) {
 				IExpandServer expand = (IExpandServer) Class.forName(ExpandClass).newInstance();
-				expand.init();
+				expand.init(this);
 			}
 			long t2 = System.currentTimeMillis();
 			long t = t2 - t1;
