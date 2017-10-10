@@ -1,27 +1,130 @@
 ﻿<?xml version="1.0"?>
-<project name="ThreeCSS" basedir="." default="test">
+<project name="grain" basedir="." default="test">
 	<property name="dist" location="${basedir}/dist" />
-	<property name="ThreeCSS.dir" value="${basedir}" />
-	<property name="Msg.dir" value="${basedir}/threecss-ss-msg" />
-	<property name="Core.dir" value="${basedir}/threecss-ss-core" />
-	<target name="build-Msg" depends="">
-		<ant antfile="build-msg.xml" dir="${Msg.dir}">
+	<property name="log.dir" value="${basedir}/grain-log" />
+	<property name="msg.dir" value="${basedir}/grain-msg" />
+	<property name="thread.dir" value="${basedir}/grain-thread" />
+	<property name="threadmsg.dir" value="${basedir}/grain-threadmsg" />
+	<property name="tcp.dir" value="${basedir}/grain-tcp" />
+	<property name="rpc.dir" value="${basedir}/grain-rpc" />
+	<property name="distributedlock.dir" value="${basedir}/grain-distributedlock" />
+	<property name="websocket-lib.dir" value="${basedir}/grain-websocket-lib" />
+	<property name="websocket.dir" value="${basedir}/grain-websocket" />
+	<property name="threadwebsocket.dir" value="${basedir}/grain-threadwebsocket" />
+	<property name="threadkeylock.dir" value="${basedir}/grain-threadkeylock" />
+	<property name="mongodb.dir" value="${basedir}/grain-mongodb" />
+	<property name="redis.dir" value="${basedir}/grain-redis" />
+	<property name="mariadb.dir" value="${basedir}/grain-mariadb" />
+	<property name="config.dir" value="${basedir}/grain-config" />
+	<property name="httpclient.dir" value="${basedir}/grain-httpclient" />
+	<property name="httpserver.dir" value="${basedir}/grain-httpserver" />
+	<target name="build-log" depends="">
+		<ant antfile="build-log.xml" dir="${log.dir}">
 		</ant>
 	</target>
-	<target name="build-Core" depends="">
-		<ant antfile="build-core.xml" dir="${Core.dir}">
+	<target name="build-msg" depends="">
+		<ant antfile="build-msg.xml" dir="${msg.dir}">
+		</ant>
+	</target>
+	<target name="build-thread" depends="">
+		<ant antfile="build-thread.xml" dir="${thread.dir}">
+		</ant>
+	</target>
+	<target name="build-threadmsg" depends="">
+		<ant antfile="build-threadmsg.xml" dir="${threadmsg.dir}">
+		</ant>
+	</target>
+	<target name="build-tcp" depends="">
+		<ant antfile="build-tcp.xml" dir="${tcp.dir}">
+		</ant>
+	</target>
+	<target name="build-rpc" depends="">
+		<ant antfile="build-rpc.xml" dir="${rpc.dir}">
+		</ant>
+	</target>
+	<target name="build-distributedlock" depends="">
+		<ant antfile="build-distributedlock.xml" dir="${distributedlock.dir}">
+		</ant>
+	</target>
+	<target name="build-websocket-lib" depends="">
+		<ant antfile="build-websocket-lib.xml" dir="${websocket-lib.dir}">
+		</ant>
+	</target>
+	<target name="build-websocket" depends="">
+		<ant antfile="build-websocket.xml" dir="${websocket.dir}">
+		</ant>
+	</target>
+	<target name="build-threadwebsocket" depends="">
+		<ant antfile="build-threadwebsocket.xml" dir="${threadwebsocket.dir}">
+		</ant>
+	</target>
+	<target name="build-threadkeylock" depends="">
+		<ant antfile="build-threadkeylock.xml" dir="${threadkeylock.dir}">
+		</ant>
+	</target>
+	<target name="build-mongodb" depends="">
+		<ant antfile="build-mongodb.xml" dir="${mongodb.dir}">
+		</ant>
+	</target>
+	<target name="build-redis" depends="">
+		<ant antfile="build-redis.xml" dir="${redis.dir}">
+		</ant>
+	</target>
+	<target name="build-mariadb" depends="">
+		<ant antfile="build-mariadb.xml" dir="${mariadb.dir}">
+		</ant>
+	</target>
+	<target name="build-config" depends="">
+		<ant antfile="build-config.xml" dir="${config.dir}">
+		</ant>
+	</target>
+	<target name="build-httpclient" depends="">
+		<ant antfile="build-httpclient.xml" dir="${httpclient.dir}">
+		</ant>
+	</target>
+	<target name="build-httpserver" depends="">
+		<ant antfile="build-httpserver.xml" dir="${httpserver.dir}">
 		</ant>
 	</target>
 	<target name="cleandist" description="clean up">
-		<delete file="${dist}/threecss-ss-msg.jar" />
-		<delete file="${dist}/threecss-ss-core.jar" />
+		<delete dir="${dist}" />
 	</target>
 	<target name="test">
 		<antcall target="cleandist" />
-		<antcall target="build-Msg" />
-		<antcall target="build-Core" />
+		<antcall target="build-log" />
+		<antcall target="build-msg" />
+		<antcall target="build-thread" />
+		<antcall target="build-threadmsg" />
+		<antcall target="build-tcp" />
+		<antcall target="build-rpc" />
+		<antcall target="build-distributedlock" />
+		<antcall target="build-websocket-lib" />
+		<antcall target="build-websocket" />
+		<antcall target="build-threadwebsocket" />
+		<antcall target="build-threadkeylock" />
+		<antcall target="build-mongodb" />
+		<antcall target="build-redis" />
+		<antcall target="build-mariadb" />
+		<antcall target="build-config" />
+		<antcall target="build-httpclient" />
+		<antcall target="build-httpserver" />
 		<mkdir dir="${dist}" />
-		<copy file="${Msg.dir}/dist/threecss-ss-msg.jar" todir="${dist}" /> 
-		<copy file="${Core.dir}/dist/threecss-ss-core.jar" todir="${dist}" /> 
+		<copydir src="${log.dir}/dist/" dest="${dist}"></copydir>
+		<copydir src="${msg.dir}/dist/" dest="${dist}"></copydir>
+		<copydir src="${thread.dir}/dist/" dest="${dist}"></copydir>
+		<copydir src="${threadmsg.dir}/dist/" dest="${dist}"></copydir>
+		<copydir src="${tcp.dir}/dist/" dest="${dist}"></copydir>
+		<copydir src="${rpc.dir}/dist/" dest="${dist}"></copydir>
+		<copydir src="${distributedlock.dir}/dist/" dest="${dist}"></copydir>
+		<copydir src="${websocket-lib.dir}/dist/" dest="${dist}"></copydir>
+		<copydir src="${websocket.dir}/dist/" dest="${dist}"></copydir>
+		<copydir src="${threadwebsocket.dir}/dist/" dest="${dist}"></copydir>
+		<copydir src="${threadkeylock.dir}/dist/" dest="${dist}"></copydir>
+		<copydir src="${mongodb.dir}/dist/" dest="${dist}"></copydir>
+		<copydir src="${redis.dir}/dist/" dest="${dist}"></copydir>
+		<copydir src="${mariadb.dir}/dist/" dest="${dist}"></copydir>
+		<copydir src="${config.dir}/dist/" dest="${dist}"></copydir>
+		<copydir src="${httpclient.dir}/dist/" dest="${dist}"></copydir>
+		<copydir src="${httpserver.dir}/dist/" dest="${dist}"></copydir>
 	</target>
 </project>
