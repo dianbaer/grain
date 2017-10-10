@@ -1,5 +1,6 @@
 package org.grain.httpserver;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -86,8 +87,19 @@ public class HttpManager {
 		for (int i = 0; i < httpFilterList.size(); i++) {
 			IHttpFilter httpFilter = httpFilterList.get(i);
 			boolean result = false;
-			result = httpFilter.httpFilter(httpPacket);
+			try {
+				result = httpFilter.httpFilter(httpPacket);
+			} catch (HttpException e) {
+				// json格式的错误提醒
+				HttpException exception = (HttpException) e.getCause();
+				HttpPacket errorPacket = new HttpPacket(exception.getErrorType(), exception.getErrorData());
+				httpPacket.putMonitor("服务器返回错误：错误号为：" + exception.getErrorData());
+				ReplyUtil.replyJson(errorPacket, httpPacket);
+			}
 			if (!result) {
+				if (HttpConfig.log != null) {
+					HttpConfig.log.info(httpPacket.runMonitor.toString(httpPacket.gethOpCode()));
+				}
 				httpPacket.clear();
 				return null;
 			}
@@ -183,11 +195,22 @@ public class HttpManager {
 			Method replyMethod = replayMap.get(result.getClass());
 			boolean replyResult = (boolean) replyMethod.invoke(null, result, httpPacket);
 			return replyResult;
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			if (e.getCause() instanceof HttpException) {
+				// json格式的错误提醒
+				HttpException exception = (HttpException) e.getCause();
+				HttpPacket errorPacket = new HttpPacket(exception.getErrorType(), exception.getErrorData());
+				httpPacket.putMonitor("服务器返回错误：错误号为：" + exception.getErrorData());
+				return ReplyUtil.replyJson(errorPacket, httpPacket);
+			} else {
+				HttpConfig.log.error("HttpPacket,code为：" + httpPacket.gethOpCode() + "，IHttpListener为：" + (method != null ? method.getClass().getName() : "") + "处理失败", e);
+				return false;
+			}
 		} catch (Exception e) {
 			if (HttpConfig.log != null) {
 				HttpConfig.log.error("HttpPacket,code为：" + httpPacket.gethOpCode() + "，IHttpListener为：" + (method != null ? method.getClass().getName() : "") + "处理失败", e);
 			}
+			return false;
 		}
-		return true;
 	}
 }

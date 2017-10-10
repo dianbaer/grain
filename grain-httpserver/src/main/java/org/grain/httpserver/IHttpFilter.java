@@ -7,5 +7,5 @@ public interface IHttpFilter {
 	 * @param httpPacket
 	 * @return
 	 */
-	public boolean httpFilter(HttpPacket httpPacket);
+	public boolean httpFilter(HttpPacket httpPacket) throws HttpException;
 }
