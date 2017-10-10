@@ -1,5 +1,7 @@
 package server;
 
+import javax.servlet.http.HttpServlet;
+
 import org.grain.httpserver.HttpManager;
 import org.grain.httpserver.IExpandServer;
 
@@ -9,7 +11,7 @@ import test.TestHttpService;
 
 public class ExpandServer implements IExpandServer {
 	@Override
-	public void init() throws Exception {
+	public void init(HttpServlet servlet) throws Exception {
 		HttpManager.addMapping("1", GetTokenC.class, GetTokenS.class);
 		HttpManager.addMapping("2", GetTokenC.class, GetTokenS.class);
 		HttpManager.addMapping("3", GetTokenC.class, GetTokenS.class);
