@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+	<display-name>grain-httpserver-test</display-name>
+  	<!-- 初始化servlet -->
+  	<servlet>
+		<servlet-name>InitHttpServer</servlet-name>
+		<servlet-class>org.grain.httpserver.InitHttpServer</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<!-- 配置映射 -->
+	<servlet-mapping>
+		<servlet-name>InitHttpServer</servlet-name>
+		<url-pattern>/s</url-pattern>
+	</servlet-mapping>
+ 	<!-- 扩展类，服务器启动时自动初始化这个类 -->
+	<context-param>
+		<param-name>Expand</param-name>
+		<param-value>server.ExpandServer</param-value>
+	</context-param>
+ 	<!-- 日志对象，需要传进日志对象grain-httpserver才能打印日志 -->
+	<context-param>
+		<param-name>ILog</param-name>
+		<param-value>test.GrainLog</param-value>
+	</context-param>
+ 	<!-- 上传文件时进度实现类，一般用于存储上传进度 -->
+	<context-param>
+		<param-name>IUploadProgress</param-name>
+		<param-value>test.UploadProgressListener</param-value>
+	</context-param>
+	<welcome-file-list>
+   		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>

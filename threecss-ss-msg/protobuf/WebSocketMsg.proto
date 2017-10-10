@@ -1,8 +1,0 @@
-syntax = "proto3";
-package protobuf.msg;
-message WebSocketClientCreateConnect{
-	string name=1;
-}
-message WebSocketClientDisConnect{
-	string name=1;
-}

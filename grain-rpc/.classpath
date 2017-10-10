@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/grain-log"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/grain-msg"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/grain-tcp"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/grain-thread"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/grain-threadmsg"/>
+	<classpathentry kind="lib" path="lib/mina-core-2.0.16.jar"/>
+	<classpathentry kind="lib" path="lib/protobuf-java-3.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.7.22.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

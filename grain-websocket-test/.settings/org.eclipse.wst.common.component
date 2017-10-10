@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="grain-websocket-test">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="grain-websocket.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/grain-websocket/grain-websocket">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="grain-websocket-lib.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/grain-websocket-lib/grain-websocket-lib">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="grain-websocket-test"/>
+        <property name="java-output-path" value="/grain-websocket-test/build/classes"/>
+    </wb-module>
+</project-modules>

@@ -1,0 +1,12 @@
+syntax = "proto3";
+package protobuf.http;
+message GetTokenC{
+	string hOpCode=1;
+	string userName=2;
+	string userPassword=3;
+}
+message GetTokenS{
+	string hOpCode=1;
+	string tokenId=2;
+	string tokenExpireTime=3;
+}
