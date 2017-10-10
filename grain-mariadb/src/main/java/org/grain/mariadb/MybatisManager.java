@@ -10,7 +10,7 @@ import org.grain.log.ILog;
 
 public class MybatisManager {
 	private static SqlSessionFactory sqlSessionFactory;
-	private static ILog log;
+	public static ILog log;
 
 	/**
 	 * 初始化链接mariadb
