@@ -91,9 +91,8 @@ public class HttpManager {
 				result = httpFilter.httpFilter(httpPacket);
 			} catch (HttpException e) {
 				// json格式的错误提醒
-				HttpException exception = (HttpException) e.getCause();
-				HttpPacket errorPacket = new HttpPacket(exception.getErrorType(), exception.getErrorData());
-				httpPacket.putMonitor("服务器返回错误：错误号为：" + exception.getErrorData());
+				HttpPacket errorPacket = new HttpPacket(e.getErrorType(), e.getErrorData());
+				httpPacket.putMonitor("服务器返回错误：错误号为：" + e.getErrorData());
 				ReplyUtil.replyJson(errorPacket, httpPacket);
 			}
 			if (!result) {
