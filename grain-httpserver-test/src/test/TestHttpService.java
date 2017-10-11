@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.websocket.EncodeException;
 
 import org.grain.httpserver.HttpConfig;
+import org.grain.httpserver.HttpException;
 import org.grain.httpserver.HttpPacket;
 import org.grain.httpserver.IHttpListener;
 import org.grain.httpserver.ReplyFile;
@@ -26,6 +27,7 @@ public class TestHttpService implements IHttpListener {
 		map.put("3", "onImageC");
 		map.put("4", "onStringC");
 		map.put("5", "onReplyStringC");
+		map.put("6", "onException");
 		return map;
 	}
 
@@ -59,6 +61,14 @@ public class TestHttpService implements IHttpListener {
 		String str = "<html><head></head><body><h1>xxxxxxxxxxxx<h1></body></html>";
 		ReplyString replyString = new ReplyString(str, "text/html");
 		return replyString;
+	}
+
+	public void onException(HttpPacket httpPacket) throws HttpException {
+		GetTokenS.Builder builder = GetTokenS.newBuilder();
+		builder.setHOpCode("0");
+		builder.setTokenId("111111");
+		builder.setTokenExpireTime("222222");
+		throw new HttpException("0", builder.build());
 	}
 
 }

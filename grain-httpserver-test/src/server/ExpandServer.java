@@ -17,6 +17,7 @@ public class ExpandServer implements IExpandServer {
 		HttpManager.addMapping("3", GetTokenC.class, GetTokenS.class);
 		HttpManager.addMapping("4", GetTokenC.class, GetTokenS.class);
 		HttpManager.addMapping("5", GetTokenC.class, GetTokenS.class);
+		HttpManager.addMapping("6", GetTokenC.class, GetTokenS.class);
 		TestHttpService testHttpService = new TestHttpService();
 		HttpManager.addHttpListener(testHttpService);
 
