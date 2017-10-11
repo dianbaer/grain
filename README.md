@@ -9,7 +9,7 @@
 
 ## grain架构图
 
-![架构图](./grain.bmp "grain.bmp")
+![架构图](./grain-framework.bmp "grain-framework.bmp")
 
 ### 正如名字grain本着极简、颗粒化的原则，就算一步一步开发到distributedlock（多对多关系的分布式锁），也仅仅使用了三个外部jar包。
 
