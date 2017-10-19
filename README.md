@@ -24,18 +24,6 @@
 >4、如果你想使用threadkeylock（支持锁类型单键值与双键值的多线程锁），那仅仅只需要他依赖的一个组件和他本身。
 
 
-## 基于grain的项目
-
-身份系统：https://github.com/dianbaer/Identity
-
-H5聊天系统：https://github.com/dianbaer/Chat
-	
-文件存储系统：https://github.com/dianbaer/FileSystem
-
-支付系统：https://github.com/dianbaer/Pay
-
-调查问卷：https://github.com/dianbaer/Questionnaire
-
 
 
 ## 组件介绍
