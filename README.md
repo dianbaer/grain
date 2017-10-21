@@ -5,13 +5,13 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 
-## grain是一款极简、颗粒化的RPC框架，同时包含多对多关系的分布式锁等组件，按需选择组件，不绑架用户不耍流氓。
+## grain是一个极简、颗粒化的RPC框架，同时包含多对多关系的分布式锁等组件，按需选择组件，不绑架开发者。
 
 ## grain架构图
 
 ![架构图](./grain-framework.bmp "grain-framework.bmp")
 
-### 正如名字grain本着极简、颗粒化的原则，就算一步一步开发到distributedlock（多对多关系的分布式锁），也仅仅使用了三个外部jar包。
+### grain本着极简、颗粒化的原则，就算一步一步开发到distributedlock（多对多关系的分布式锁），也仅仅使用了三个外部jar包。
 
 ### 开发者可根据项目情况按需选择组件，例如：
 
