@@ -36,7 +36,7 @@ https://github.com/dianbaer/grain
 	如果想打印日志，需要实现此日志接口并将实现的类的对象传递到各个组件初始化函数中。
 
 	
-[grain-log-如何使用](./grain-log)
+[grain-log-了解更多](./grain-log)
 
 ---
 
@@ -46,7 +46,7 @@ https://github.com/dianbaer/grain
 	可进行消息的注册、监听、派发等功能。（当前线程）
 
 	
-[grain-msg-如何使用](./grain-msg)
+[grain-msg-了解更多](./grain-msg)
 
 ---
 
@@ -58,7 +58,7 @@ https://github.com/dianbaer/grain
 	grain-thread支持创建多线程池，业务轮询精准注入指定线程ID，任意消息（例如：msg、tcp、websocket等）精准注入指定线程ID。
 
 
-[grain-thread-如何使用](./grain-thread)
+[grain-thread-了解更多](./grain-thread)
 
 ---
 
@@ -68,7 +68,7 @@ https://github.com/dianbaer/grain
 	系统多线程之间的通讯，业务线程跳转都依赖此组件。
 
 	
-[grain-threadmsg-如何使用](./grain-threadmsg)
+[grain-threadmsg-了解更多](./grain-threadmsg)
 
 ---
 
@@ -78,7 +78,7 @@ https://github.com/dianbaer/grain
 	通过grain-tcp可创建TCP客户端与服务器进行通讯，客户端支持断线重连。通讯消息序列化与反序列化，粘包问题等都已内部解决。
 
 	
-[grain-tcp-如何使用](./grain-tcp)
+[grain-tcp-了解更多](./grain-tcp)
 
 例子：grain-tcp-clienttest、grain-tcp-servertest直接运行main函数即可
 
@@ -101,7 +101,7 @@ https://github.com/dianbaer/grain
 	TcpPacket ptReturn = WaitLockManager.lock(session, pt);
 	
 
-[grain-rpc-如何使用](./grain-rpc)
+[grain-rpc-了解更多](./grain-rpc)
 
 例子：grain-rpc-clienttest、grain-rpc-servertest直接运行main函数即可
 
@@ -129,7 +129,7 @@ https://github.com/dianbaer/grain
 	DistributedLockClient.unLock("111", "user", lockId);
 	
 	
-[grain-distributedlock-如何使用](./grain-distributedlock)
+[grain-distributedlock-了解更多](./grain-distributedlock)
 
 例子：grain-distributedlock-clienttest、grain-distributedlock-servertest直接运行main函数即可
 
@@ -141,7 +141,7 @@ https://github.com/dianbaer/grain
 	grain-config可以进行配置的加载，管理等工作。支持模板类文件与json文件。
 
 
-[grain-config-如何使用](./grain-config)
+[grain-config-了解更多](./grain-config)
 
 ---
 
@@ -163,7 +163,7 @@ https://github.com/dianbaer/grain
 	String str = (String) KeyLockManager.lockMethod("111", "222", TEST1, (params) -> lockFunction(params), new Object[] { "222", 111 });
 	
 
-[grain-threadkeylock-如何使用](./grain-threadkeylock)
+[grain-threadkeylock-了解更多](./grain-threadkeylock)
 
 
 ---
@@ -174,11 +174,11 @@ https://github.com/dianbaer/grain
 	更简洁的操作redis、mongodb、mariadb。
 	
 	
-[grain-reds-如何使用](./grain-redis)
+[grain-reds-了解更多](./grain-redis)
 
-[grain-mongodb-如何使用](./grain-mongodb)
+[grain-mongodb-了解更多](./grain-mongodb)
 
-[grain-mariadb-如何使用](./grain-mariadb)
+[grain-mariadb-了解更多](./grain-mariadb)
 
 
 ---
@@ -190,7 +190,7 @@ https://github.com/dianbaer/grain
 	将grain-websocket包引入web工程，可以创建websocket服务器。（业务基于容器线程，例如tomcat线程）
 	
 	
-[grain-websocket-如何使用](./grain-websocket)
+[grain-websocket-了解更多](./grain-websocket)
 
 例子：grain-websocket-test
 
@@ -203,7 +203,7 @@ https://github.com/dianbaer/grain
 	将grain-threadwebsocket包引入web工程，可以创建websocket服务器。（业务分发至系统多线程模型grain-thread，可以精准指派某业务归属线程ID）
 	
 	
-[grain-threadwebsocket-如何使用](./grain-threadwebsocket)
+[grain-threadwebsocket-了解更多](./grain-threadwebsocket)
 
 
 例子：grain-threadwebsocket-test
@@ -215,7 +215,7 @@ https://github.com/dianbaer/grain
 
 	基于servlet的http服务器，简化http请求
 	
-[grain-httpserver-如何使用](./grain-httpserver)
+[grain-httpserver-了解更多](./grain-httpserver)
 
 例子：grain-httpserver-test
 
