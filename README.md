@@ -106,7 +106,18 @@ https://gitee.com/dianbaer/grain
 	去中心化思路，通过grain-distributedlock可以创建分布式锁服务器与锁客户端。
 	grain-distributedlock不同类型互不影响，相同类型不同键值互不影响。仅仅当类型与键值都相等时会进行分布式阻塞。
 	锁客户端与锁服务器的双向线程阻塞，服务器匹配、类型键值与线程ID的匹配都已内部解决。
+
+锁客户端
+
+![锁客户端](./grain-distributedlock/distributedlock-client.png "distributedlock-client.png")
+
+
+锁服务器
+
+
+![锁客户端](./grain-distributedlock/distributedlock-server.png "distributedlock-server.png")
 	
+
 >简单例子：
 
 	// 获取锁
