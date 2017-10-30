@@ -53,7 +53,7 @@ https://gitee.com/dianbaer/grain
 	grain-thread支持创建多线程池，业务轮询精准注入指定线程ID，任意消息（例如：msg、tcp、websocket等）精准注入指定线程ID。
 
 
-[grain-thread-了解更多](./grain-thread)
+[grain-thread-详细介绍](./grain-thread)
 
 ---
 
@@ -64,7 +64,7 @@ https://gitee.com/dianbaer/grain
 	系统多线程之间的通讯，业务线程跳转都依赖此组件。
 
 	
-[grain-threadmsg-了解更多](./grain-threadmsg)
+[grain-threadmsg-详细介绍](./grain-threadmsg)
 
 ---
 
@@ -86,8 +86,6 @@ https://gitee.com/dianbaer/grain
 	TcpPacket ptReturn = WaitLockManager.lock(session, pt);
 	
 
-[grain-rpc-了解更多](./grain-rpc)
-
 
 >例子（包含RPC客户端与RPC服务器，直接运行main函数即可）：
 
@@ -96,6 +94,8 @@ https://gitee.com/dianbaer/grain
 
 [grain-rpc-servertest](./grain-rpc-servertest)
 
+
+[grain-rpc-详细介绍](./grain-rpc)
 
 ---
 
@@ -121,9 +121,6 @@ https://gitee.com/dianbaer/grain
 	DistributedLockClient.unLock("111", "user", lockId);
 	
 	
-[grain-distributedlock-了解更多](./grain-distributedlock)
-
-
 >例子（包含分布式锁客户端与服务器，直接运行main函数即可）：
 
 
@@ -132,6 +129,8 @@ https://gitee.com/dianbaer/grain
 
 [grain-distributedlock-servertest](./grain-distributedlock-servertest)
 
+
+[grain-distributedlock-详细介绍](./grain-distributedlock)
 
 ---
 
@@ -142,8 +141,24 @@ https://gitee.com/dianbaer/grain
 	将grain-threadwebsocket包引入web工程，可以创建websocket服务器。
 	（业务分发至系统多线程模型grain-thread，可以精准指派某业务归属线程ID）
 	
-	
-[grain-threadwebsocket-了解更多](./grain-threadwebsocket)
+	public class TestWSService implements IWSListener {
+		@Override
+		public Map<String, String> getWSs() throws Exception {
+			HashMap<String, String> map = new HashMap<>();
+			map.put("testc", "onTestC");
+			return map;
+		}
+		public void onTestC(WsPacket wsPacket) throws IOException, EncodeException {
+			TestC testc = (TestC) wsPacket.getData();
+			wsPacket.putMonitor("接到客户端发来的消息：" + testc.getMsg());
+			TestS.Builder tests = TestS.newBuilder();
+			tests.setWsOpCode("tests");
+			tests.setMsg("你好客户端，我是服务器");
+			WsPacket pt = new WsPacket("tests", tests.build());
+			Session session = (Session) wsPacket.session;
+			session.getBasicRemote().sendObject(pt);
+		}
+	}
 
 
 >例子（该例子内部含有js websocket客户端，使用tomcat启动即可）：
@@ -151,6 +166,7 @@ https://gitee.com/dianbaer/grain
 
 [grain-threadwebsocket-test](./grain-threadwebsocket-test)
 
+[grain-threadwebsocket-详细介绍](./grain-threadwebsocket)
 
 ---
 
@@ -159,14 +175,62 @@ https://gitee.com/dianbaer/grain
 
 	定义关键字并统筹所有请求参数，进行数据格式化。支持文件与操作数据的隔离。
 	支持post表单数据与json数据，支持表单文件，支持get拼接参数，支持扩展消息包过滤器，支持扩展请求回复类型。
-	
-[grain-httpserver-了解更多](./grain-httpserver)
 
+	public class TestHttpService implements IHttpListener {
+		@Override
+		public Map<String, String> getHttps() {
+			HashMap<String, String> map = new HashMap<>();
+			map.put("1", "onTestC");//返回json
+			map.put("2", "onFileC");//返回文件
+			map.put("3", "onImageC");//返回图片
+			map.put("4", "onStringC");//返回字符串
+			map.put("5", "onReplyStringC");//返回自定义头消息字符串
+			map.put("6", "onException");//异常返回
+			return map;
+		}
+		public HttpPacket onTestC(HttpPacket httpPacket) throws IOException, EncodeException {
+			GetTokenS.Builder builder = GetTokenS.newBuilder();
+			builder.setHOpCode(httpPacket.gethOpCode());
+			builder.setTokenId("111111");
+			builder.setTokenExpireTime("222222");
+			HttpPacket packet = new HttpPacket(httpPacket.gethOpCode(), builder.build());
+			return packet;
+		}
+		public ReplyFile onFileC(HttpPacket httpPacket) throws IOException, EncodeException {
+			File file = new File(HttpConfig.PROJECT_PATH + "/" + HttpConfig.PROJECT_NAME + "/k_nearest_neighbors.png");
+			ReplyFile replyFile = new ReplyFile(file, "你好.png");
+			return replyFile;
+		}
+		public ReplyImage onImageC(HttpPacket httpPacket) throws IOException, EncodeException {
+			File file = new File(HttpConfig.PROJECT_PATH + "/" + HttpConfig.PROJECT_NAME + "/k_nearest_neighbors.png");
+			ReplyImage image = new ReplyImage(file);
+			return image;
+		}
+		public String onStringC(HttpPacket httpPacket) throws IOException, EncodeException {
+			return "<html><head></head><body><h1>xxxxxxxxxxxx<h1></body></html>";
+		}
+		public ReplyString onReplyStringC(HttpPacket httpPacket) throws IOException, EncodeException {
+			String str = "<html><head></head><body><h1>xxxxxxxxxxxx<h1></body></html>";
+			ReplyString replyString = new ReplyString(str, "text/html");
+			return replyString;
+		}
+		public void onException(HttpPacket httpPacket) throws HttpException {
+			GetTokenS.Builder builder = GetTokenS.newBuilder();
+			builder.setHOpCode("0");
+			builder.setTokenId("111111");
+			builder.setTokenExpireTime("222222");
+			throw new HttpException("0", builder.build());
+		}
+	}
 
 >例子（该例子内部含有js http客户端，使用tomcat启动即可）：
 
 
 [grain-httpserver-test](./grain-httpserver-test)
+
+
+[grain-httpserver-详细介绍](./grain-httpserver)
+
 
 
 ---
@@ -190,7 +254,7 @@ https://gitee.com/dianbaer/grain
 	String str = (String) KeyLockManager.lockMethod("111", "222", TEST1, (params) -> lockFunction(params), new Object[] { "222", 111 });
 	
 
-[grain-threadkeylock-了解更多](./grain-threadkeylock)
+[grain-threadkeylock-详细介绍](./grain-threadkeylock)
 
 
 ---
@@ -199,23 +263,23 @@ https://gitee.com/dianbaer/grain
 ## 其他组件介绍
 
 
-[grain-log-了解更多](./grain-log)
+[grain-log-详细介绍](./grain-log)
 
-[grain-msg-了解更多](./grain-msg)
+[grain-msg-详细介绍](./grain-msg)
 	
-[grain-tcp-了解更多](./grain-tcp)
+[grain-tcp-详细介绍](./grain-tcp)
 
-[grain-config-了解更多](./grain-config)
+[grain-config-详细介绍](./grain-config)
 
-[grain-reds-了解更多](./grain-redis)
+[grain-reds-详细介绍](./grain-redis)
 
-[grain-mongodb-了解更多](./grain-mongodb)
+[grain-mongodb-详细介绍](./grain-mongodb)
 
-[grain-mariadb-了解更多](./grain-mariadb)	
+[grain-mariadb-详细介绍](./grain-mariadb)	
 	
-[grain-websocket-了解更多](./grain-websocket)
+[grain-websocket-详细介绍](./grain-websocket)
 
-[grain-httpclient-了解更多](./grain-httpclient)
+[grain-httpclient-详细介绍](./grain-httpclient)
 
 
 ## 打版本
