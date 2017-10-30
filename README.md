@@ -11,7 +11,7 @@
 ## grain架构图（深颜色的组件是强烈推荐的，具有不错的特性）
 
 
-![grain架构图](./grain-framework.bmp "grain-framework.bmp")
+![grain架构图](./grain-framework.png "grain-framework.png")
 
 
 
