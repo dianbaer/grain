@@ -41,13 +41,14 @@ https://github.com/dianbaer/grain
 https://gitee.com/dianbaer/grain
 
 
-## 推荐组件介绍
+## 核心组件介绍
 
 
 ### 1、grain-thread（系统多线程模型）
 
 
-	grain最核心的组件，支撑起上层很多组件包含threadmsg（线程消息通讯）、rpc（远程对象访问）、distributedlock（多对多关系的分布式锁）。
+	grain最核心的组件，支撑起上层很多组件包含threadmsg（线程消息通讯）、
+	rpc（远程对象访问）、distributedlock（多对多关系的分布式锁）、threadwebsocket（websocket服务器）。
 	
 	grain-thread支持创建多线程池，业务轮询精准注入指定线程ID，任意消息（例如：msg、tcp、websocket等）精准注入指定线程ID。
 
@@ -87,7 +88,11 @@ https://gitee.com/dianbaer/grain
 
 [grain-rpc-了解更多](./grain-rpc)
 
-例子：grain-rpc-clienttest、grain-rpc-servertest直接运行main函数即可
+
+例子：
+
+
+grain-rpc-clienttest、grain-rpc-servertest直接运行main函数即可
 
 
 ---
@@ -116,7 +121,11 @@ https://gitee.com/dianbaer/grain
 	
 [grain-distributedlock-了解更多](./grain-distributedlock)
 
-例子：grain-distributedlock-clienttest、grain-distributedlock-servertest直接运行main函数即可
+
+例子：
+
+
+grain-distributedlock-clienttest、grain-distributedlock-servertest直接运行main函数即可
 
 ---
 
@@ -130,7 +139,11 @@ https://gitee.com/dianbaer/grain
 [grain-threadwebsocket-了解更多](./grain-threadwebsocket)
 
 
-例子：grain-threadwebsocket-test
+例子：
+
+
+grain-threadwebsocket-test
+
 
 ---
 
@@ -141,7 +154,11 @@ https://gitee.com/dianbaer/grain
 	
 [grain-httpserver-了解更多](./grain-httpserver)
 
-例子：grain-httpserver-test
+
+例子：
+
+
+grain-httpserver-test
 
 
 ---
