@@ -157,7 +157,8 @@ https://gitee.com/dianbaer/grain
 
 ### 6、grain-httpserver（创建http服务器）
 
-	基于servlet的http服务器，简化http请求
+	定义关键字并统筹所有请求参数，进行数据格式化。支持文件与操作数据的隔离。
+	支持post表单数据与json数据，支持表单文件，支持get拼接参数，支持扩展消息包过滤器，支持扩展请求回复类型。
 	
 [grain-httpserver-了解更多](./grain-httpserver)
 
