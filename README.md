@@ -89,10 +89,12 @@ https://gitee.com/dianbaer/grain
 [grain-rpc-了解更多](./grain-rpc)
 
 
-例子：
+例子（直接运行main函数即可）：
 
 
-grain-rpc-clienttest、grain-rpc-servertest直接运行main函数即可
+grain-rpc-clienttest(./grain-rpc-clienttest)
+
+grain-rpc-servertest(./grain-rpc-servertest)
 
 
 ---
@@ -122,10 +124,14 @@ grain-rpc-clienttest、grain-rpc-servertest直接运行main函数即可
 [grain-distributedlock-了解更多](./grain-distributedlock)
 
 
-例子：
+例子（直接运行main函数即可）：
 
 
-grain-distributedlock-clienttest、grain-distributedlock-servertest直接运行main函数即可
+grain-distributedlock-clienttest(./grain-distributedlock-clienttest)
+
+
+grain-distributedlock-servertest(./grain-distributedlock-servertest)
+
 
 ---
 
@@ -139,10 +145,10 @@ grain-distributedlock-clienttest、grain-distributedlock-servertest直接运行m
 [grain-threadwebsocket-了解更多](./grain-threadwebsocket)
 
 
-例子：
+例子（使用tomcat启动即可）：
 
 
-grain-threadwebsocket-test
+grain-threadwebsocket-test(./grain-threadwebsocket-test)
 
 
 ---
@@ -155,10 +161,10 @@ grain-threadwebsocket-test
 [grain-httpserver-了解更多](./grain-httpserver)
 
 
-例子：
+例子（使用tomcat启动即可）：
 
 
-grain-httpserver-test
+grain-httpserver-test(./grain-httpserver-test)
 
 
 ---
