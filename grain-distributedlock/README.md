@@ -19,12 +19,12 @@
 
 锁客户端
 
-![锁客户端](./distributedlock-client.bmp "distributedlock-client.bmp")	
+![锁客户端](./distributedlock-client.png "distributedlock-client.png")	
 
 
 锁服务器
 
-![锁客户端](./distributedlock-server.bmp "distributedlock-server.bmp")	
+![锁客户端](./distributedlock-server.png "distributedlock-server.png")	
 	
 	
 ### 使用
