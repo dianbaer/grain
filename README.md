@@ -13,7 +13,7 @@
 
 ![grain架构图](./grain-framework.png "grain-framework.png")
 
-
+### 注意：如果一台服务器已经承担分布式锁服务器的角色，就不要用该服务器承担别的角色，因为这台服务器每个线程会等待锁客户端释放锁而阻塞线程。
 
 ### 开发者可根据项目情况按需选择组件，例如：
 
@@ -89,12 +89,12 @@ https://gitee.com/dianbaer/grain
 [grain-rpc-了解更多](./grain-rpc)
 
 
-例子（直接运行main函数即可）：
+例子（包含RPC客户端与RPC服务器，直接运行main函数即可）：
 
 
-grain-rpc-clienttest(./grain-rpc-clienttest)
+[grain-rpc-clienttest](./grain-rpc-clienttest)
 
-grain-rpc-servertest(./grain-rpc-servertest)
+[grain-rpc-servertest](./grain-rpc-servertest)
 
 
 ---
@@ -124,13 +124,13 @@ grain-rpc-servertest(./grain-rpc-servertest)
 [grain-distributedlock-了解更多](./grain-distributedlock)
 
 
-例子（直接运行main函数即可）：
+例子（包含分布式锁客户端与服务器，直接运行main函数即可）：
 
 
-grain-distributedlock-clienttest(./grain-distributedlock-clienttest)
+[grain-distributedlock-clienttest](./grain-distributedlock-clienttest)
 
 
-grain-distributedlock-servertest(./grain-distributedlock-servertest)
+[grain-distributedlock-servertest](./grain-distributedlock-servertest)
 
 
 ---
@@ -145,10 +145,10 @@ grain-distributedlock-servertest(./grain-distributedlock-servertest)
 [grain-threadwebsocket-了解更多](./grain-threadwebsocket)
 
 
-例子（使用tomcat启动即可）：
+例子（该例子内部含有js websocket客户端，使用tomcat启动即可）：
 
 
-grain-threadwebsocket-test(./grain-threadwebsocket-test)
+[grain-threadwebsocket-test](./grain-threadwebsocket-test)
 
 
 ---
@@ -161,10 +161,10 @@ grain-threadwebsocket-test(./grain-threadwebsocket-test)
 [grain-httpserver-了解更多](./grain-httpserver)
 
 
-例子（使用tomcat启动即可）：
+例子（该例子内部含有js http客户端，使用tomcat启动即可）：
 
 
-grain-httpserver-test(./grain-httpserver-test)
+[grain-httpserver-test](./grain-httpserver-test)
 
 
 ---
