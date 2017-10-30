@@ -5,26 +5,37 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 
-## grain是一个极简、颗粒化的RPC框架，同时包含多对多关系的分布式锁等组件，按需选择组件，不绑架开发者。
+### grain是一个颗粒化RPC框架，同时包含多对多关系的分布式锁、基于servlet的httpserver、websocket、多线程模型、多线程锁等组件，按需选择组件，不绑架开发者。
 
-## grain架构图
 
-![架构图](./grain-framework.bmp "grain-framework.bmp")
+## grain架构图（深颜色的组件是强烈推荐的，具有不错的特性）
 
-### grain本着极简、颗粒化的原则，就算一步一步开发到distributedlock（多对多关系的分布式锁），也仅仅使用了三个外部jar包。
+
+![grain架构图](./grain-framework.bmp "grain-framework.bmp")
+
+
 
 ### 开发者可根据项目情况按需选择组件，例如：
 
->1、如果你想使用distributedlock（多对多关系的分布式锁），那需要选择他依赖的六个组件和三个外部jar包。
+>1、distributedlock（多对多关系的分布式锁）。
 
->2、如果你想使用rpc（远程对象访问），那需要选择他依赖的五个组件和三个外部jar包。
+>2、rpc（远程对象访问）。
 
->3、如果你想使用threadmsg（系统多线程模型，线程消息通讯），那需要选择他依赖的三个组件，不需要任何外部jar包。
+>3、threadmsg（系统多线程模型，线程消息通讯）。
 
->4、如果你想使用threadkeylock（支持锁类型单键值与双键值的多线程锁），那仅仅只需要他依赖的一个组件和他本身。
+>4、threadkeylock（支持锁类型单键值与双键值的多线程锁）。
 
+>5、httpserver（基于servlet的http服务器）。
+
+>6、threadwebsocket（支持锁类型单键值与双键值的多线程锁）。
+
+### github地址：
 
 https://github.com/dianbaer/grain
+
+### 码云地址：
+
+https://gitee.com/dianbaer/grain
 
 
 ## 组件介绍
