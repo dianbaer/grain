@@ -75,7 +75,7 @@ https://gitee.com/dianbaer/grain
 	通过grain-rpc可以创建RPC客户端与服务器进行远程对象访问。多线程阻塞，唤醒等复杂的多线程业务都已内部解决。
 	
 	
-简单例子：
+>简单例子：
 	
 	
 	1、创建消息包
@@ -89,7 +89,7 @@ https://gitee.com/dianbaer/grain
 [grain-rpc-了解更多](./grain-rpc)
 
 
-例子（包含RPC客户端与RPC服务器，直接运行main函数即可）：
+>例子（包含RPC客户端与RPC服务器，直接运行main函数即可）：
 
 
 [grain-rpc-clienttest](./grain-rpc-clienttest)
@@ -107,7 +107,7 @@ https://gitee.com/dianbaer/grain
 	grain-distributedlock不同类型互不影响，相同类型不同键值互不影响。仅仅当类型与键值都相等时会进行分布式阻塞。
 	锁客户端与锁服务器的双向线程阻塞，服务器匹配、类型键值与线程ID的匹配都已内部解决。
 	
-简单例子：
+>简单例子：
 
 	// 获取锁
 	int lockId = DistributedLockClient.getLock("111", "user");
@@ -124,7 +124,7 @@ https://gitee.com/dianbaer/grain
 [grain-distributedlock-了解更多](./grain-distributedlock)
 
 
-例子（包含分布式锁客户端与服务器，直接运行main函数即可）：
+>例子（包含分布式锁客户端与服务器，直接运行main函数即可）：
 
 
 [grain-distributedlock-clienttest](./grain-distributedlock-clienttest)
@@ -146,7 +146,7 @@ https://gitee.com/dianbaer/grain
 [grain-threadwebsocket-了解更多](./grain-threadwebsocket)
 
 
-例子（该例子内部含有js websocket客户端，使用tomcat启动即可）：
+>例子（该例子内部含有js websocket客户端，使用tomcat启动即可）：
 
 
 [grain-threadwebsocket-test](./grain-threadwebsocket-test)
@@ -163,7 +163,7 @@ https://gitee.com/dianbaer/grain
 [grain-httpserver-了解更多](./grain-httpserver)
 
 
-例子（该例子内部含有js http客户端，使用tomcat启动即可）：
+>例子（该例子内部含有js http客户端，使用tomcat启动即可）：
 
 
 [grain-httpserver-test](./grain-httpserver-test)
@@ -178,13 +178,13 @@ https://gitee.com/dianbaer/grain
 	在多线程业务中，支持锁类型的单键值与双键值，并且支持锁函数
 	
 	
-简单例子1（锁函数）：当类型为TEST1，键值为111同时调用函数时，会进行锁定。
+>简单例子1（锁函数）：当类型为TEST1，键值为111同时调用函数时，会进行锁定。
 	
 	
 	public String lockFunction(Object... params) {}
 	String str = (String) KeyLockManager.lockMethod("111", TEST1, (params) -> lockFunction(params), new Object[] { "222", 111 });
 	
-简单例子2（锁函数）：当类型为TEST1，键值为111或222同时调用函数时，会进行锁定。
+>简单例子2（锁函数）：当类型为TEST1，键值为111或222同时调用函数时，会进行锁定。
 
 	
 	String str = (String) KeyLockManager.lockMethod("111", "222", TEST1, (params) -> lockFunction(params), new Object[] { "222", 111 });
