@@ -139,7 +139,8 @@ https://gitee.com/dianbaer/grain
 ### 5、grain-threadwebsocket（websocket服务器创建）
 
 
-	将grain-threadwebsocket包引入web工程，可以创建websocket服务器。（业务分发至系统多线程模型grain-thread，可以精准指派某业务归属线程ID）
+	将grain-threadwebsocket包引入web工程，可以创建websocket服务器。
+	（业务分发至系统多线程模型grain-thread，可以精准指派某业务归属线程ID）
 	
 	
 [grain-threadwebsocket-了解更多](./grain-threadwebsocket)
