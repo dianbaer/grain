@@ -75,6 +75,17 @@ https://gitee.com/dianbaer/grain
 	通过grain-rpc可以创建RPC客户端与服务器进行远程对象访问。多线程阻塞，唤醒等复杂的多线程业务都已内部解决。
 	
 	
+RPC客户端
+
+![RPC客户端](./grain-rpc/rpc-client.png "rpc-client.png")
+
+
+RPC服务器
+
+
+![RPC客户端](./grain-rpc/rpc-server.png "rpc-server.png")
+	
+	
 >简单例子：
 	
 	

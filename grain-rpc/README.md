@@ -13,6 +13,19 @@ grain-rpc 可以创建RPC客户端与服务器，进行远程对象访问
 	mina-core-2.0.16.jar
 	protobuf-java-3.1.0.jar
 	slf4j-api-1.7.22.jar
+	
+	
+RPC客户端
+
+![RPC客户端](./rpc-client.png "rpc-client.png")
+
+
+RPC服务器
+
+
+![RPC客户端](./rpc-server.png "rpc-server.png")	
+
+	
 
 使用
 
