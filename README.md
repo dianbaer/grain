@@ -43,19 +43,19 @@ https://gitee.com/dianbaer/grain
 
 ### 基于grain开发的项目
 
-上传插件
+anyupload是一个极度纯净的上传插件，通过简单调整就可以融入到任何项目，支持多文件上传、上传速率动态控制、真实进度监控kb/s、分块生成MD5、分块上传、MD5校验秒传、暂停、取消等。
 
 https://github.com/dianbaer/anyupload
 
 https://gitee.com/dianbaer/anyupload
 
-聊天插件
+anychat是一个极简纯净的websocket聊天插件，支持对接任何身份系统、组织架构，嵌入方只需提供三个API即可进行实时通讯，支持个人与个人聊天、群聊天等。
 
 https://github.com/dianbaer/anychat
 
 https://gitee.com/dianbaer/anychat
 
-身份系统
+startpoint是一个身份系统，提供用户、树形结构组、token等API。
 
 https://github.com/dianbaer/startpoint
 
