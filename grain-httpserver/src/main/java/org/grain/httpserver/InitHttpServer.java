@@ -67,6 +67,8 @@ public class InitHttpServer extends HttpServlet {
 			long t = t2 - t1;
 			if (HttpConfig.log != null) {
 				HttpConfig.log.error("CommonServlet初始化失败，耗时" + t + "毫秒", e);
+			}else {
+				System.out.println(e);
 			}
 			System.exit(0);
 		}

@@ -41,6 +41,27 @@ https://github.com/dianbaer/grain
 https://gitee.com/dianbaer/grain
 
 
+### 基于grain开发的项目
+
+上传插件
+
+https://github.com/dianbaer/anyupload
+
+https://gitee.com/dianbaer/anyupload
+
+聊天插件
+
+https://github.com/dianbaer/anychat
+
+https://gitee.com/dianbaer/anychat
+
+身份系统
+
+https://github.com/dianbaer/startpoint
+
+https://gitee.com/dianbaer/startpoint
+
+
 ## 核心组件介绍
 
 
