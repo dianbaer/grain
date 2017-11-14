@@ -10,7 +10,6 @@
 
 ![grain架构图](./grain-framework.png "grain-framework.png")
 
-### 注意：``如果一台服务器已经承担了分布式锁服务器的角色，就不要用该服务器承担别的角色，因为这台服务器的大多数线程都会时而进行线程阻塞，等待锁客户端释放锁。``
 
 ## 开发者可根据项目情况按需选择组件：
 
@@ -73,6 +72,8 @@ ThreadMsgManager.dispatchThreadMsg("createuser", 111, 222);
 ### 3、grain-rpc（RPC框架，含：RPC客户端与RPC服务器）。
 
 **介绍**：基于Mina网络层及Protobuf序列化开发的RPC通讯框架，相比7层HTTP通讯，4层TCP通讯消息包更小、传输速度更快、处理消息包的线程可配置化，适应于生产环境内部网络的服务器消息通讯。
+
+**注意**：``如果一台服务器已经承担了分布式锁服务器的角色，就不要用该服务器承担别的角色，因为这台服务器的大多数线程都会时而进行线程阻塞，等待锁客户端释放锁。``
 
 ![RPC客户端](./grain-rpc/rpc-client.png "rpc-client.png")
 ![RPC服务器](./grain-rpc/rpc-server.png "rpc-server.png")
