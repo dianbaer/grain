@@ -95,7 +95,7 @@ ThreadMsgManager.dispatchThreadMsg("createuser", 111, 222);
 //创建消息包
 RPCTestC.Builder builder = RPCTestC.newBuilder();
 builder.setName("RPC服务器你好啊");
-TcpPacket pt = new TcpPacket(TestTCode.TEST_RPC_C, builder.build());
+TcpPacket pt = new TcpPacket("TEST_RPC_C", builder.build());
 //RPC远程调用，返回结果
 TcpPacket ptReturn = WaitLockManager.lock(session, pt);
 ```
