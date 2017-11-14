@@ -29,10 +29,16 @@
 AsyncThreadManager.init(100, 10, 3, 0, Ilog日志);
 //启动
 AsyncThreadManager.start();
+```
+```
 //活物的注入，加入进入队列，线程1，优先级1
 AsyncThreadManager.addCycle(ICycle实现类的对象, 1, 1);
+```
+```
 //活物的离开，加入离开对接，线程1，优先级1
 AsyncThreadManager.removeCycle(ICycle实现类的对象, 1, 1);
+```
+```
 //非活物，动作处理完即销毁，线程1，优先级1
 AsyncThreadManager.addHandle(IHandle实现类的对象, 1, 1);
 ```
@@ -48,10 +54,16 @@ AsyncThreadManager.addHandle(IHandle实现类的对象, 1, 1);
 ```
 //初始化
 MsgManager.init(true, Ilog日志);
+```
+```
 //设置某消息对应的线程ID与优先级
 ThreadMsgManager.addMapping("createuser", new int[] { 1, 1 });
+```
+```
 //注册关注某消息及对应处理方法
 MsgManager.addMsgListener(IMsgListener实现类对象);
+```
+```
 //派发某消息，携带数据111与额外数据222
 ThreadMsgManager.dispatchThreadMsg("createuser", 111, 222);
 ```
