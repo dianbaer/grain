@@ -32,11 +32,11 @@
 AsyncThreadManager.init(100, 10, 3, 0, ILog实现类的对象);
 AsyncThreadManager.start();
 ```
-2、将活物加入线程1、优先级1的进入队列
+2、将活物加入线程1、优先级1的进入队列（之后会触发``进入动作``、``轮训动作``）
 ```
 AsyncThreadManager.addCycle(ICycle实现类的对象, 1, 1);
 ```
-3、将活物加入线程1、优先级1的离开队列
+3、将活物加入线程1、优先级1的离开队列（之后会触发``离开动作``）
 ```
 AsyncThreadManager.removeCycle(ICycle实现类的对象, 1, 1);
 ```
