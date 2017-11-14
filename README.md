@@ -4,23 +4,25 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c6563ece3c3d4fb5b0ec08ce99e537ee)](https://www.codacy.com/app/232365732/grain?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dianbaer/grain&amp;utm_campaign=Badge_Grade)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-## grain是一个极简的、组件式的RPC框架，可与任何框架整合，渐进且适合学习。同时包含``系统通用多线程模型与消息通讯``、``多对多关系的分布式锁``、``基于servlet的http框架``、``基于系统通用多线程模型的websocket``、``多线程锁``等组件，按需选择组件，不绑架开发者。
+## grain是一个极简的、组件式的RPC框架，可与任何框架整合，灵活渐进且适合学习。同时包含``系统通用多线程模型与消息通讯``、``多对多关系的分布式锁``、``基于servlet的http框架``、``基于系统通用多线程模型的websocket``、``多线程锁``等组件，按需选择组件，不绑架开发者。
 
-## grain架构图及其依赖关系``（深颜色的是核心组件强烈推荐，具有不错的特性）``
+## grain架构图及其依赖关系（深颜色的是核心组件强烈推荐，具有不错的特性）
 
 ![grain架构图](./grain-framework.png "grain-framework.png")
 
-### 注意：如果一台服务器已经承担了分布式锁服务器角色，就不要用该服务器承担别的角色，因为这台服务器的大多数线程都会进行线程阻塞，等待锁客户端释放锁。
+### 注意：``如果一台服务器已经承担了分布式锁服务器角色，就不要用该服务器承担别的角色，因为这台服务器的大多数线程都会进行线程阻塞，等待锁客户端释放锁。``
 
 ## 开发者可根据项目情况按需选择组件：
 
-### grain-thread（系统通用多线程模型）
+---
 
-* **介绍：**完美抽象了客观事物，包含：1、活跃于线程之间的活物（例如：人可能在线程之间来回切换），2、该线程处理完即销毁的动作（例如：各类消息包处理后即可销毁）。
+### 1、grain-thread（系统通用多线程模型）
 
-* **使用场景：**grain-rpc、grain-distributedlock、grain-threadwebsocket，都是基于此系统通用多线程模型。
+* ``介绍：``完美抽象了客观事物，包含：1、活跃于线程之间的活物（例如：人可能在线程之间来回切换），2、该线程处理完即销毁的动作（例如：各类消息包处理后即可销毁）。
 
-* **示例代码：**
+* ``使用场景：``grain-rpc、grain-distributedlock、grain-threadwebsocket，都是基于此系统通用多线程模型。
+
+* ``示例代码：``
 
 	//创建10条线程，每条线程3个优先级，每次轮训间隔100毫秒
 	AsyncThreadManager.init(100, 10, 3, 0, Ilog日志);
@@ -33,13 +35,13 @@
 	//非活物，动作处理完即销毁，线程1，优先级1
 	AsyncThreadManager.addHandle(IHandle实现类的对象, 1, 1);
 
-### grain-threadmsg（系统通用多线程模型与消息通讯）。
+### 2、grain-threadmsg（系统通用多线程模型与消息通讯）。
 
-* **介绍：**系统通用多线程模型需要进行消息通讯时，使用此组件。
+* ``介绍：``系统通用多线程模型需要进行消息通讯时，使用此组件。
 
-* **使用场景：**需要系统通用多线程模型的场景，一般都需要进行消息通讯。
+* ``使用场景：``需要系统通用多线程模型的场景，一般都需要进行消息通讯。
 
-* **示例代码：**
+* ``示例代码：``
 	
 	//初始化
 	MsgManager.init(true, Ilog日志);
@@ -51,16 +53,17 @@
 	ThreadMsgManager.dispatchThreadMsg("createuser", 111, 222);
 	
 
-### grain-rpc（RPC框架，含：RPC客户端与RPC服务器）。
+### 3、grain-rpc（RPC框架，含：RPC客户端与RPC服务器）。
 
-### grain-distributedlock（多对多关系的分布式锁，含：锁客户端与锁服务器）。
+### 4、grain-distributedlock（多对多关系的分布式锁，含：锁客户端与锁服务器）。
 
-### grain-threadwebsocket（基于系统通用多线程模型处理业务的websocket服务器）。
+### 5、grain-threadwebsocket（基于系统通用多线程模型处理业务的websocket服务器）。
 
-### grain-httpserver（基于servlet的http框架）。
+### 6、grain-httpserver（基于servlet的http框架）。
 
-### grain-threadkeylock（支持锁类型单键值与双键值的多线程锁）。
+### 7、grain-threadkeylock（支持锁类型单键值与双键值的多线程锁）。
 
+---
 
 ## 核心组件介绍
 
