@@ -4,7 +4,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c6563ece3c3d4fb5b0ec08ce99e537ee)](https://www.codacy.com/app/232365732/grain?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dianbaer/grain&amp;utm_campaign=Badge_Grade)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-## grain是一个极简的、组件式的RPC框架，可与任何框架整合，灵活渐进且适合学习。同时包含``系统通用多线程模型与消息通讯``、``多对多关系的分布式锁``、``基于servlet的http框架``、``基于系统通用多线程模型的websocket``、``多线程锁``等组件，按需选择组件，不绑架开发者。
+## grain是一个极简的、组件式的RPC框架，可与任何框架整合，灵活渐进且适合学习。同时包含``系统通用多线程模型与消息通讯``、``多对多关系的分布式锁``、``基于Servlet的HTTP框架``、``基于系统通用多线程模型的Websocket``、``支持行级锁的多线程锁``等组件，按需选择组件，不绑架开发者。
 
 ## grain架构图及其依赖关系（深颜色的是核心组件强烈推荐，具有不错的特性）
 
