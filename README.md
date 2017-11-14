@@ -39,23 +39,21 @@ AsyncThreadManager.addHandle(IHandle实现类的对象, 1, 1);
 
 ### 2、grain-threadmsg（系统通用多线程模型与消息通讯）。
 
-介绍：系统通用多线程模型需要进行消息通讯时，使用此组件。
+**介绍**：系统通用多线程模型需要进行消息通讯时，使用此组件。
 
-使用场景：需要系统通用多线程模型的场景，一般都需要进行消息通讯。
+**使用场景**：需要系统通用多线程模型的场景，一般都需要进行消息通讯。
 
-示例代码：
+**示例代码**：
 
 ```
-	
-	//初始化
-	MsgManager.init(true, Ilog日志);
-	//设置某消息对应的线程ID与优先级
-	ThreadMsgManager.addMapping("createuser", new int[] { 1, 1 });
-	//注册关注某消息及对应处理方法
-	MsgManager.addMsgListener(IMsgListener实现类对象);
-	//派发某消息，携带数据111与额外数据222
-	ThreadMsgManager.dispatchThreadMsg("createuser", 111, 222);
-
+//初始化
+MsgManager.init(true, Ilog日志);
+//设置某消息对应的线程ID与优先级
+ThreadMsgManager.addMapping("createuser", new int[] { 1, 1 });
+//注册关注某消息及对应处理方法
+MsgManager.addMsgListener(IMsgListener实现类对象);
+//派发某消息，携带数据111与额外数据222
+ThreadMsgManager.dispatchThreadMsg("createuser", 111, 222);
 ```
 
 ### 3、grain-rpc（RPC框架，含：RPC客户端与RPC服务器）。
