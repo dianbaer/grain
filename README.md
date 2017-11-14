@@ -74,17 +74,20 @@ ThreadMsgManager.dispatchThreadMsg("createuser", 111, 222);
 
 **介绍**：基于Mina网络层及Protobuf序列化开发的RPC通讯框架，相比7层HTTP通讯，4层TCP通讯消息包更小、传输速度更快、处理消息包的线程可配置化，适应于生产环境内部网络的服务器消息通讯。
 
+![RPC客户端](./grain-rpc/rpc-client.png "rpc-client.png")
+![RPC服务器](./grain-rpc/rpc-server.png "rpc-server.png")
+
 **使用场景**：生产环境内部网络的服务器消息通讯，更小，更快，消息处理的线程可配置化
 
 **示例代码**：
 
 1、RPC客户端（启动类test.RPCClientTest.java，直接启动即可连接下面的RPC服务器）
 
-![RPC客户端](./grain-rpc/rpc-client.png "rpc-client.png")
+[grain-rpc-clienttest](./grain-rpc-clienttest)
 
 2、RPC服务器（启动类test.RPCServerTest.java，直接启动即可接受上面的RPC客户端连接请求）
 
-![RPC客户端](./grain-rpc/rpc-server.png "rpc-server.png")
+[grain-rpc-servertest](./grain-rpc-servertest)
 
 3、简单的示例
 
