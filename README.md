@@ -20,23 +20,21 @@
 
 **介绍**：完美抽象了客观事物，包含：1、活跃于线程之间的活物（例如：人可能在线程之间来回切换），2、该线程处理完即销毁的动作（例如：各类消息包处理后即可销毁）。
 
-使用场景：grain-rpc、grain-distributedlock、grain-threadwebsocket，都是基于此系统通用多线程模型。
+**使用场景**：grain-rpc、grain-distributedlock、grain-threadwebsocket，都是基于此系统通用多线程模型。
 
-示例代码：
+**示例代码**：
 
 ```
-
-	//创建10条线程，每条线程3个优先级，每次轮训间隔100毫秒
-	AsyncThreadManager.init(100, 10, 3, 0, Ilog日志);
-	//启动
-	AsyncThreadManager.start();
-	//活物的注入，加入进入队列，线程1，优先级1
-	AsyncThreadManager.addCycle(ICycle实现类的对象, 1, 1);
-	//活物的离开，加入离开对接，线程1，优先级1
-	AsyncThreadManager.removeCycle(ICycle实现类的对象, 1, 1);
-	//非活物，动作处理完即销毁，线程1，优先级1
-	AsyncThreadManager.addHandle(IHandle实现类的对象, 1, 1);
-	
+//创建10条线程，每条线程3个优先级，每次轮训间隔100毫秒
+AsyncThreadManager.init(100, 10, 3, 0, Ilog日志);
+//启动
+AsyncThreadManager.start();
+//活物的注入，加入进入队列，线程1，优先级1
+AsyncThreadManager.addCycle(ICycle实现类的对象, 1, 1);
+//活物的离开，加入离开对接，线程1，优先级1
+AsyncThreadManager.removeCycle(ICycle实现类的对象, 1, 1);
+//非活物，动作处理完即销毁，线程1，优先级1
+AsyncThreadManager.addHandle(IHandle实现类的对象, 1, 1);
 ```
 
 ### 2、grain-threadmsg（系统通用多线程模型与消息通讯）。
