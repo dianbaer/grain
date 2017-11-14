@@ -27,14 +27,12 @@
 
 **示例代码**：
 
-1、启动示例
+1、启动示例，创建10条线程，每条线程3个优先级，每次轮训间隔100毫秒，通过ILog实现类的对象打印日志，锁定线程0条。
 ```
-//创建10条线程，每条线程3个优先级，每次轮训间隔100毫秒
-AsyncThreadManager.init(100, 10, 3, 0, Ilog日志);
-//启动
+AsyncThreadManager.init(100, 10, 3, 0, ILog实现类的对象);
 AsyncThreadManager.start();
 ```
-2、将活物放入线程1、优先级1的进入队列
+2、将活物加入线程1、优先级1的进入队列
 ```
 AsyncThreadManager.addCycle(ICycle实现类的对象, 1, 1);
 ```
@@ -42,7 +40,7 @@ AsyncThreadManager.addCycle(ICycle实现类的对象, 1, 1);
 ```
 AsyncThreadManager.removeCycle(ICycle实现类的对象, 1, 1);
 ```
-4、将非活物放入线程1、优先级1的处理队列。（处理完即销毁）
+4、将非活物加入线程1、优先级1的处理队列（处理完即销毁）
 ```
 AsyncThreadManager.addHandle(IHandle实现类的对象, 1, 1);
 ```
@@ -51,24 +49,24 @@ AsyncThreadManager.addHandle(IHandle实现类的对象, 1, 1);
 
 **介绍**：系统通用多线程模型需要进行消息通讯时，使用此组件。
 
-**使用场景**：需要系统通用多线程模型的场景，一般都需要进行消息通讯。
+**使用场景**：需要系统通用多线程模型的场景，一般都需要进行消息通讯。所以可以一直跟grain-thread绑定使用。
 
 **示例代码**：
 
+1、初始化
 ```
-//初始化
 MsgManager.init(true, Ilog日志);
 ```
+2、设置消息``createuser``对应的线程ID与优先级（如果不设置，则随机线程随机优先级处理）
 ```
-//设置某消息对应的线程ID与优先级
 ThreadMsgManager.addMapping("createuser", new int[] { 1, 1 });
 ```
+3、注册关注某消息及对应处理方法
 ```
-//注册关注某消息及对应处理方法
 MsgManager.addMsgListener(IMsgListener实现类对象);
 ```
+4、派发``createuser``消息，携带数据111与额外数据222（第3步所有关注此消息的方法，进行回调）
 ```
-//派发某消息，携带数据111与额外数据222
 ThreadMsgManager.dispatchThreadMsg("createuser", 111, 222);
 ```
 
