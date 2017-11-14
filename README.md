@@ -4,9 +4,9 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c6563ece3c3d4fb5b0ec08ce99e537ee)](https://www.codacy.com/app/232365732/grain?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dianbaer/grain&amp;utm_campaign=Badge_Grade)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-## grain是一个极简的、组件化的RPC框架，可与任何框架整合，渐进且适合学习。同时包含系统``通用多线程模型与消息通讯``、``多对多关系的分布式锁``、``基于servlet的http框架``、``基于系统通用多线程模型的websocket``、``多线程锁等组件``，按需选择组件，不绑架开发者。
+## grain是一个极简的、组件式的RPC框架，可与任何框架整合，渐进且适合学习。同时包含``系统通用多线程模型与消息通讯``、``多对多关系的分布式锁``、``基于servlet的http框架``、``基于系统通用多线程模型的websocket``、``多线程锁``等组件，按需选择组件，不绑架开发者。
 
-## grain架构图及其依赖关系（深颜色的是核心组件强烈推荐，具有不错的特性）
+## grain架构图及其依赖关系``（深颜色的是核心组件强烈推荐，具有不错的特性）``
 
 ![grain架构图](./grain-framework.png "grain-framework.png")
 
@@ -14,7 +14,9 @@
 
 ## 开发者可根据项目情况按需选择组件：
 
-1、grain-thread（系统通用多线程模型）。
+---
+
+#. grain-thread（系统通用多线程模型）。
 
 介绍：完美抽象了客观事物，包含：1、活跃于线程之间的活物（例如：人可能在线程之间来回切换），2、该线程处理完即销毁的动作（例如：各类消息包处理后即可销毁）。
 
@@ -33,7 +35,7 @@
 	//非活物，动作处理完即销毁，线程1，优先级1
 	AsyncThreadManager.addHandle(IHandle实现类的对象, 1, 1);
 
-2、grain-threadmsg（系统通用多线程模型与消息通讯）。
+#. grain-threadmsg（系统通用多线程模型与消息通讯）。
 
 介绍：系统通用多线程模型需要进行消息通讯时，使用此组件。
 
@@ -51,17 +53,17 @@
 	ThreadMsgManager.dispatchThreadMsg("createuser", 111, 222);
 	
 
-3、grain-rpc（RPC框架，含：RPC客户端与RPC服务器）。
+#. grain-rpc（RPC框架，含：RPC客户端与RPC服务器）。
 
-4、grain-distributedlock（多对多关系的分布式锁，含：锁客户端与锁服务器）。
+#. grain-distributedlock（多对多关系的分布式锁，含：锁客户端与锁服务器）。
 
-5、grain-threadwebsocket（基于系统通用多线程模型处理业务的websocket服务器）。
+#. grain-threadwebsocket（基于系统通用多线程模型处理业务的websocket服务器）。
 
-6、grain-httpserver（基于servlet的http框架）。
+#. grain-httpserver（基于servlet的http框架）。
 
-7、grain-threadkeylock（支持锁类型单键值与双键值的多线程锁）。
+#. grain-threadkeylock（支持锁类型单键值与双键值的多线程锁）。
 
-
+---
 
 
 ## 核心组件介绍
