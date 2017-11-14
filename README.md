@@ -53,15 +53,15 @@ AsyncThreadManager.addHandle(IHandle实现类的对象, 1, 1);
 
 **示例代码**：
 
-1、初始化
+1、初始化，通过ILog实现类的对象打印日志
 ```
 MsgManager.init(true, Ilog日志);
 ```
-2、设置消息``createuser``对应的线程ID与优先级（如果不设置，则随机线程随机优先级处理）
+2、设置``createuser``消息在的线程1、优先级1进行处理（如果不设置，则随机线程随机优先级处理）
 ```
 ThreadMsgManager.addMapping("createuser", new int[] { 1, 1 });
 ```
-3、注册关注某消息及对应处理方法
+3、注册关注某消息及对应处理方法（第2步设置消息归属哪个线程，对应处理方法就在哪个线程回调）
 ```
 MsgManager.addMsgListener(IMsgListener实现类对象);
 ```
