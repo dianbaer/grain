@@ -73,8 +73,6 @@ ThreadMsgManager.dispatchThreadMsg("createuser", 111, 222);
 
 **介绍**：基于Mina网络层及Protobuf序列化开发的RPC通讯框架，相比7层HTTP通讯，4层TCP通讯消息包更小、传输速度更快、处理消息包的线程可配置化，适应于生产环境内部网络的服务器消息通讯。
 
-**注意**：``如果一台服务器已经承担了分布式锁服务器的角色，就不要用该服务器承担别的角色，因为这台服务器的大多数线程都会时而进行线程阻塞，等待锁客户端释放锁。``
-
 ![RPC客户端](./grain-rpc/rpc-client.png "rpc-client.png")
 ![RPC服务器](./grain-rpc/rpc-server.png "rpc-server.png")
 
@@ -104,6 +102,8 @@ TcpPacket ptReturn = WaitLockManager.lock(session, pt);
 ### 4、grain-distributedlock（多对多关系的分布式锁，含：锁客户端与锁服务器）。
 
 **介绍**：
+
+**注意**：``如果一台服务器已经承担了分布式锁服务器的角色，就不要用该服务器承担别的角色，因为这台服务器的大多数线程都会时而进行线程阻塞，等待锁客户端释放锁。``
 
 ![锁客户端](./grain-distributedlock/distributedlock-client.png "distributedlock-client.png")
 ![锁服务器](./grain-distributedlock/distributedlock-server.png "distributedlock-server.png")
