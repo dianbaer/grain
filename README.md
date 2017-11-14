@@ -23,7 +23,7 @@
 
 **介绍**：完美抽象了客观事物，包含：1、活跃于线程之间的活物，``进入动作``、``离开动作``、``轮训动作``（例如：人可以在线程间切换），2、处理完即销毁的非活物（例如：各类消息包处理后即可销毁）。
 
-**使用场景**：grain-rpc、grain-distributedlock、grain-threadwebsocket，都是基于此系统通用多线程模型。任何需要多线程的业务都可以使用：例如MMORPG、即时通讯等。
+**使用场景**：grain-rpc、grain-distributedlock、grain-threadwebsocket，都是基于此系统通用多线程模型。任何需要多线程的业务都可以使用：例如``MMORPG``、``即时通讯``等。
 
 **示例代码**：
 
@@ -71,6 +71,31 @@ ThreadMsgManager.dispatchThreadMsg("createuser", 111, 222);
 ```
 
 ### 3、grain-rpc（RPC框架，含：RPC客户端与RPC服务器）。
+
+**介绍**：基于Mina网络层及Protobuf序列化开发的RPC通讯框架，相比7层HTTP通讯，4层TCP通讯消息包更小、传输速度更快、处理消息包的线程可配置化，适应于生产环境内部网络的服务器消息通讯。
+
+**使用场景**：生产环境内部网络的服务器消息通讯，更小，更快，消息处理的线程可配置化
+
+**示例代码**：
+
+1、RPC客户端（启动类test.RPCClientTest.java，直接启动即可连接下面的RPC服务器）
+
+![RPC客户端](./grain-rpc/rpc-client.png "rpc-client.png")
+
+2、RPC服务器（启动类test.RPCServerTest.java，直接启动即可接受上面的RPC客户端连接请求）
+
+![RPC客户端](./grain-rpc/rpc-server.png "rpc-server.png")
+
+3、简单的示例
+
+```
+//创建消息包
+RPCTestC.Builder builder = RPCTestC.newBuilder();
+builder.setName("RPC服务器你好啊");
+TcpPacket pt = new TcpPacket(TestTCode.TEST_RPC_C, builder.build());
+//RPC远程调用，返回结果
+TcpPacket ptReturn = WaitLockManager.lock(session, pt);
+```
 
 ### 4、grain-distributedlock（多对多关系的分布式锁，含：锁客户端与锁服务器）。
 
