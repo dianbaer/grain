@@ -89,7 +89,7 @@ ThreadMsgManager.dispatchThreadMsg("createuser", 111, 222);
 
 [grain-rpc-servertest](./grain-rpc-servertest)
 
-3、简单的示例
+3、获取数据示例
 
 ```
 //创建消息包
