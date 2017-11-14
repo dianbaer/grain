@@ -4,68 +4,40 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c6563ece3c3d4fb5b0ec08ce99e537ee)](https://www.codacy.com/app/232365732/grain?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dianbaer/grain&amp;utm_campaign=Badge_Grade)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
+## grain是一个极简、组件化的RPC框架，可与任何框架整合，渐进且适合学习。同时包含系统通用多线程模型、多对多关系的分布式锁、基于servlet的http框架、基于系统通用多线程模型的websocket、多线程锁等组件，按需选择组件，不绑架开发者。
 
-### grain是一个极简、颗粒化RPC框架，可与任何框架整合。共5803行代码，平均每个组件300行代码，渐进并极易学习使用。同时包含多对多关系的分布式锁、基于servlet的httpserver、websocket、系统多线程模型、多线程锁等组件，按需选择组件，不绑架开发者。
-
-
-## grain架构图（深颜色是核心组件强烈推荐，具有不错的特性）
-
+## grain架构图及依赖关系（深颜色是核心组件强烈推荐，具有不错的特性）
 
 ![grain架构图](./grain-framework.png "grain-framework.png")
 
 ### 注意：如果一台服务器已经承担分布式锁服务器的角色，就不要用该服务器承担别的角色，因为这台服务器每个线程会等待锁客户端释放锁而阻塞线程。
 
-### 开发者可根据项目情况按需选择组件，例如：
+## 开发者可根据项目情况按需选择组件：
 
->1、grain-thread（系统多线程模型）。依赖：grain-log
+1、grain-thread（系统多线程模型）。
 
->2、grain-threadmsg（系统多线程模型，线程消息通讯）。依赖：grain-thread，grain-msg
+2、grain-threadmsg（系统多线程模型，线程消息通讯）。
 
->3、grain-rpc（远程对象访问）。依赖：grain-threadmsg，grain-tcp
+3、grain-rpc（远程对象访问）。
 
->4、grain-distributedlock（多对多关系的分布式锁）。依赖：grain-rpc
+4、grain-distributedlock（多对多关系的分布式锁）。
 
->5、grain-threadwebsocket（websocket服务器，使用系统多线程模型处理业务）。依赖：grain-websocket-lib，grain-threadmsg
+5、grain-threadwebsocket（websocket服务器，使用系统多线程模型处理业务）。
 
->6、grain-httpserver（基于servlet的http服务器）。依赖：grain-log
+6、grain-httpserver（基于servlet的http服务器）。
 
->7、grain-threadkeylock（支持锁类型单键值与双键值的多线程锁）。依赖：grain-log
-
-
-### github地址：
-
-https://github.com/dianbaer/grain
-
-### 码云地址：
-
-https://gitee.com/dianbaer/grain
+7、grain-threadkeylock（支持锁类型单键值与双键值的多线程锁）。
 
 
-### 基于grain开发的项目
 
-anyupload是一个极度纯净的上传插件，通过简单调整就可以融入到任何项目，支持多文件上传、上传速率动态控制、真实进度监控kb/s、分块生成MD5、分块上传、MD5校验秒传、暂停、取消等。
 
-https://github.com/dianbaer/anyupload
 
-https://gitee.com/dianbaer/anyupload
-
-anychat是一个极简纯净的websocket聊天插件，支持对接任何身份系统，嵌入方只需提供三个API即可进行实时通讯。支持个人聊天、群聊天、上下线、查看聊天记录、离线消息推送等，服务器绝对控制权的推送机制，合理的线程设计，支持mongodb存储聊天记录，天生的嵌入式支持。 
-
-https://github.com/dianbaer/anychat
-
-https://gitee.com/dianbaer/anychat
-
-startpoint是一个身份系统，提供用户、树形结构组、token等API。
-
-https://github.com/dianbaer/startpoint
-
-https://gitee.com/dianbaer/startpoint
 
 
 ## 核心组件介绍
 
 
-### 1、grain-thread（系统多线程模型）
+## 1、grain-thread（系统多线程模型）
 
 
 	grain最核心的组件，支撑起上层很多组件包含threadmsg（线程消息通讯）、
@@ -79,7 +51,7 @@ https://gitee.com/dianbaer/startpoint
 ---
 
 
-### 2、grain-threadmsg（系统多线程模型，线程消息通讯）
+## 2、grain-threadmsg（系统多线程模型，线程消息通讯）
 
 
 	系统多线程之间的通讯，业务线程跳转都依赖此组件。
@@ -90,7 +62,7 @@ https://gitee.com/dianbaer/startpoint
 ---
 
 
-### 3、grain-rpc（远程对象访问）
+## 3、grain-rpc（远程对象访问）
 
 
 	通过grain-rpc可以创建RPC客户端与服务器进行远程对象访问。多线程阻塞，唤醒等复杂的多线程业务都已内部解决。
@@ -132,7 +104,7 @@ RPC服务器
 ---
 
 
-### 4、grain-distributedlock（多对多关系的分布式锁）
+## 4、grain-distributedlock（多对多关系的分布式锁）
 
 
 	去中心化思路，通过grain-distributedlock可以创建分布式锁服务器与锁客户端。
@@ -178,7 +150,7 @@ RPC服务器
 ---
 
 
-### 5、grain-threadwebsocket（websocket服务器创建）
+## 5、grain-threadwebsocket（websocket服务器创建）
 
 
 	将grain-threadwebsocket包引入web工程，可以创建websocket服务器。
@@ -214,7 +186,7 @@ RPC服务器
 ---
 
 
-### 6、grain-httpserver（创建http服务器）
+## 6、grain-httpserver（创建http服务器）
 
 	定义关键字并统筹所有请求参数，进行数据格式化。支持文件与操作数据的隔离。
 	支持post表单数据与json数据，支持表单文件，支持get拼接参数，支持扩展消息包过滤器，支持扩展请求回复类型。
@@ -266,7 +238,7 @@ RPC服务器
 		}
 	}
 
->例子（该例子内部含有js http客户端，使用tomcat启动即可）：
+例子（该例子内部含有js http客户端，使用tomcat启动即可）：
 
 
 [grain-httpserver-test](./grain-httpserver-test)
@@ -279,19 +251,19 @@ RPC服务器
 ---
 
 
-### 7、grain-threadkeylock（支持锁类型单键值与双键值的多线程锁）
+## 7、grain-threadkeylock（支持锁类型单键值与双键值的多线程锁）
 
 
 	在多线程业务中，支持锁类型的单键值与双键值，并且支持锁函数
 	
 	
->简单例子1（锁函数）：当类型为TEST1，键值为111同时调用函数时，会进行锁定。
+简单例子1（锁函数）：当类型为TEST1，键值为111同时调用函数时，会进行锁定。
 	
 	
 	public String lockFunction(Object... params) {}
 	String str = (String) KeyLockManager.lockMethod("111", TEST1, (params) -> lockFunction(params), new Object[] { "222", 111 });
 	
->简单例子2（锁函数）：当类型为TEST1，键值为111或222同时调用函数时，会进行锁定。
+简单例子2（锁函数）：当类型为TEST1，键值为111或222同时调用函数时，会进行锁定。
 
 	
 	String str = (String) KeyLockManager.lockMethod("111", "222", TEST1, (params) -> lockFunction(params), new Object[] { "222", 111 });
@@ -332,4 +304,32 @@ RPC服务器
 ## 依赖
 
 	java8
+	
+## 基于grain开发的项目
+
+anyupload是一个极度纯净的上传插件，通过简单调整就可以融入到任何项目，支持多文件上传、上传速率动态控制、真实进度监控kb/s、分块生成MD5、分块上传、MD5校验秒传、暂停、取消等。
+
+https://github.com/dianbaer/anyupload
+
+https://gitee.com/dianbaer/anyupload
+
+anychat是一个极简纯净的websocket聊天插件，支持对接任何身份系统，嵌入方只需提供三个API即可进行实时通讯。支持个人聊天、群聊天、上下线、查看聊天记录、离线消息推送等，服务器绝对控制权的推送机制，合理的线程设计，支持mongodb存储聊天记录，天生的嵌入式支持。 
+
+https://github.com/dianbaer/anychat
+
+https://gitee.com/dianbaer/anychat
+
+startpoint是一个身份系统，提供用户、树形结构组、token等API。
+
+https://github.com/dianbaer/startpoint
+
+https://gitee.com/dianbaer/startpoint
+	
+## github地址：
+
+https://github.com/dianbaer/grain
+
+## 码云地址：
+
+https://gitee.com/dianbaer/grain
 	
