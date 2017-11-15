@@ -179,7 +179,7 @@ public void onTestC(WsPacket wsPacket) throws IOException, EncodeException {
 
 ### 6、grain-httpserver（基于Servlet的HTTP框架）。
 
-**介绍**：一个非常轻量级的基于Servlet的HTTP框架，只有1318行代码。小身材，五脏齐全，扩展性强。支持各种请求方式，支持文件与数据包分离，支持扩展消息包过滤器，支持扩展请求回复类型。
+**介绍**：一个非常轻量级的基于Servlet的HTTP框架，只有1318行代码。小身材，五脏齐全，扩展性强。支持各种请求方式，支持文件与数据包分离，支持扩展请求过滤器，支持扩展请求回复类型。
 
 **使用场景**：开发HTTP项目，不想使用Spring、struts2，可以选择此框架，真的轻量到不能再轻量了（除非你想直接用Servlet）。
 
