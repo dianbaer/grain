@@ -1,11 +1,8 @@
 package test;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.websocket.EncodeException;
 
 import org.grain.httpserver.HttpConfig;
 import org.grain.httpserver.HttpException;
@@ -31,7 +28,7 @@ public class TestHttpService implements IHttpListener {
 		return map;
 	}
 
-	public HttpPacket onTestC(HttpPacket httpPacket) throws IOException, EncodeException {
+	public HttpPacket onTestC(HttpPacket httpPacket) throws HttpException {
 		GetTokenS.Builder builder = GetTokenS.newBuilder();
 		builder.setHOpCode(httpPacket.gethOpCode());
 		builder.setTokenId("111111");
@@ -40,24 +37,24 @@ public class TestHttpService implements IHttpListener {
 		return packet;
 	}
 
-	public ReplyFile onFileC(HttpPacket httpPacket) throws IOException, EncodeException {
+	public ReplyFile onFileC(HttpPacket httpPacket) throws HttpException {
 		File file = new File(HttpConfig.PROJECT_PATH + "/" + HttpConfig.PROJECT_NAME + "/k_nearest_neighbors.png");
 		ReplyFile replyFile = new ReplyFile(file, "你好.png");
 		return replyFile;
 	}
 
-	public ReplyImage onImageC(HttpPacket httpPacket) throws IOException, EncodeException {
+	public ReplyImage onImageC(HttpPacket httpPacket) throws HttpException {
 		File file = new File(HttpConfig.PROJECT_PATH + "/" + HttpConfig.PROJECT_NAME + "/k_nearest_neighbors.png");
 		ReplyImage image = new ReplyImage(file);
 		return image;
 	}
 
-	public String onStringC(HttpPacket httpPacket) throws IOException, EncodeException {
+	public String onStringC(HttpPacket httpPacket) throws HttpException {
 
 		return "<html><head></head><body><h1>xxxxxxxxxxxx<h1></body></html>";
 	}
 
-	public ReplyString onReplyStringC(HttpPacket httpPacket) throws IOException, EncodeException {
+	public ReplyString onReplyStringC(HttpPacket httpPacket) throws HttpException {
 		String str = "<html><head></head><body><h1>xxxxxxxxxxxx<h1></body></html>";
 		ReplyString replyString = new ReplyString(str, "text/html");
 		return replyString;

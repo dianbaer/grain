@@ -189,6 +189,59 @@ public void onTestC(WsPacket wsPacket) throws IOException, EncodeException {
 
 [>>>>>>HTTP服务器Demo](./grain-httpserver-test)
 
+2、返回类型示例（可扩展）
+
+```
+//返回json
+public HttpPacket onTestC(HttpPacket httpPacket) throws HttpException {
+	GetTokenS.Builder builder = GetTokenS.newBuilder();
+	builder.setHOpCode(httpPacket.gethOpCode());
+	builder.setTokenId("111111");
+	builder.setTokenExpireTime("222222");
+	HttpPacket packet = new HttpPacket(httpPacket.gethOpCode(), builder.build());
+	return packet;
+}
+```
+```
+//返回文件
+public ReplyFile onFileC(HttpPacket httpPacket) throws HttpException {
+	File file = new File(HttpConfig.PROJECT_PATH + "/" + HttpConfig.PROJECT_NAME + "/k_nearest_neighbors.png");
+	ReplyFile replyFile = new ReplyFile(file, "你好.png");
+	return replyFile;
+}
+```
+```
+//返回图片
+public ReplyImage onImageC(HttpPacket httpPacket) throws HttpException {
+	File file = new File(HttpConfig.PROJECT_PATH + "/" + HttpConfig.PROJECT_NAME + "/k_nearest_neighbors.png");
+	ReplyImage image = new ReplyImage(file);
+	return image;
+}
+```
+```
+//返回字符串
+public String onStringC(HttpPacket httpPacket) throws HttpException {
+	return "<html><head></head><body><h1>xxxxxxxxxxxx<h1></body></html>";
+}
+```
+```
+//返回字符串（自定义头消息）
+public ReplyString onReplyStringC(HttpPacket httpPacket) throws HttpException {
+	String str = "<html><head></head><body><h1>xxxxxxxxxxxx<h1></body></html>";
+	ReplyString replyString = new ReplyString(str, "text/html");
+	return replyString;
+}
+```
+```
+//抛自定义错误，进行返回
+public void onException(HttpPacket httpPacket) throws HttpException {
+	GetTokenS.Builder builder = GetTokenS.newBuilder();
+	builder.setHOpCode("0");
+	builder.setTokenId("111111");
+	builder.setTokenExpireTime("222222");
+	throw new HttpException("0", builder.build());
+}
+```
 ----------------
 
 ### 7、grain-threadkeylock（支持行级锁的多线程锁，支持锁类型单键值与双键值的多线程锁）。
@@ -207,67 +260,6 @@ public void onTestC(WsPacket wsPacket) throws IOException, EncodeException {
 [grain-distributedlock-详细介绍](./grain-distributedlock)
 
 [grain-threadwebsocket-详细介绍](./grain-threadwebsocket)
-
----
-
-
-## 6、grain-httpserver（创建http服务器）
-
-	定义关键字并统筹所有请求参数，进行数据格式化。支持文件与操作数据的隔离。
-	支持post表单数据与json数据，支持表单文件，支持get拼接参数，支持扩展消息包过滤器，支持扩展请求回复类型。
-
-	public class TestHttpService implements IHttpListener {
-		@Override
-		public Map<String, String> getHttps() {
-			HashMap<String, String> map = new HashMap<>();
-			map.put("1", "onTestC");//返回json
-			map.put("2", "onFileC");//返回文件
-			map.put("3", "onImageC");//返回图片
-			map.put("4", "onStringC");//返回字符串
-			map.put("5", "onReplyStringC");//返回自定义头消息字符串
-			map.put("6", "onException");//异常返回
-			return map;
-		}
-		public HttpPacket onTestC(HttpPacket httpPacket) throws IOException, EncodeException {
-			GetTokenS.Builder builder = GetTokenS.newBuilder();
-			builder.setHOpCode(httpPacket.gethOpCode());
-			builder.setTokenId("111111");
-			builder.setTokenExpireTime("222222");
-			HttpPacket packet = new HttpPacket(httpPacket.gethOpCode(), builder.build());
-			return packet;
-		}
-		public ReplyFile onFileC(HttpPacket httpPacket) throws IOException, EncodeException {
-			File file = new File(HttpConfig.PROJECT_PATH + "/" + HttpConfig.PROJECT_NAME + "/k_nearest_neighbors.png");
-			ReplyFile replyFile = new ReplyFile(file, "你好.png");
-			return replyFile;
-		}
-		public ReplyImage onImageC(HttpPacket httpPacket) throws IOException, EncodeException {
-			File file = new File(HttpConfig.PROJECT_PATH + "/" + HttpConfig.PROJECT_NAME + "/k_nearest_neighbors.png");
-			ReplyImage image = new ReplyImage(file);
-			return image;
-		}
-		public String onStringC(HttpPacket httpPacket) throws IOException, EncodeException {
-			return "<html><head></head><body><h1>xxxxxxxxxxxx<h1></body></html>";
-		}
-		public ReplyString onReplyStringC(HttpPacket httpPacket) throws IOException, EncodeException {
-			String str = "<html><head></head><body><h1>xxxxxxxxxxxx<h1></body></html>";
-			ReplyString replyString = new ReplyString(str, "text/html");
-			return replyString;
-		}
-		public void onException(HttpPacket httpPacket) throws HttpException {
-			GetTokenS.Builder builder = GetTokenS.newBuilder();
-			builder.setHOpCode("0");
-			builder.setTokenId("111111");
-			builder.setTokenExpireTime("222222");
-			throw new HttpException("0", builder.build());
-		}
-	}
-
-例子（该例子内部含有js http客户端，使用tomcat启动即可）：
-
-
-[grain-httpserver-test](./grain-httpserver-test)
-
 
 [grain-httpserver-详细介绍](./grain-httpserver)
 
