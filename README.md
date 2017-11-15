@@ -242,6 +242,20 @@ public void onException(HttpPacket httpPacket) throws HttpException {
 	throw new HttpException("0", builder.build());
 }
 ```
+
+3、anyupload是一个极度纯净的上传插件，通过简单调整就可以融入到任何项目，支持多文件上传、上传速率动态控制、真实进度监控kb/s、分块生成MD5、分块上传、MD5校验秒传、暂停、取消等。
+
+[>>>>>>anyupload github地址](https://github.com/dianbaer/anyupload)
+
+[>>>>>>anyupload github地址](https://gitee.com/dianbaer/anyupload)
+
+
+4、startpoint是一个身份系统，提供用户、树形结构组、token等API。
+
+[>>>>>>startpoint github地址](https://github.com/dianbaer/startpoint)
+
+[>>>>>>startpoint github地址](https://gitee.com/dianbaer/startpoint)
+
 ----------------
 
 ### 7、grain-threadkeylock（支持行级锁的多线程锁，支持锁类型单键值与双键值的多线程锁）。
@@ -322,29 +336,9 @@ public void onException(HttpPacket httpPacket) throws HttpException {
 
 	java8
 	
-## 基于grain开发的项目
-
-1、anyupload是一个极度纯净的上传插件，通过简单调整就可以融入到任何项目，支持多文件上传、上传速率动态控制、真实进度监控kb/s、分块生成MD5、分块上传、MD5校验秒传、暂停、取消等。
-
-https://github.com/dianbaer/anyupload
-
-https://gitee.com/dianbaer/anyupload
-
-2、anychat是一个极简纯净的websocket聊天插件，支持对接任何身份系统，嵌入方只需提供三个API即可进行实时通讯。支持个人聊天、群聊天、上下线、查看聊天记录、离线消息推送等，服务器绝对控制权的推送机制，合理的线程设计，支持mongodb存储聊天记录，天生的嵌入式支持。 
-
-https://github.com/dianbaer/anychat
-
-https://gitee.com/dianbaer/anychat
-
-3、startpoint是一个身份系统，提供用户、树形结构组、token等API。
-
-https://github.com/dianbaer/startpoint
-
-https://gitee.com/dianbaer/startpoint
-	
 ## grain地址：
 
-https://github.com/dianbaer/grain
+[>>>>>>github](https://github.com/dianbaer/grain)
 
-https://gitee.com/dianbaer/grain
+[>>>>>>码云](https://gitee.com/dianbaer/grain)
 	
