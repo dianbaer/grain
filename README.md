@@ -83,11 +83,11 @@ ThreadMsgManager.dispatchThreadMsg("createuser", 111, 222);
 
 1、RPC客户端（启动类test.RPCClientTest.java，直接启动即可连接下面的RPC服务器）
 
-[grain-rpc-clienttest](./grain-rpc-clienttest)
+[RPC客户端Demo](./grain-rpc-clienttest)
 
 2、RPC服务器（启动类test.RPCServerTest.java，直接启动即可接受上面的RPC客户端连接请求）
 
-[grain-rpc-servertest](./grain-rpc-servertest)
+[RPC服务器Demo](./grain-rpc-servertest)
 
 3、获取数据示例
 
@@ -115,11 +115,11 @@ TcpPacket ptReturn = WaitLockManager.lock(session, pt);
 
 1、分布式锁客户端（启动类test.DistributedlockClientTest.java，直接启动即可连接下面的分布式锁服务器）
 
-[grain-distributedlock-clienttest](./grain-distributedlock-clienttest)
+[分布式锁客户端Demo](./grain-distributedlock-clienttest)
 
 2、分布式锁服务器（启动类test.DistributedlockServerTest.java，直接启动即可接受上面的分布式锁客户端连接请求）
 
-[grain-distributedlock-servertest](./grain-distributedlock-servertest)
+[分布式锁服务器Demo](./grain-distributedlock-servertest)
 
 3、获取锁，释放锁示例
 
@@ -127,7 +127,7 @@ TcpPacket ptReturn = WaitLockManager.lock(session, pt);
 // 获取类型为user，键值为111的锁
 int lockId = DistributedLockClient.getLock("111", "user");
 if (lockId == 0) {
-    return;
+	return;
 }
 /***********执行分布式锁业务逻辑开始*********/
 /***********执行分布式锁业务逻辑结束*********/
