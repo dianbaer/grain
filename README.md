@@ -4,7 +4,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c6563ece3c3d4fb5b0ec08ce99e537ee)](https://www.codacy.com/app/232365732/grain?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dianbaer/grain&amp;utm_campaign=Badge_Grade)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-## grain是一个极简的、组件式的RPC框架，灵活且适合渐进学习，可与任何框架整合。同时包含``系统通用多线程模型与消息通讯``、``多对多关系的分布式锁``、``基于Servlet的HTTP框架``、``基于系统通用多线程模型的Websocket框架``、``支持行级锁的多线程锁``等组件，按需选择组件，不绑架开发者。
+## grain是一个极简的、组件式的RPC框架，灵活且适合渐进学习，可与任何框架整合。同时包含（系统通用多线程模型与消息通讯、多对多关系的分布式锁、基于Servlet的HTTP框架、基于系统通用多线程模型的Websocket框架、支持行级锁的多线程锁）等组件，按需选择组件，不绑架开发者。
 
 ## grain架构图及其依赖关系（深颜色的是核心组件强烈推荐）
 
@@ -106,7 +106,7 @@ TcpPacket ptReturn = WaitLockManager.lock(session, pt);
 
 **介绍**：去中心化，支持行级锁（锁某类型的单键值）。不同类型互不影响，相同类型不同键值互不影响。仅当类型与键值都相等时会进行分布式阻塞。
 
-**注意**：``如果一台服务器已经承担了分布式锁服务器的角色，就不要用该服务器承担别的角色，因为这台服务器的大多数线程都会不时进行线程阻塞，等待锁客户端释放锁。``
+**注意**：如果一台服务器已经承担了分布式锁服务器的角色，就不要用该服务器承担别的角色，因为这台服务器的大多数线程都会不时进行线程阻塞，等待锁客户端释放锁。
 
 ![锁客户端](./grain-distributedlock/distributedlock-client.png "distributedlock-client.png")
 ![锁服务器](./grain-distributedlock/distributedlock-server.png "distributedlock-server.png")
