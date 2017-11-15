@@ -258,8 +258,26 @@ public void onException(HttpPacket httpPacket) throws HttpException {
 
 ----------------
 
-### 7、grain-threadkeylock（支持行级锁的多线程锁，支持锁类型单键值与双键值的多线程锁）。
+### 7、grain-threadkeylock（支持行级锁的多线程锁）。
 
+**介绍**：支持锁类型单键值与双键值的多线程锁，更精细化至行级，减少同步块基数。
+
+**注意**：``单服务器架构有价值，集群架构没任何意义，集群架构请使用分布式锁grain-distributedlock。``
+
+**使用场景**：在单服务器架构时，可以在不依赖数据库的情况下，做更精细化的原子性操作。
+
+**示例代码**：
+
+1、初始化类型为``TEST1``、``TEST2``的多线程锁，锁等待最大时间为2分钟，每100毫秒醒来重试，通过ILog实现类的对象打印日志
+```
+KeyLockManager.init(new String[] { "TEST1", "TEST2" }, 120000, 100, ILog实现类的对象);
+```
+2、
+```
+public String lockFunction(Object... params) {}
+String str = (String) KeyLockManager.lockMethod("111", TEST1, 
+(params) -> lockFunction(params), new Object[] { "222", 111 });
+```
 -----------------
 
 
