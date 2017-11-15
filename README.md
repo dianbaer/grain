@@ -72,12 +72,12 @@ ThreadMsgManager.dispatchThreadMsg("createuser", 111, 222);
 
 ### 3、grain-rpc（支持多对多关系的RPC框架，含：RPC客户端与RPC服务器）。
 
-**介绍**：基于Mina网络层及Protobuf序列化开发的RPC通讯框架，相比7层HTTP通讯，4层TCP通讯消息包更小、传输速度更快、处理消息包的线程可配置化，适用于生产环境内部网络的服务器进行消息通讯。支持多对多关系、断线重连等。
+**介绍**：基于Mina网络层及Protobuf序列化开发的RPC通讯框架，相比7层HTTP通讯，4层TCP通讯消息包更小、传输速度更快、处理消息包的线程可配置化，适用于生产环境内部网络的服务器之间进行消息通讯。支持多对多关系、断线重连等。
 
 ![RPC客户端](./grain-rpc/rpc-client.png "rpc-client.png")
 ![RPC服务器](./grain-rpc/rpc-server.png "rpc-server.png")
 
-**使用场景**：生产环境内部网络的服务器进行消息通讯，消息包更小、传输速度更快、处理消息包的线程可配置化
+**使用场景**：生产环境内部网络的服务器之间进行消息通讯，消息包更小、传输速度更快、处理消息包的线程可配置化
 
 **示例代码**：
 
@@ -102,26 +102,50 @@ TcpPacket ptReturn = WaitLockManager.lock(session, pt);
 
 --------------------
 
-### 4、grain-distributedlock（多对多关系的分布式锁，含：锁客户端与锁服务器）。
+### 4、grain-distributedlock（支持多对多关系的分布式锁，含：分布式锁客户端与分布式锁服务器）。
 
-**介绍**：
+**介绍**：去中心化，
 
 **注意**：``如果一台服务器已经承担了分布式锁服务器的角色，就不要用该服务器承担别的角色，因为这台服务器的大多数线程都会不时进行线程阻塞，等待锁客户端释放锁。``
 
 ![锁客户端](./grain-distributedlock/distributedlock-client.png "distributedlock-client.png")
 ![锁服务器](./grain-distributedlock/distributedlock-server.png "distributedlock-server.png")
 
+**示例代码**：
+
+1、分布式锁客户端（启动类test.DistributedlockClientTest.java，直接启动即可连接下面的分布式锁服务器）
+
+[grain-distributedlock-clienttest](./grain-distributedlock-clienttest)
+
+2、分布式锁服务器（启动类test.DistributedlockServerTest.java，直接启动即可接受上面的分布式锁客户端连接请求）
+
+[grain-distributedlock-servertest](./grain-distributedlock-servertest)
+
+3、获取锁，释放锁示例
+
+```
+// 获取类型为user，键值为111的锁
+int lockId = DistributedLockClient.getLock("111", "user");
+if (lockId == 0) {
+	return;
+}
+/***********执行分布式锁业务逻辑开始*********/
+/***********执行分布式锁业务逻辑结束*********/
+// 释放类型为user，键值为111的锁
+DistributedLockClient.unLock("111", "user", lockId);
+```
+
 ---------------
 
-### 5、grain-threadwebsocket（基于系统通用多线程模型处理业务的websocket服务器）。
+### 5、grain-threadwebsocket（基于系统通用多线程模型的Websocket服务器）。
 
 ----------------
 
-### 6、grain-httpserver（基于servlet的http框架）。
+### 6、grain-httpserver（基于servlet的HTTP框架）。
 
 ----------------
 
-### 7、grain-threadkeylock（支持锁类型单键值与双键值的多线程锁）。
+### 7、grain-threadkeylock（支持行级锁的多线程锁，支持锁类型单键值与双键值的多线程锁）。
 
 -----------------
 
