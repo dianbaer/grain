@@ -104,12 +104,14 @@ TcpPacket ptReturn = WaitLockManager.lock(session, pt);
 
 ### 4、grain-distributedlock（支持多对多关系的分布式锁，含：分布式锁客户端与分布式锁服务器）。
 
-**介绍**：去中心化，
+**介绍**：去中心化，支持行级锁。锁某类型的单键值。不同类型互不影响，相同类型不同键值互不影响。仅当类型与键值都相等时会进行分布式阻塞。
 
 **注意**：``如果一台服务器已经承担了分布式锁服务器的角色，就不要用该服务器承担别的角色，因为这台服务器的大多数线程都会不时进行线程阻塞，等待锁客户端释放锁。``
 
 ![锁客户端](./grain-distributedlock/distributedlock-client.png "distributedlock-client.png")
 ![锁服务器](./grain-distributedlock/distributedlock-server.png "distributedlock-server.png")
+
+**使用场景**：在无中心化服务器集群中，有很大的意义。不用依赖数据库Mysql，即可保障服务器集群业务原子性，又大幅度提高服务器集群性能，减少错误的数据库提交。
 
 **示例代码**：
 
