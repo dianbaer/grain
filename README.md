@@ -72,12 +72,12 @@ ThreadMsgManager.dispatchThreadMsg("createuser", 111, 222);
 
 ### 3、grain-rpc（支持多对多关系的RPC框架，含：RPC客户端与RPC服务器）。
 
-**介绍**：基于Mina网络层及Protobuf序列化开发的RPC通讯框架，相比7层HTTP通讯，4层TCP通讯消息包更小、传输速度更快、队列化处理消息包、消息包与线程可一一映射配置化，适用于生产环境内部网络的服务器之间进行消息通讯。支持多对多关系、断线重连等。
+**介绍**：基于Mina网络层及Protobuf序列化开发的RPC通讯框架，相比7层HTTP通讯，4层TCP通讯消息包更小、传输速度更快、队列化处理消息包、消息包与线程可一一映射配置化，支持多对多关系、断线重连等。
 
 ![RPC客户端](./grain-rpc/rpc-client.png "rpc-client.png")
 ![RPC服务器](./grain-rpc/rpc-server.png "rpc-server.png")
 
-**使用场景**：生产环境内部网络的服务器之间进行消息通讯，消息包更小、传输速度更快、处理消息包的线程可配置化
+**使用场景**：生产环境内部网络的服务器之间进行消息通讯。
 
 **示例代码**：
 
