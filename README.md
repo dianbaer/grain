@@ -4,19 +4,16 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c6563ece3c3d4fb5b0ec08ce99e537ee)](https://www.codacy.com/app/232365732/grain?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dianbaer/grain&amp;utm_campaign=Badge_Grade)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-## grain是一个极简的、组件式的RPC框架，可与任何框架整合，灵活渐进且适合学习。同时包含``系统通用多线程模型与消息通讯``、``多对多关系的分布式锁``、``基于Servlet的HTTP框架``、``基于系统通用多线程模型的Websocket``、``支持行级锁的多线程锁``等组件，按需选择组件，不绑架开发者。
+## grain是一个极简的、组件式的RPC框架，灵活且适合渐进学习，可与任何框架整合。同时包含``系统通用多线程模型与消息通讯``、``多对多关系的分布式锁``、``基于Servlet的HTTP框架``、``基于系统通用多线程模型的Websocket``、``支持行级锁的多线程锁``等组件，按需选择组件，不绑架开发者。
 
 ## grain架构图及其依赖关系（深颜色的是核心组件强烈推荐）
 
 ![grain架构图](./grain-framework.png "grain-framework.png")
 
 
-## 开发者可根据项目情况按需选择组件：
-
-
 ## 核心组件介绍
 
----
+-------------
 
 ### 1、grain-thread（系统通用多线程模型）
 
@@ -44,6 +41,8 @@ AsyncThreadManager.removeCycle(ICycle实现类的对象, 1, 1);
 AsyncThreadManager.addHandle(IHandle实现类的对象, 1, 1);
 ```
 
+-------------------------
+
 ### 2、grain-threadmsg（系统通用多线程模型与消息通讯）。
 
 **介绍**：支持``与系统通用多线程模型``、``系统多线程模型之间``进行消息通讯。
@@ -68,6 +67,8 @@ MsgManager.addMsgListener(IMsgListener实现类对象);
 ```
 ThreadMsgManager.dispatchThreadMsg("createuser", 111, 222);
 ```
+
+--------------------
 
 ### 3、grain-rpc（RPC框架，含：RPC客户端与RPC服务器）。
 
@@ -99,6 +100,8 @@ TcpPacket pt = new TcpPacket("TEST_RPC_C", builder.build());
 TcpPacket ptReturn = WaitLockManager.lock(session, pt);
 ```
 
+--------------------
+
 ### 4、grain-distributedlock（多对多关系的分布式锁，含：锁客户端与锁服务器）。
 
 **介绍**：
@@ -108,13 +111,19 @@ TcpPacket ptReturn = WaitLockManager.lock(session, pt);
 ![锁客户端](./grain-distributedlock/distributedlock-client.png "distributedlock-client.png")
 ![锁服务器](./grain-distributedlock/distributedlock-server.png "distributedlock-server.png")
 
+---------------
+
 ### 5、grain-threadwebsocket（基于系统通用多线程模型处理业务的websocket服务器）。
+
+----------------
 
 ### 6、grain-httpserver（基于servlet的http框架）。
 
+----------------
+
 ### 7、grain-threadkeylock（支持锁类型单键值与双键值的多线程锁）。
 
----
+-----------------
 
 
 
