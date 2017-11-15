@@ -141,6 +141,34 @@ DistributedLockClient.unLock("111", "user", lockId);
 
 ### 5、grain-threadwebsocket（基于系统通用多线程模型的Websocket框架）。
 
+**介绍**：
+
+**使用场景**：
+
+**示例代码**：
+
+1、Websocket服务器（直接用tomcat8.5启动即可，直接访问地址http://localhost:8080/grain-threadwebsocket-test/index.html，即可与服务器建立websocket连接）
+
+[Websocket服务器Demo](./grain-threadwebsocket-test)
+
+2、处理业务示例
+```
+public void onTestC(WsPacket wsPacket) throws IOException, EncodeException {
+	//客户端发来的数据
+	TestC testc = (TestC) wsPacket.getData();
+	//构建返回数据
+	TestS.Builder tests = TestS.newBuilder();
+	tests.setWsOpCode("tests");
+	tests.setMsg("你好客户端，我是服务器");
+	WsPacket pt = new WsPacket("tests", tests.build());
+	//获取session
+	Session session = (Session) wsPacket.session;
+	//推送数据
+	session.getBasicRemote().sendObject(pt);
+}
+```
+
+
 ----------------
 
 ### 6、grain-httpserver（基于servlet的HTTP框架）。
@@ -160,44 +188,8 @@ DistributedLockClient.unLock("111", "user", lockId);
 
 [grain-rpc-详细介绍](./grain-rpc)
 
----
-
-
-## 4、grain-distributedlock（多对多关系的分布式锁）
-
-
-	去中心化思路，通过grain-distributedlock可以创建分布式锁服务器与锁客户端。
-	grain-distributedlock不同类型互不影响，相同类型不同键值互不影响。仅仅当类型与键值都相等时会进行分布式阻塞。
-	锁客户端与锁服务器的双向线程阻塞，服务器匹配、类型键值与线程ID的匹配都已内部解决。
-
-	
-
->简单例子：
-
-	// 获取锁
-	int lockId = DistributedLockClient.getLock("111", "user");
-	if (lockId == 0) {
-		return;
-	}
-	/*********** 执行分布式锁业务逻辑 *********/
-	System.out.println("分布式锁id为：" + lockId);
-	/*********** 执行分布式锁业务逻辑 *********/
-	// 释放锁
-	DistributedLockClient.unLock("111", "user", lockId);
-	
-	
->例子（包含分布式锁客户端与服务器，直接运行main函数即可）：
-
-
-[grain-distributedlock-clienttest](./grain-distributedlock-clienttest)
-
-
-[grain-distributedlock-servertest](./grain-distributedlock-servertest)
-
-
 [grain-distributedlock-详细介绍](./grain-distributedlock)
 
----
 
 
 ## 5、grain-threadwebsocket（websocket服务器创建）
