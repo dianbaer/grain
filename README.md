@@ -127,7 +127,7 @@ TcpPacket ptReturn = WaitLockManager.lock(session, pt);
 // 获取类型为user，键值为111的锁
 int lockId = DistributedLockClient.getLock("111", "user");
 if (lockId == 0) {
-	return;
+  return;
 }
 /***********执行分布式锁业务逻辑开始*********/
 /***********执行分布式锁业务逻辑结束*********/
