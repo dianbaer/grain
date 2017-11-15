@@ -311,7 +311,7 @@ String str = (String) KeyLockManager.lockMethod("111", "222", "TEST1",
 
 [>>>>>>grain-msg-详细介绍](./grain-msg)
 
-[>>>>>>grain-tcp-详细介绍](./grain-tcp)
+[>>>>>>grain-tcp-详细介绍](./grain-tcp)（不建议单独使用，建议直接用grain-rpc）
 
 [>>>>>>grain-config-详细介绍](./grain-config)
 
@@ -321,7 +321,7 @@ String str = (String) KeyLockManager.lockMethod("111", "222", "TEST1",
 
 [>>>>>>grain-mariadb-详细介绍](./grain-mariadb)	
 
-[>>>>>>grain-websocket-详细介绍](./grain-websocket)
+[>>>>>>grain-websocket-详细介绍](./grain-websocket)（不建议使用，建议使用grain-threadwebsocket）
 
 [>>>>>>grain-httpclient-详细介绍](./grain-httpclient)
 
@@ -330,9 +330,20 @@ String str = (String) KeyLockManager.lockMethod("111", "222", "TEST1",
 
 	ant
 	
-## 依赖
+	
+## 推荐环境：
 
-	java8
+	jdk-8u121
+	
+	apache-tomcat-8.5.12
+
+	MariaDB-10.1.22
+
+	CentOS-7-1611
+	
+	mongodb-3.4.3
+	
+	redis-2.8.19
 	
 ## grain地址：
 
