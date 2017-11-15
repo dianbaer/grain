@@ -272,10 +272,10 @@ public void onException(HttpPacket httpPacket) throws HttpException {
 ```
 KeyLockManager.init(new String[] { "TEST1", "TEST2" }, 120000, 100, ILog实现类的对象);
 ```
-2、
+2、锁定``TEST1``类型，键值为222，同时调用lockFunction函数，传递两个参数str与111。（lockFunction没执行完成，同一时刻如果还是``TEST1``类型，键值``222``，会被阻塞）
 ```
 public String lockFunction(Object... params) {}
-String str = (String) KeyLockManager.lockMethod("111", "TEST1", 
+String str = (String) KeyLockManager.lockMethod("222", "TEST1", 
 (params) -> lockFunction(params), new Object[] { "str", 111 });
 ```
 -----------------
