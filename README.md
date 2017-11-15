@@ -307,9 +307,9 @@ String str = (String) KeyLockManager.lockMethod("111", "222", "TEST1",
 
 [>>>>>>grain-threadkeylock-详细介绍](./grain-threadkeylock)
 
-[>>>>>>grain-log-详细介绍](./grain-log)
+[>>>>>>grain-log-详细介绍](./grain-log)（不建议单独使用）
 
-[>>>>>>grain-msg-详细介绍](./grain-msg)
+[>>>>>>grain-msg-详细介绍](./grain-msg)（不建议单独使用，建议直接用grain-threadmsg）
 
 [>>>>>>grain-tcp-详细介绍](./grain-tcp)（不建议单独使用，建议直接用grain-rpc）
 
