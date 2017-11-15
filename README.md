@@ -45,9 +45,9 @@ AsyncThreadManager.addHandle(IHandle实现类的对象, 1, 1);
 
 ### 2、grain-threadmsg（系统通用多线程模型与消息通讯）。
 
-**介绍**：支持``与系统通用多线程模型``、``系统多线程模型之间``进行消息通讯。
+**介绍**：支持``与系统通用多线程模型``、``系统通用多线程模型之间``进行消息通讯。
 
-**使用场景**：需要系统通用多线程模型的场景，一般都需要进行消息通讯。所以可以一直跟grain-thread绑定使用。
+**使用场景**：需要系统通用多线程模型的场景，一般都需要进行消息通讯。可以一直跟grain-thread绑定使用。
 
 **示例代码**：
 
@@ -55,11 +55,11 @@ AsyncThreadManager.addHandle(IHandle实现类的对象, 1, 1);
 ```
 MsgManager.init(true, Ilog日志);
 ```
-2、设置``createuser``消息在的线程1、优先级1进行处理（如果不设置，则随机线程随机优先级处理）
+2、设置``createuser``消息在线程1、优先级1进行处理（如果不设置，则随机线程随机优先级处理）
 ```
 ThreadMsgManager.addMapping("createuser", new int[] { 1, 1 });
 ```
-3、注册关注某消息及对应处理方法（第2步设置消息归属哪个线程，对应处理方法就在哪个线程回调）
+3、注册关注某消息及对应处理方法（第2步消息设置归属哪个线程，对应处理方法就在哪个线程回调）
 ```
 MsgManager.addMsgListener(IMsgListener实现类对象);
 ```
@@ -70,14 +70,14 @@ ThreadMsgManager.dispatchThreadMsg("createuser", 111, 222);
 
 --------------------
 
-### 3、grain-rpc（RPC框架，含：RPC客户端与RPC服务器）。
+### 3、grain-rpc（支持多对多关系的RPC框架，含：RPC客户端与RPC服务器）。
 
-**介绍**：基于Mina网络层及Protobuf序列化开发的RPC通讯框架，相比7层HTTP通讯，4层TCP通讯消息包更小、传输速度更快、处理消息包的线程可配置化，适应于生产环境内部网络的服务器消息通讯。
+**介绍**：基于Mina网络层及Protobuf序列化开发的RPC通讯框架，相比7层HTTP通讯，4层TCP通讯消息包更小、传输速度更快、处理消息包的线程可配置化，适用于生产环境内部网络的服务器进行消息通讯。支持多对多关系、断线重连等。
 
 ![RPC客户端](./grain-rpc/rpc-client.png "rpc-client.png")
 ![RPC服务器](./grain-rpc/rpc-server.png "rpc-server.png")
 
-**使用场景**：生产环境内部网络的服务器消息通讯，更小，更快，消息处理的线程可配置化
+**使用场景**：生产环境内部网络的服务器进行消息通讯，消息包更小、传输速度更快、处理消息包的线程可配置化
 
 **示例代码**：
 
