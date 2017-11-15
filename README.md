@@ -17,7 +17,7 @@
 
 ### 1、grain-thread（系统通用多线程模型）
 
-**介绍**：完美抽象了客观事物，包含：1、活跃于线程之间的活物，``进入动作``、``离开动作``、``轮训动作``（例如：人可以在线程间切换），2、处理完即销毁的非活物（例如：各类消息包处理后即可销毁）。
+**介绍**：完美抽象了客观事物，包含：1、活跃于线程之间的活物，``进入动作``、``离开动作``、``轮训动作``（例如：人可以在线程间切换），2、处理完即销毁的非活物，``处理动作``（例如：各类消息包处理后即可销毁）。
 
 **使用场景**：grain-rpc、grain-distributedlock、grain-threadwebsocket，都是基于此系统通用多线程模型。任何需要多线程的业务都可以使用：例如``MMORPG``、``即时通讯``等。
 
@@ -28,7 +28,7 @@
 AsyncThreadManager.init(100, 10, 3, 0, ILog实现类的对象);
 AsyncThreadManager.start();
 ```
-2、将活物加入线程1、优先级1的进入队列（之后会触发``进入动作``、``轮训动作``）
+2、将活物加入线程1、优先级1的进入队列（之后会触发``进入动作``、之后不断触发``轮训动作``）
 ```
 AsyncThreadManager.addCycle(ICycle实现类的对象, 1, 1);
 ```
@@ -36,7 +36,7 @@ AsyncThreadManager.addCycle(ICycle实现类的对象, 1, 1);
 ```
 AsyncThreadManager.removeCycle(ICycle实现类的对象, 1, 1);
 ```
-4、将非活物加入线程1、优先级1的处理队列（处理完即销毁）
+4、将非活物加入线程1、优先级1的处理队列（之后会触发``处理动作``，处理完即销毁）
 ```
 AsyncThreadManager.addHandle(IHandle实现类的对象, 1, 1);
 ```
@@ -55,15 +55,15 @@ AsyncThreadManager.addHandle(IHandle实现类的对象, 1, 1);
 ```
 MsgManager.init(true, Ilog日志);
 ```
-2、设置``createuser``消息在线程1、优先级1进行处理（如果不设置，则随机线程随机优先级处理）
+2、设置所有关注``createuser``消息的处理函数在线程1、优先级1进行处理（如果不设置，则随机线程随机优先级处理）
 ```
 ThreadMsgManager.addMapping("createuser", new int[] { 1, 1 });
 ```
-3、注册关注某消息及对应处理方法（第2步消息设置归属哪个线程，对应处理方法就在哪个线程回调）
+3、注册关注某消息及对应处理函数（第2步消息设置归属哪个线程，对应处理函数就在哪个线程回调）
 ```
 MsgManager.addMsgListener(IMsgListener实现类对象);
 ```
-4、派发``createuser``消息，携带数据111与额外数据222（第3步所有关注此消息的方法，进行回调）
+4、派发``createuser``消息，携带数据111与额外数据222（第3步所有关注此消息的处理函数，进行回调）
 ```
 ThreadMsgManager.dispatchThreadMsg("createuser", 111, 222);
 ```
@@ -106,7 +106,7 @@ TcpPacket ptReturn = WaitLockManager.lock(session, pt);
 
 **介绍**：
 
-**注意**：``如果一台服务器已经承担了分布式锁服务器的角色，就不要用该服务器承担别的角色，因为这台服务器的大多数线程都会时而进行线程阻塞，等待锁客户端释放锁。``
+**注意**：``如果一台服务器已经承担了分布式锁服务器的角色，就不要用该服务器承担别的角色，因为这台服务器的大多数线程都会不时进行线程阻塞，等待锁客户端释放锁。``
 
 ![锁客户端](./grain-distributedlock/distributedlock-client.png "distributedlock-client.png")
 ![锁服务器](./grain-distributedlock/distributedlock-server.png "distributedlock-server.png")
