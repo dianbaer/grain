@@ -205,7 +205,7 @@ public HttpPacket onTestC(HttpPacket httpPacket) throws HttpException {
 ```
 //返回文件
 public ReplyFile onFileC(HttpPacket httpPacket) throws HttpException {
-	File file = new File(HttpConfig.PROJECT_PATH + "/" + HttpConfig.PROJECT_NAME + "/k_nearest_neighbors.png");
+	File file = new File("k_nearest_neighbors.png");
 	ReplyFile replyFile = new ReplyFile(file, "你好.png");
 	return replyFile;
 }
@@ -213,7 +213,7 @@ public ReplyFile onFileC(HttpPacket httpPacket) throws HttpException {
 ```
 //返回图片
 public ReplyImage onImageC(HttpPacket httpPacket) throws HttpException {
-	File file = new File(HttpConfig.PROJECT_PATH + "/" + HttpConfig.PROJECT_NAME + "/k_nearest_neighbors.png");
+	File file = new File("k_nearest_neighbors.png");
 	ReplyImage image = new ReplyImage(file);
 	return image;
 }
