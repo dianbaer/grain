@@ -111,7 +111,7 @@ TcpPacket ptReturn = WaitLockManager.lock(session, pt);
 ![锁客户端](./grain-distributedlock/distributedlock-client.png "distributedlock-client.png")
 ![锁服务器](./grain-distributedlock/distributedlock-server.png "distributedlock-server.png")
 
-**使用场景**：在无中心化服务器集群中，有很大的意义。不用依赖数据库Mysql，即可保障服务器集群业务的原子性，又大幅度提高服务器集群性能，减少错误的数据库提交。
+**使用场景**：在无中心化的服务器集群中，有很大的意义。不用依赖数据库Mysql，即可保障服务器集群业务的原子性，又大幅度提高服务器集群性能，减少错误的数据库提交。
 
 **示例代码**：
 
