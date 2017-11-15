@@ -275,8 +275,8 @@ KeyLockManager.init(new String[] { "TEST1", "TEST2" }, 120000, 100, ILog实现�
 2、
 ```
 public String lockFunction(Object... params) {}
-String str = (String) KeyLockManager.lockMethod("111", TEST1, 
-(params) -> lockFunction(params), new Object[] { "222", 111 });
+String str = (String) KeyLockManager.lockMethod("111", "TEST1", 
+(params) -> lockFunction(params), new Object[] { "str", 111 });
 ```
 -----------------
 
