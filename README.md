@@ -189,7 +189,7 @@ public void onTestC(WsPacket wsPacket) throws IOException, EncodeException {
 
 [>>>>>>HTTP服务器Demo](./grain-httpserver-test)
 
-2、返回类型示例（可扩展）
+2、6种返回类型示例（可扩展）
 
 ```
 //返回json
