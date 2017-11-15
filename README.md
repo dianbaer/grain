@@ -177,7 +177,17 @@ public void onTestC(WsPacket wsPacket) throws IOException, EncodeException {
 
 ----------------
 
-### 6、grain-httpserver（基于servlet的HTTP框架）。
+### 6、grain-httpserver（基于Servlet的HTTP框架）。
+
+**介绍**：一个非常轻量级的基于Servlet的HTTP框架，只有1318行代码。小身材，五脏齐全，扩展性强。支持各种请求方式，支持文件与数据包分离，支持扩展消息包过滤器，支持扩展请求回复类型。
+
+**使用场景**：开发HTTP项目，不想使用Spring、struts2，可以选择此框架，真的轻量到不能再轻量了（除非你想直接用Servlet）。
+
+**示例代码**：
+
+1、HTTP服务器（直接用tomcat8.5启动即可，直接访问地址``http://localhost:8080/grain-httpserver-test/index.html``，发送纯数据请求、发送携带文件的表单请求）
+
+[>>>>>>HTTP服务器Demo](./grain-httpserver-test)
 
 ----------------
 
@@ -195,20 +205,6 @@ public void onTestC(WsPacket wsPacket) throws IOException, EncodeException {
 [grain-rpc-详细介绍](./grain-rpc)
 
 [grain-distributedlock-详细介绍](./grain-distributedlock)
-
-
-
-## 5、grain-threadwebsocket（websocket服务器创建）
-
-
-	将grain-threadwebsocket包引入web工程，可以创建websocket服务器。
-	（业务分发至系统多线程模型grain-thread，可以精准指派某业务归属线程ID）
-
-
->例子（该例子内部含有js websocket客户端，使用tomcat启动即可）：
-
-
-[grain-threadwebsocket-test](./grain-threadwebsocket-test)
 
 [grain-threadwebsocket-详细介绍](./grain-threadwebsocket)
 
