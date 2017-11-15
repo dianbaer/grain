@@ -291,69 +291,39 @@ String str = (String) KeyLockManager.lockMethod("111", "222", "TEST1",
 -----------------
 
 
+## 更多详细介绍
 
+[>>>>>>grain-thread-详细介绍](./grain-thread)
 
-[grain-thread-详细介绍](./grain-thread)
-	
-[grain-threadmsg-详细介绍](./grain-threadmsg)
+[>>>>>>grain-threadmsg-详细介绍](./grain-threadmsg)
 
-[grain-rpc-详细介绍](./grain-rpc)
+[>>>>>>grain-rpc-详细介绍](./grain-rpc)
 
-[grain-distributedlock-详细介绍](./grain-distributedlock)
+[>>>>>>grain-distributedlock-详细介绍](./grain-distributedlock)
 
-[grain-threadwebsocket-详细介绍](./grain-threadwebsocket)
+[>>>>>>grain-threadwebsocket-详细介绍](./grain-threadwebsocket)
 
-[grain-httpserver-详细介绍](./grain-httpserver)
+[>>>>>>grain-httpserver-详细介绍](./grain-httpserver)
 
+[>>>>>>grain-threadkeylock-详细介绍](./grain-threadkeylock)
 
+[>>>>>>grain-log-详细介绍](./grain-log)
 
----
+[>>>>>>grain-msg-详细介绍](./grain-msg)
 
+[>>>>>>grain-tcp-详细介绍](./grain-tcp)
 
-## 7、grain-threadkeylock（支持锁类型单键值与双键值的多线程锁）
+[>>>>>>grain-config-详细介绍](./grain-config)
 
+[>>>>>>grain-reds-详细介绍](./grain-redis)
 
-	在多线程业务中，支持锁类型的单键值与双键值，并且支持锁函数
-	
-	
-简单例子1（锁函数）：当类型为TEST1，键值为111同时调用函数时，会进行锁定。
-	
-	
-	public String lockFunction(Object... params) {}
-	String str = (String) KeyLockManager.lockMethod("111", TEST1, (params) -> lockFunction(params), new Object[] { "222", 111 });
-	
-简单例子2（锁函数）：当类型为TEST1，键值为111或222同时调用函数时，会进行锁定。
+[>>>>>>grain-mongodb-详细介绍](./grain-mongodb)
 
-	
-	String str = (String) KeyLockManager.lockMethod("111", "222", TEST1, (params) -> lockFunction(params), new Object[] { "222", 111 });
-	
+[>>>>>>grain-mariadb-详细介绍](./grain-mariadb)	
 
-[grain-threadkeylock-详细介绍](./grain-threadkeylock)
+[>>>>>>grain-websocket-详细介绍](./grain-websocket)
 
-
----
-
-
-## 其他组件介绍
-
-
-[grain-log-详细介绍](./grain-log)
-
-[grain-msg-详细介绍](./grain-msg)
-	
-[grain-tcp-详细介绍](./grain-tcp)
-
-[grain-config-详细介绍](./grain-config)
-
-[grain-reds-详细介绍](./grain-redis)
-
-[grain-mongodb-详细介绍](./grain-mongodb)
-
-[grain-mariadb-详细介绍](./grain-mariadb)	
-	
-[grain-websocket-详细介绍](./grain-websocket)
-
-[grain-httpclient-详细介绍](./grain-httpclient)
+[>>>>>>grain-httpclient-详细介绍](./grain-httpclient)
 
 
 ## 打版本
