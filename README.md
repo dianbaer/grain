@@ -147,7 +147,7 @@ DistributedLockClient.unLock("111", "user", lockId);
 
 **示例代码**：
 
-1、Websocket服务器（直接用tomcat8.5启动即可，直接访问地址http://localhost:8080/grain-threadwebsocket-test/index.html，即可与服务器建立websocket连接）
+1、Websocket服务器（直接用tomcat8.5启动即可，直接访问地址``http://localhost:8080/grain-threadwebsocket-test/index.html``，即可与服务器建立websocket连接）
 
 [Websocket服务器Demo](./grain-threadwebsocket-test)
 
@@ -197,25 +197,6 @@ public void onTestC(WsPacket wsPacket) throws IOException, EncodeException {
 
 	将grain-threadwebsocket包引入web工程，可以创建websocket服务器。
 	（业务分发至系统多线程模型grain-thread，可以精准指派某业务归属线程ID）
-	
-	public class TestWSService implements IWSListener {
-		@Override
-		public Map<String, String> getWSs() throws Exception {
-			HashMap<String, String> map = new HashMap<>();
-			map.put("testc", "onTestC");
-			return map;
-		}
-		public void onTestC(WsPacket wsPacket) throws IOException, EncodeException {
-			TestC testc = (TestC) wsPacket.getData();
-			wsPacket.putMonitor("接到客户端发来的消息：" + testc.getMsg());
-			TestS.Builder tests = TestS.newBuilder();
-			tests.setWsOpCode("tests");
-			tests.setMsg("你好客户端，我是服务器");
-			WsPacket pt = new WsPacket("tests", tests.build());
-			Session session = (Session) wsPacket.session;
-			session.getBasicRemote().sendObject(pt);
-		}
-	}
 
 
 >例子（该例子内部含有js websocket客户端，使用tomcat启动即可）：
