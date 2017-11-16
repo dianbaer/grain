@@ -24,7 +24,7 @@
 **示例代码**：
 
 1、启动示例，创建10条线程，每条线程3个优先级，每次轮训间隔100毫秒，通过ILog实现类的对象打印日志，锁定线程0条。
-```
+```java
 AsyncThreadManager.init(100, 10, 3, 0, ILog实现类的对象);
 AsyncThreadManager.start();
 ```
