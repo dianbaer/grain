@@ -29,15 +29,15 @@ AsyncThreadManager.init(100, 10, 3, 0, ILog实现类的对象);
 AsyncThreadManager.start();
 ```
 2、将活物加入线程1、优先级1的进入队列（之后会触发``进入动作``、之后不断触发``轮训动作``）
-```
+```java
 AsyncThreadManager.addCycle(ICycle实现类的对象, 1, 1);
 ```
 3、将活物加入线程1、优先级1的离开队列（之后会触发``离开动作``）
-```
+```java
 AsyncThreadManager.removeCycle(ICycle实现类的对象, 1, 1);
 ```
 4、将非活物加入线程1、优先级1的处理队列（之后会触发``处理动作``，处理完即销毁）
-```
+```java
 AsyncThreadManager.addHandle(IHandle实现类的对象, 1, 1);
 ```
 
@@ -52,19 +52,19 @@ AsyncThreadManager.addHandle(IHandle实现类的对象, 1, 1);
 **示例代码**：
 
 1、初始化，通过ILog实现类的对象打印日志
-```
+```java
 MsgManager.init(true, Ilog日志);
 ```
 2、设置所有关注``createuser``消息的处理函数在线程1、优先级1进行处理（如果不设置，则随机线程随机优先级处理）
-```
+```java
 ThreadMsgManager.addMapping("createuser", new int[] { 1, 1 });
 ```
 3、注册关注某消息及对应处理函数（第2步消息设置归属哪个线程，对应处理函数就在哪个线程回调）
-```
+```java
 MsgManager.addMsgListener(IMsgListener实现类对象);
 ```
 4、派发``createuser``消息，携带数据111与额外数据222（第3步所有关注此消息的处理函数，进行回调）
-```
+```java
 ThreadMsgManager.dispatchThreadMsg("createuser", 111, 222);
 ```
 
@@ -91,7 +91,7 @@ ThreadMsgManager.dispatchThreadMsg("createuser", 111, 222);
 
 3、RPC方式获取数据示例
 
-```
+```java
 //创建消息包
 RPCTestC.Builder builder = RPCTestC.newBuilder();
 builder.setName("RPC服务器你好啊");
@@ -125,7 +125,7 @@ TcpPacket ptReturn = WaitLockManager.lock(session, pt);
 
 3、分布式客户端获取锁，释放锁示例
 
-```
+```java
 // 获取类型为user，键值为111的锁
 int lockId = DistributedLockClient.getLock("111", "user");
 if (lockId == 0) {
@@ -152,7 +152,7 @@ DistributedLockClient.unLock("111", "user", lockId);
 [>>>>>>Websocket服务器Demo](./grain-threadwebsocket-test)
 
 2、处理业务示例
-```
+```java
 public void onTestC(WsPacket wsPacket) throws IOException, EncodeException {
 	//客户端发来的数据
 	TestC testc = (TestC) wsPacket.getData();
@@ -191,7 +191,7 @@ public void onTestC(WsPacket wsPacket) throws IOException, EncodeException {
 
 2、6种返回类型示例（可扩展）
 
-```
+```java
 //返回json
 public HttpPacket onTestC(HttpPacket httpPacket) throws HttpException {
 	GetTokenS.Builder builder = GetTokenS.newBuilder();
@@ -202,7 +202,7 @@ public HttpPacket onTestC(HttpPacket httpPacket) throws HttpException {
 	return packet;
 }
 ```
-```
+```java
 //返回文件
 public ReplyFile onFileC(HttpPacket httpPacket) throws HttpException {
 	File file = new File("k_nearest_neighbors.png");
@@ -210,7 +210,7 @@ public ReplyFile onFileC(HttpPacket httpPacket) throws HttpException {
 	return replyFile;
 }
 ```
-```
+```java
 //返回图片
 public ReplyImage onImageC(HttpPacket httpPacket) throws HttpException {
 	File file = new File("k_nearest_neighbors.png");
@@ -218,13 +218,13 @@ public ReplyImage onImageC(HttpPacket httpPacket) throws HttpException {
 	return image;
 }
 ```
-```
+```java
 //返回字符串
 public String onStringC(HttpPacket httpPacket) throws HttpException {
 	return "<html><head></head><body><h1>xxxxxxxxxxxx<h1></body></html>";
 }
 ```
-```
+```java
 //返回字符串（自定义头消息）
 public ReplyString onReplyStringC(HttpPacket httpPacket) throws HttpException {
 	String str = "<html><head></head><body><h1>xxxxxxxxxxxx<h1></body></html>";
@@ -232,7 +232,7 @@ public ReplyString onReplyStringC(HttpPacket httpPacket) throws HttpException {
 	return replyString;
 }
 ```
-```
+```java
 //抛自定义错误，进行返回
 public void onException(HttpPacket httpPacket) throws HttpException {
 	GetTokenS.Builder builder = GetTokenS.newBuilder();
@@ -269,11 +269,11 @@ public void onException(HttpPacket httpPacket) throws HttpException {
 **示例代码**：
 
 1、初始化类型为``TEST1``、``TEST2``的多线程锁，锁等待最大时间为2分钟，每100毫秒醒来重试，通过ILog实现类的对象打印日志
-```
+```java
 KeyLockManager.init(new String[] { "TEST1", "TEST2" }, 120000, 100, ILog实现类的对象);
 ```
 2、锁定``TEST1``类型，键值为222，同时调用lockFunction函数，传递两个参数str与111。（lockFunction没执行完成，同一时刻如果还是``TEST1``类型，键值``222``，会被阻塞）
-```
+```java
 //锁定函数
 public String lockFunction(Object... params) {}
 //加锁调用
@@ -281,7 +281,7 @@ String str = (String) KeyLockManager.lockMethod("222", "TEST1",
 (params) -> lockFunction(params), new Object[] { "str", 111 });
 ```
 3、锁定``TEST1``类型，键值为222与111，同时调用lockFunction函数，传递两个参数str与111。（lockFunction没执行完成，同一时刻如果还是``TEST1``类型，键值``222``或``111``，会被阻塞）
-```
+```java
 //锁定函数
 public String lockFunction(Object... params) {}
 //加锁调用
