@@ -44,6 +44,17 @@ public class AsyncThread extends Thread {
 				AsyncHandleData asyncHandleData = asyncHandleDataMap.get(priorityArray[i]);
 				ArrayList<ICycle> addCycleArray = asyncHandleData.getAddCycleArray();
 				ArrayList<ICycle> removeCycleArray = asyncHandleData.getRemoveCycleArray();
+				// 处理轮训业务
+				for (int j = 0; j < asyncHandleData.cycleArray.size(); j++) {
+					ICycle changeCycle = asyncHandleData.cycleArray.get(j);
+					try {
+						changeCycle.cycle();
+					} catch (Exception e) {
+						if (log != null) {
+							log.error("异步线程异常ICycle cycle:" + changeCycle.getClass().getName(), e);
+						}
+					}
+				}
 				// 处理本轮加入轮训队列
 				for (int j = 0; j < addCycleArray.size(); j++) {
 					ICycle changeCycle = addCycleArray.get(j);
@@ -67,17 +78,6 @@ public class AsyncThread extends Thread {
 					} catch (Exception e) {
 						if (log != null) {
 							log.error("异步线程异常ICycle onRemove:" + changeCycle.getClass().getName(), e);
-						}
-					}
-				}
-				// 处理轮训业务
-				for (int j = 0; j < asyncHandleData.cycleArray.size(); j++) {
-					ICycle changeCycle = asyncHandleData.cycleArray.get(j);
-					try {
-						changeCycle.cycle();
-					} catch (Exception e) {
-						if (log != null) {
-							log.error("异步线程异常ICycle cycle:" + changeCycle.getClass().getName(), e);
 						}
 					}
 				}
