@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.github.dianbaer</groupId>
+	<artifactId>grain</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+	<name>grain</name>
+	<description>grain</description>
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<modules>
+		<module>log</module>
+		<module>thread</module>
+		<module>msg</module>
+		<module>threadmsg</module>
+		<module>threadkeylock</module>
+		<module>httpclient</module>
+		<module>httpserver</module>
+		<module>httpserver-test</module>
+		<module>websocket-lib</module>
+		<module>websocket</module>
+		<module>websocket-test</module>
+		<module>threadwebsocket</module>
+		<module>threadwebsocket-test</module>
+		<module>tcp</module>
+		<module>tcp-clienttest</module>
+		<module>tcp-servertest</module>
+		<module>rpc</module>
+		<module>rpc-clienttest</module>
+		<module>rpc-servertest</module>
+		<module>distributedlock</module>
+		<module>distributedlock-clienttest</module>
+		<module>distributedlock-servertest</module>
+		<module>config</module>
+		<module>redis</module>
+		<module>mariadb</module>
+		<module>mongodb</module>
+	</modules>
+	<!-- https://mvnrepository.com/artifact/junit/junit -->
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>

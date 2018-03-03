@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<project name="lib" default="dist" basedir=".">
+	<property name="lib-src" location="${threadwebsocket.dir}/src/main/java" />
+	<property name="lib-build" location="${threadwebsocket.dir}/build" />
+	<property name="lib-dist" location="${threadwebsocket.dir}/dist" />
+	<path id="libs">
+		<fileset dir="lib">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="${log.dir}/dist">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="${msg.dir}/dist">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="${thread.dir}/dist">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="${threadmsg.dir}/dist">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="${websocket-lib.dir}/dist">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+	<target name="init">
+		<mkdir dir="${lib-build}" />
+	</target>
+	<target name="compilelib" depends="init">
+		<javac destdir="${lib-build}" debug="true" source="1.8" target="1.8" encoding="UTF-8" includeantruntime="on">
+			<classpath>
+				<path refid="libs" />
+			</classpath>
+			<src path="${lib-src}" />
+		</javac>
+	</target>
+	<target name="distlib" depends="compilelib">
+		<mkdir dir="${lib-dist}" />
+		<jar destfile="${lib-dist}/grain-threadwebsocket.jar">
+			<fileset dir="${lib-build}">
+				<include name="**/**" />
+			</fileset>
+		</jar>
+	</target>
+	<target name="dist" depends="clean, distlib, distdepend" />
+	<target name="clean" description="clean up">
+		<delete dir="${lib-build}" />
+		<delete dir="${lib-dist}" />
+	</target>
+	<target name="distdepend">
+		<mkdir dir="${lib-dist}/grain-threadwebsocket"/>
+		<copy file="${lib-dist}/grain-threadwebsocket.jar" todir="${lib-dist}/grain-threadwebsocket" />
+		<copy file="${log.dir}/dist/grain-log.jar" todir="${lib-dist}/grain-threadwebsocket" />
+		<copy file="${msg.dir}/dist/grain-msg.jar" todir="${lib-dist}/grain-threadwebsocket" />
+		<copy file="${thread.dir}/dist/grain-thread.jar" todir="${lib-dist}/grain-threadwebsocket" />
+		<copy file="${threadmsg.dir}/dist/grain-threadmsg.jar" todir="${lib-dist}/grain-threadwebsocket" />
+		<copy file="${websocket-lib.dir}/dist/grain-websocket-lib.jar" todir="${lib-dist}/grain-threadwebsocket" />
+		<copydir src="${threadwebsocket.dir}/lib" dest="${lib-dist}/grain-threadwebsocket"></copydir>
+	</target>
+</project>

@@ -16,13 +16,13 @@
 
 -------------
 
-### 1、grain-thread（系统通用多线程模型）
+### 1、thread（系统通用多线程模型）
 
 **介绍**：完美抽象了客观事物，包含：1、活跃于线程之间的活物，``进入动作``、``离开动作``、``轮训动作``（例如：人可以在线程间切换），2、处理完即销毁的非活物，``处理动作``（例如：各类消息包处理后即可销毁）。3、优秀的多线程轮训机制，队列机制（生产者与消费者），服务器掌握绝对的控制权。
 
 ![thread](./thread.png "thread.png")
 
-**使用场景**：grain-rpc、grain-distributedlock、grain-threadwebsocket，都是基于此系统通用多线程模型。任何需要多线程的业务都可以使用：例如``MMORPG``、``即时通讯``等。
+**使用场景**：rpc、distributedlock、threadwebsocket，都是基于此系统通用多线程模型。任何需要多线程的业务都可以使用：例如``MMORPG``、``即时通讯``等。
 
 **示例代码**：
 
@@ -46,11 +46,11 @@ AsyncThreadManager.addHandle(IHandle实现类的对象, 1, 1);
 
 -------------------------
 
-### 2、grain-threadmsg（系统通用多线程模型与消息通讯）。
+### 2、threadmsg（系统通用多线程模型与消息通讯）。
 
 **介绍**：支持``与系统通用多线程模型``、``系统通用多线程模型之间``进行消息通讯。可以进行``消息配置``、``消息注册``、``消息分发``、``消息回调``。
 
-**使用场景**：需要系统通用多线程模型的场景，一般都需要进行消息通讯。可以一直跟grain-thread绑定使用。
+**使用场景**：需要系统通用多线程模型的场景，一般都需要进行消息通讯。可以一直跟thread绑定使用。
 
 **示例代码**：
 
@@ -73,12 +73,12 @@ ThreadMsgManager.dispatchThreadMsg("createuser", 111, 222);
 
 --------------------
 
-### 3、grain-rpc（支持多对多关系的RPC框架，含：RPC客户端与RPC服务器）。
+### 3、rpc（支持多对多关系的RPC框架，含：RPC客户端与RPC服务器）。
 
 **介绍**：基于Mina网络层及Protobuf序列化开发的RPC通讯框架，相比7层HTTP通讯，4层TCP通讯消息包更小、传输速度更快、队列化处理消息包、消息包与线程可一一映射配置化，支持多对多关系、断线重连等。
 
-![RPC客户端](./grain-rpc/rpc-client.png "rpc-client.png")
-![RPC服务器](./grain-rpc/rpc-server.png "rpc-server.png")
+![RPC客户端](./rpc/rpc-client.png "rpc-client.png")
+![RPC服务器](./rpc/rpc-server.png "rpc-server.png")
 
 **使用场景**：生产环境内部网络的服务器之间进行消息通讯。
 
@@ -86,11 +86,11 @@ ThreadMsgManager.dispatchThreadMsg("createuser", 111, 222);
 
 1、RPC客户端（启动类test.RPCClientTest.java，直接启动即可连接下面的RPC服务器）
 
-[>>>>>>RPC客户端Demo](./grain-rpc-clienttest)
+[>>>>>>RPC客户端Demo](./rpc-clienttest)
 
 2、RPC服务器（启动类test.RPCServerTest.java，直接启动即可接受上面的RPC客户端连接请求）
 
-[>>>>>>RPC服务器Demo](./grain-rpc-servertest)
+[>>>>>>RPC服务器Demo](./rpc-servertest)
 
 3、RPC方式获取数据示例
 
@@ -105,14 +105,14 @@ TcpPacket ptReturn = WaitLockManager.lock(session, pt);
 
 --------------------
 
-### 4、grain-distributedlock（支持多对多关系的分布式锁，含：分布式锁客户端与分布式锁服务器）。
+### 4、distributedlock（支持多对多关系的分布式锁，含：分布式锁客户端与分布式锁服务器）。
 
 **介绍**：去中心化，支持行级锁（锁某类型的单键值）。不同类型互不影响，相同类型不同键值互不影响。仅当类型与键值都相等时会进行分布式阻塞。
 
 **注意**：如果一台服务器已经承担了分布式锁服务器的角色，就不要用该服务器承担别的角色，因为这台服务器的大多数线程都会不时进行线程阻塞，等待锁客户端释放锁。
 
-![锁客户端](./grain-distributedlock/distributedlock-client.png "distributedlock-client.png")
-![锁服务器](./grain-distributedlock/distributedlock-server.png "distributedlock-server.png")
+![锁客户端](./distributedlock/distributedlock-client.png "distributedlock-client.png")
+![锁服务器](./distributedlock/distributedlock-server.png "distributedlock-server.png")
 
 **使用场景**：在无中心化的服务器集群中，有很大的意义。不用依赖数据库Mysql，即可保障服务器集群业务的原子性，又大幅度提高服务器集群性能，减少错误的数据库提交。
 
@@ -120,11 +120,11 @@ TcpPacket ptReturn = WaitLockManager.lock(session, pt);
 
 1、分布式锁客户端（启动类test.DistributedlockClientTest.java，直接启动即可连接下面的分布式锁服务器）
 
-[>>>>>>分布式锁客户端Demo](./grain-distributedlock-clienttest)
+[>>>>>>分布式锁客户端Demo](./distributedlock-clienttest)
 
 2、分布式锁服务器（启动类test.DistributedlockServerTest.java，直接启动即可接受上面的分布式锁客户端连接请求）
 
-[>>>>>>分布式锁服务器Demo](./grain-distributedlock-servertest)
+[>>>>>>分布式锁服务器Demo](./distributedlock-servertest)
 
 3、分布式客户端获取锁，释放锁示例
 
@@ -142,7 +142,7 @@ DistributedLockClient.unLock("111", "user", lockId);
 
 ---------------
 
-### 5、grain-threadwebsocket（基于系统通用多线程模型的Websocket框架）。
+### 5、threadwebsocket（基于系统通用多线程模型的Websocket框架）。
 
 **介绍**：websocket消息不在tomcat默认线程处理，分发至系统通用多线程模型进行队列化处理。更加可定制化，支持websocket消息与线程ID一一映射，服务器绝对的处理控制权。
 
@@ -150,9 +150,9 @@ DistributedLockClient.unLock("111", "user", lockId);
 
 **示例代码**：
 
-1、Websocket服务器（直接用tomcat8.5启动即可，直接访问地址``http://localhost:8080/grain-threadwebsocket-test/index.html``，即可与服务器建立websocket连接）
+1、Websocket服务器（直接用tomcat8.5启动即可，直接访问地址``http://localhost:8080/threadwebsocket-test/index.html``，即可与服务器建立websocket连接）
 
-[>>>>>>Websocket服务器Demo](./grain-threadwebsocket-test)
+[>>>>>>Websocket服务器Demo](./threadwebsocket-test)
 
 2、处理业务示例
 ```java
@@ -174,7 +174,7 @@ public void onTestC(WsPacket wsPacket) throws IOException, EncodeException {
 
 ----------------
 
-### 6、grain-httpserver（基于Servlet的HTTP框架）。
+### 6、httpserver（基于Servlet的HTTP框架）。
 
 **介绍**：一个非常轻量级的基于Servlet的HTTP框架，只有1318行代码。小身材，五脏齐全，扩展性强。支持各种请求方式，支持文件与数据包分离，支持扩展请求过滤器，支持扩展请求回复类型。
 
@@ -182,9 +182,9 @@ public void onTestC(WsPacket wsPacket) throws IOException, EncodeException {
 
 **示例代码**：
 
-1、HTTP服务器（直接用tomcat8.5启动即可，直接访问地址``http://localhost:8080/grain-httpserver-test/index.html``，发送纯数据请求、发送携带文件的表单请求）
+1、HTTP服务器（直接用tomcat8.5启动即可，直接访问地址``http://localhost:8080/httpserver-test/index.html``，发送纯数据请求、发送携带文件的表单请求）
 
-[>>>>>>HTTP服务器Demo](./grain-httpserver-test)
+[>>>>>>HTTP服务器Demo](./httpserver-test)
 
 2、6种返回类型示例（可扩展）
 
@@ -243,11 +243,11 @@ public void onException(HttpPacket httpPacket) throws HttpException {
 
 ----------------
 
-### 7、grain-threadkeylock（支持行级锁的多线程锁）。
+### 7、threadkeylock（支持行级锁的多线程锁）。
 
 **介绍**：支持锁类型的单键值与双键值的多线程锁，精细化至行级锁，提高并发能力。
 
-**注意**：``单服务器架构有价值，集群架构没任何意义，集群架构请使用分布式锁grain-distributedlock。``
+**注意**：``单服务器架构有价值，集群架构没任何意义，集群架构请使用分布式锁distributedlock。``
 
 **使用场景**：在单服务器架构时，可以在不依赖数据库的情况下，支持到行级锁。
 
@@ -278,37 +278,37 @@ String str = (String) KeyLockManager.lockMethod("111", "222", "TEST1",
 
 ## 更多详细介绍
 
-[>>>>>>grain-thread-详细介绍](./grain-thread)
+[>>>>>>thread-详细介绍](./thread)
 
-[>>>>>>grain-threadmsg-详细介绍](./grain-threadmsg)
+[>>>>>>threadmsg-详细介绍](./threadmsg)
 
-[>>>>>>grain-rpc-详细介绍](./grain-rpc)
+[>>>>>>rpc-详细介绍](./rpc)
 
-[>>>>>>grain-distributedlock-详细介绍](./grain-distributedlock)
+[>>>>>>distributedlock-详细介绍](./distributedlock)
 
-[>>>>>>grain-threadwebsocket-详细介绍](./grain-threadwebsocket)
+[>>>>>>threadwebsocket-详细介绍](./threadwebsocket)
 
-[>>>>>>grain-httpserver-详细介绍](./grain-httpserver)
+[>>>>>>httpserver-详细介绍](./httpserver)
 
-[>>>>>>grain-threadkeylock-详细介绍](./grain-threadkeylock)
+[>>>>>>threadkeylock-详细介绍](./threadkeylock)
 
-[>>>>>>grain-log-详细介绍](./grain-log)（不建议单独使用）
+[>>>>>>log-详细介绍](./log)（不建议单独使用）
 
-[>>>>>>grain-msg-详细介绍](./grain-msg)（不建议单独使用，建议直接用grain-threadmsg）
+[>>>>>>msg-详细介绍](./msg)（不建议单独使用，建议直接用threadmsg）
 
-[>>>>>>grain-tcp-详细介绍](./grain-tcp)（不建议单独使用，建议直接用grain-rpc）
+[>>>>>>tcp-详细介绍](./tcp)（不建议单独使用，建议直接用rpc）
 
-[>>>>>>grain-config-详细介绍](./grain-config)
+[>>>>>>config-详细介绍](./config)
 
-[>>>>>>grain-reds-详细介绍](./grain-redis)
+[>>>>>>reds-详细介绍](./redis)
 
-[>>>>>>grain-mongodb-详细介绍](./grain-mongodb)
+[>>>>>>mongodb-详细介绍](./mongodb)
 
-[>>>>>>grain-mariadb-详细介绍](./grain-mariadb)	
+[>>>>>>mariadb-详细介绍](./mariadb)	
 
-[>>>>>>grain-websocket-详细介绍](./grain-websocket)（不建议使用，建议使用grain-threadwebsocket）
+[>>>>>>websocket-详细介绍](./websocket)（不建议使用，建议使用threadwebsocket）
 
-[>>>>>>grain-httpclient-详细介绍](./grain-httpclient)
+[>>>>>>httpclient-详细介绍](./httpclient)
 
 
 ## 打版本

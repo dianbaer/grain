@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<project name="lib" default="dist" basedir=".">
+	<property name="lib-src" location="${websocket.dir}/src/main/java" />
+	<property name="lib-build" location="${websocket.dir}/build" />
+	<property name="lib-dist" location="${websocket.dir}/dist" />
+	<path id="libs">
+		<fileset dir="lib">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="${log.dir}/dist">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="${msg.dir}/dist">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="${websocket-lib.dir}/dist">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+	<target name="init">
+		<mkdir dir="${lib-build}" />
+	</target>
+	<target name="compilelib" depends="init">
+		<javac destdir="${lib-build}" debug="true" source="1.8" target="1.8" encoding="UTF-8" includeantruntime="on">
+			<classpath>
+				<path refid="libs" />
+			</classpath>
+			<src path="${lib-src}" />
+		</javac>
+	</target>
+	<target name="distlib" depends="compilelib">
+		<mkdir dir="${lib-dist}" />
+		<jar destfile="${lib-dist}/grain-websocket.jar">
+			<fileset dir="${lib-build}">
+				<include name="**/**" />
+			</fileset>
+		</jar>
+	</target>
+	<target name="dist" depends="clean, distlib, distdepend" />
+	<target name="clean" description="clean up">
+		<delete dir="${lib-build}" />
+		<delete dir="${lib-dist}" />
+	</target>
+	<target name="distdepend">
+		<mkdir dir="${lib-dist}/grain-websocket"/>
+		<copy file="${lib-dist}/grain-websocket.jar" todir="${lib-dist}/grain-websocket" />
+		<copy file="${log.dir}/dist/grain-log.jar" todir="${lib-dist}/grain-websocket" />
+		<copy file="${msg.dir}/dist/grain-msg.jar" todir="${lib-dist}/grain-websocket" />
+		<copy file="${websocket-lib.dir}/dist/grain-websocket-lib.jar" todir="${lib-dist}/grain-websocket" />
+		<copydir src="${websocket.dir}/lib" dest="${lib-dist}/grain-websocket"></copydir>
+	</target>
+</project>

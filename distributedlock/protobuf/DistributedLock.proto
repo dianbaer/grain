@@ -1,0 +1,12 @@
+syntax = "proto3";
+package org.grain.distributedlock.tcp;
+message DistributedLockC1{
+	string key=1;//锁唯一key
+	string type=2;//锁类型
+}
+message DistributedLockS1{
+	bool result=1;//获取锁成功还是失败
+}
+message DistributedLockC2{
+	string name=1;
+}

@@ -1,8 +1,0 @@
-syntax = "proto3";
-package protobuf.tcp;
-message TestC{
-	string name=1;
-}
-message TestS{
-	string name=1;
-}

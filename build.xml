@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0"?>
 <project name="grain" basedir="." default="test">
 	<property name="dist" location="${basedir}/dist" />
-	<property name="log.dir" value="${basedir}/grain-log" />
-	<property name="msg.dir" value="${basedir}/grain-msg" />
-	<property name="thread.dir" value="${basedir}/grain-thread" />
-	<property name="threadmsg.dir" value="${basedir}/grain-threadmsg" />
-	<property name="tcp.dir" value="${basedir}/grain-tcp" />
-	<property name="rpc.dir" value="${basedir}/grain-rpc" />
-	<property name="distributedlock.dir" value="${basedir}/grain-distributedlock" />
-	<property name="websocket-lib.dir" value="${basedir}/grain-websocket-lib" />
-	<property name="websocket.dir" value="${basedir}/grain-websocket" />
-	<property name="threadwebsocket.dir" value="${basedir}/grain-threadwebsocket" />
-	<property name="threadkeylock.dir" value="${basedir}/grain-threadkeylock" />
-	<property name="mongodb.dir" value="${basedir}/grain-mongodb" />
-	<property name="redis.dir" value="${basedir}/grain-redis" />
-	<property name="mariadb.dir" value="${basedir}/grain-mariadb" />
-	<property name="config.dir" value="${basedir}/grain-config" />
-	<property name="httpclient.dir" value="${basedir}/grain-httpclient" />
-	<property name="httpserver.dir" value="${basedir}/grain-httpserver" />
+	<property name="log.dir" value="${basedir}/log" />
+	<property name="msg.dir" value="${basedir}/msg" />
+	<property name="thread.dir" value="${basedir}/thread" />
+	<property name="threadmsg.dir" value="${basedir}/threadmsg" />
+	<property name="tcp.dir" value="${basedir}/tcp" />
+	<property name="rpc.dir" value="${basedir}/rpc" />
+	<property name="distributedlock.dir" value="${basedir}/distributedlock" />
+	<property name="websocket-lib.dir" value="${basedir}/websocket-lib" />
+	<property name="websocket.dir" value="${basedir}/websocket" />
+	<property name="threadwebsocket.dir" value="${basedir}/threadwebsocket" />
+	<property name="threadkeylock.dir" value="${basedir}/threadkeylock" />
+	<property name="mongodb.dir" value="${basedir}/mongodb" />
+	<property name="redis.dir" value="${basedir}/redis" />
+	<property name="mariadb.dir" value="${basedir}/mariadb" />
+	<property name="config.dir" value="${basedir}/config" />
+	<property name="httpclient.dir" value="${basedir}/httpclient" />
+	<property name="httpserver.dir" value="${basedir}/httpserver" />
 	<target name="build-log" depends="">
 		<ant antfile="build-log.xml" dir="${log.dir}">
 		</ant>

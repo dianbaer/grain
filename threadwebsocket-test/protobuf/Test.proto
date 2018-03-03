@@ -1,0 +1,10 @@
+syntax = "proto3";
+package protobuf.ws;
+message TestC{
+	string wsOpCode=1;
+	string msg=2;
+}
+message TestS{
+	string wsOpCode=1;
+	string msg=2;
+}
