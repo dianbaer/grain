@@ -19,7 +19,7 @@ public class HttpUtilTest {
 
 	@Test
 	public void testGet() throws UnsupportedEncodingException {
-		byte[] result = HttpUtil.send(null, "http://localhost:8080/httpserver-test", null, HttpUtil.GET);
+		byte[] result = HttpUtil.send(null, "http://localhost:8080/", null, HttpUtil.GET);
 		String str = new String(result, "UTF-8");
 		System.out.println(str);
 		assertEquals(true, str != null);
@@ -28,7 +28,7 @@ public class HttpUtilTest {
 	@Test
 	public void testPost() throws UnsupportedEncodingException {
 		String str = "{hOpCode: \"1\", userName: \"admin\", userPassword: \"123456\"}";
-		byte[] result = HttpUtil.send(str, "http://localhost:8080/httpserver-test/s", null, HttpUtil.POST);
+		byte[] result = HttpUtil.send(str, "http://localhost:8080/s", null, HttpUtil.POST);
 		String returnStr = new String(result, "UTF-8");
 		System.out.println(returnStr);
 		assertEquals(true, str != null);
@@ -41,9 +41,9 @@ public class HttpUtilTest {
 		HashMap<String, String> headMap = new HashMap<String, String>();
 		headMap.put("token", tokenId);
 		headMap.put("packet", URLEncoder.encode(str, HttpUtil.ENCODE));
-		File file = new File("C:\\Users\\23236\\Desktop\\grain\\httpclient\\src\\test\\resources\\k_nearest_neighbors.png");
+		File file = new File("D:\\github\\product\\grain\\httpclient\\src\\test\\resources\\k_nearest_neighbors.png");
 		System.out.println(file.exists());
-		byte[] result = HttpUtil.sendFile(file, "http://localhost:8080/httpserver-test/s", headMap, HttpUtil.POST);
+		byte[] result = HttpUtil.sendFile(file, "http://localhost:8080/s", headMap, HttpUtil.POST);
 		String returnStr = new String(result, "UTF-8");
 		System.out.println(returnStr);
 		assertEquals(true, str != null);

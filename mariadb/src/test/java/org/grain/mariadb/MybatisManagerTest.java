@@ -15,7 +15,7 @@ public class MybatisManagerTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		MybatisManager.init("C:\\Users\\23236\\Desktop\\grain\\mariadb\\src\\test\\resources\\TestConfigData\\", "mybatis-config.xml", null);
+		MybatisManager.init("D:\\github\\product\\grain\\mariadb\\src\\test\\resources\\TestConfigData\\", "mybatis-config.xml", null);
 	}
 
 	@Test
