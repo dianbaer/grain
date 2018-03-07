@@ -5,3 +5,4 @@ target
 logs
 .idea
 *.iml
+dist
