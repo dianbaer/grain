@@ -26,7 +26,7 @@
             var header = [];
             header["token"] = "sadwadawdwad";
             var httpClient = new juggle.HttpClient();
-            httpClient.send(data, "http://localhost:8080/s", header);
+            httpClient.send(data, "http://localhost:8080/httpserver-test/s", header);
             httpClient.addEventListener(juggle.httpEventType.SUCCESS, success, this);
             httpClient.addEventListener(juggle.httpEventType.ERROR, error, this);
 
@@ -43,7 +43,7 @@
             var header = [];
             header["token"] = "sadwadawdwad";
             var httpClient = new juggle.HttpClient();
-            httpClient.sendFile(obj.files, data, "http://localhost:8080/s", header);
+            httpClient.sendFile(obj.files, data, "http://localhost:8080/httpserver-test/s", header);
             httpClient.addEventListener(juggle.httpEventType.SUCCESS, successFile, this);
             httpClient.addEventListener(juggle.httpEventType.ERROR, errorFile, this);
         }

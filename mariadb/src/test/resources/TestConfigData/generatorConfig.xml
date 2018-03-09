@@ -38,7 +38,7 @@
 
         <!-- 生成bean -->
         <javaModelGenerator 
-        	targetPackage="org.grain.mariadb.model.base1"
+        	targetPackage="org.grain.mariadb.model.base"
             targetProject="src/test/java">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
@@ -46,15 +46,15 @@
 
         <!-- 生成sqlMapper XML文件 -->
         <sqlMapGenerator 
-        	targetPackage="org.grain.mariadb.mappers.base1"
-            targetProject="src/test/java">
+        	targetPackage="org.grain.mariadb.mappers.base"
+            targetProject="src/test/resources">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
         <!-- 生成应用接口 -->
         <javaClientGenerator 
         	type="XMLMAPPER"  
-            targetPackage="org.grain.mariadb.dao.base1"
+            targetPackage="org.grain.mariadb.dao.base"
             targetProject="src/test/java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>

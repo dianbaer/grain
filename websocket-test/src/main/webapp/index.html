@@ -24,7 +24,7 @@
         }
 
         window.onload = function () {
-            websocketClient = new juggle.WebSocketClient("ws://localhost:8080/ws");
+            websocketClient = new juggle.WebSocketClient("ws://localhost:8080/websocket-test/ws");
             websocketClient.addEventListener(juggle.webSocketEventType.CONNECTED, onConnect, this);
             websocketClient.addEventListener(juggle.webSocketEventType.CLOSE, onClose, this);
             websocketClient.addEventListener(juggle.webSocketEventType.getMessage("tests"), onTests, this);
