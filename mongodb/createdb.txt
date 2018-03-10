@@ -1,1 +1,1 @@
-mongo --host 172.27.108.73 --eval 'db = db.getSiblingDB("test");db.createUser({user: "test",pwd: "test",roles: [ "readWrite", "dbAdmin" ]})'
+mongo --host 127.0.0.1 --eval 'db = db.getSiblingDB("test");db.createUser({user: "test",pwd: "test",roles: [ "readWrite", "dbAdmin" ]})'
